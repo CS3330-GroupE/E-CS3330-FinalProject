@@ -1,10 +1,12 @@
 package main;
 
+import game.Mechanics;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Mechanics game = new Mechanics();
+		game.startGame();
 	}
 
 }
