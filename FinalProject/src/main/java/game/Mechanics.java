@@ -31,10 +31,6 @@ public class Mechanics {
 		this.input = null;
 	}
 	
-	
-	
-	
-	
 	//starts game logic loop
 	public void startGame() {
 		//selectCharacter() ----> character class or mechanics class?
@@ -52,8 +48,6 @@ public class Mechanics {
 		
 		System.out.println("\nGAMEOVER");
 	}
-	
-	
 	
 	
 	
@@ -108,11 +102,33 @@ public class Mechanics {
 		
 		case("quit"):
 			command = 3;
+		}
+	}
+	//might need to return the command used for battle manager?
+	public int getUserInput() {
+		System.out.println("\nEnter Command (Move, Attack, Quit):");
+		String input = scanner.nextLine().trim().toLowerCase();
+		
+		switch(input) {
+		case "move":
+			//move
+			System.out.println("testing move\n");
+			return 1;
+			
+		case "attack":
+			//attack
+			System.out.println("testing attack\n");
+			return 2;
+			
+		case "quit":
 			quitGame();
-			break;
+			return 3;
 			
 		default:
 			command = -1;
+			System.out.println("Invalid command\n");
+			return -1;
+
 		}
 		
 		
