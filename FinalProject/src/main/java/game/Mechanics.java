@@ -1,11 +1,25 @@
 package game;
+
 import java.util.Scanner;
 
+
+
+/**
+ * This Mechanics class handles all things relating to the flow control and logic of the
+ * game itself. It starts the game, quits the game, and has the main loop logic that the user
+ * will interact with while playing.
+ * 
+ * @author Blake Simpson
+ * 
+ * 
+ */
 public class Mechanics {
 	
-	private boolean gameOver;
-	private boolean playerTurn;
-	private Scanner scanner;
+	public boolean gameOver;
+	protected boolean playerTurn;
+	public Scanner scanner;
+	protected int command;
+	protected String input;
 	
 	
 	//constructor
@@ -13,6 +27,8 @@ public class Mechanics {
 		this.gameOver = false;
 		this.playerTurn = true;
 		this.scanner = new Scanner(System.in);
+		this.command = -1;
+		this.input = null;
 	}
 	
 	
@@ -27,10 +43,11 @@ public class Mechanics {
 		
 		while(!gameOver) {
 			//get user input
-			getUserInput();
+			input = getUserInput();
+			command = determineCommand(input);
 			
 			//do stuff from user input
-			battleManager();
+			//battleManager();
 		}
 		
 		System.out.println("\nGAMEOVER");
@@ -53,66 +70,69 @@ public class Mechanics {
 	
 	
 	
-	//gets commands from user through a scanner
+	//gets input from user through a scanner and returns the input
+	//don't need to unit test -> essentially just be testing java functions
+	private String getUserInput() {
+		System.out.println("Enter Command (Move, Attack, Quit):");
+		String input = scanner.nextLine().trim();
+	
+		return input;
+	}
+	
+	
+	
+	
+	
+	//gets passed user input from getUserInput() method and determines the
+	//command being used through a switch statement and returns the command as an integer
 	//
-	//might need to return the command used for battle manager?
-	private void getUserInput() {
-		System.out.println("\nEnter Command (Move, Attack, Quit):");
-		String input = scanner.nextLine().trim().toLowerCase();
+	//RETURNS:
+	// - if user input = invalid -> returns -1
+	// - if user input = "move" -> returns 1
+	// - if user input = "attack" -> returns 2
+	// - if user input = "quit" -> returns 3
+	public int determineCommand(String input) {
+		input = input.toLowerCase();
 		
 		switch(input) {
 		case "move":
-			//move
-			System.out.println("testing move\n");
+			command = 1;
+			System.out.println("player moves\n");
 			break;
 			
-		case "attack":
-			//attack
-			System.out.println("testing attack\n");
+		case("attack"):
+			command = 2;
+			System.out.println("player attacks\n");
 			break;
-			
-		case "quit":
+		
+		
+		case("quit"):
+			command = 3;
 			quitGame();
 			break;
 			
 		default:
-			System.out.println("Invalid command\n");
+			command = -1;
 		}
-	}
-	
-	
-	
-	
-	
-	/*
-	//displays info resulting from battleManager() -> damage done, whether attack missed, hp remaining, etc.
-	private void displayInfo() {
 		
+		
+		
+		return command;
 	}
-	*/
 	
 	
+
 	
 	
-	
-	//manages all information during player battle -> who's turn, damage calculation, etc.
-	//
-	//probably going to have to create multiple methods for everything originally planned for this method
-	//and then just have this method control them and basically just be flow control for them
-	//
-	//might need to take a parameter for which command is used?
-	private void battleManager() {
-		//when it's user's turn
-		if(playerTurn) {
-			//do stuff
+	//basically just for junit testing purposes
+	public Boolean isGameOver() {
+		if(gameOver == true) {
+			return true;
 		}
-		//when it's game/monster's turn
 		else {
-			
+			return false;
 		}
 	}
-	
-	
 	
 	
 	
