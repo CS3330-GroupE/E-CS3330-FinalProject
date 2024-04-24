@@ -15,17 +15,17 @@ import java.util.Scanner;
  */
 public class Mechanics {
 	
-	public boolean gameOver;
-	protected boolean playerTurn;
-	public Scanner scanner;
-	protected int command;
-	protected String input;
+	private boolean gameOver;
+	//private boolean playerTurn;
+	private Scanner scanner;
+	private int command;
+	private String input;
 	
 	
 	//constructor
 	public Mechanics() {
 		this.gameOver = false;
-		this.playerTurn = true;
+		//this.playerTurn = true;
 		this.scanner = new Scanner(System.in);
 		this.command = -1;
 		this.input = null;
@@ -120,19 +120,7 @@ public class Mechanics {
 		return command;
 	}
 	
-	
 
-	
-	
-	//basically just for junit testing purposes
-	public Boolean isGameOver() {
-		if(gameOver == true) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 	
 	
 	
