@@ -1,12 +1,12 @@
 package item;
 
-import java.util.Map;
+import java.util.EnumMap;
 
 abstract class Item {
     protected String name;
     protected String type;
     protected String description;
-    protected Map<String, Integer> stats;
+    protected EnumMap<ItemStat, Integer> stats;
 
     public String getName() {
         return name;
@@ -20,7 +20,7 @@ abstract class Item {
         return description;
     }
 
-    public Map<String, Integer> getStats() {
+    public EnumMap<ItemStat, Integer> getStats() {
         return stats;
     }
 
