@@ -2,7 +2,7 @@ package item;
 
 import java.util.EnumMap;
 
-abstract class Item {
+public abstract class Item {
     protected String name;
     protected String type;
     protected String description;

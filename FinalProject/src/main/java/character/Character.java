@@ -1,22 +1,35 @@
 package character;
 
+import item.Item;
+
+/**
+ * 
+ * 
+ * 
+ * 
+ * @author Ethan Alexander
+ */
+
+
 public abstract class Character {
 	protected int health;
 	protected int level;
-	protected int noHealthPots;
+	protected int experience;
+	private Item equippedWeapon;
+	private Item equippedEquipment;
 	
 	
 	public Character(int health, int level, int noHealthPots) {
 		super();
 		this.health = health;
 		this.level = level;
-		this.noHealthPots = noHealthPots;
 	}
 	
 	public Character(Character copy) {
 		this.health = copy.health;
 		this.level = copy.level;
-		this.noHealthPots = copy.noHealthPots;
+		this.equippedWeapon = copy.equippedWeapon;
+		this.equippedEquipment = copy.equippedEquipment;
 	}
 	
 	boolean Attack() {
@@ -33,12 +46,14 @@ public abstract class Character {
 	}
 	
 	//print operations to gives info on stats
-	boolean checkStats () {
-		return true;
+	public void checkStats () {
+		System.out.print("Health: " + this.health);
 	}
 	
+	
+	
 	boolean levelUp () {
-		this.health = this.health + 1;
+		this.level = this.level + 1;
 		return true;
 	}
 
@@ -47,8 +62,4 @@ public abstract class Character {
 		return 0;
 	}
 
-	public int startingPots() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }
