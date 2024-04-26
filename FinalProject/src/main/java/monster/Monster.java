@@ -164,4 +164,48 @@ public class Monster {
 	}
 	
 	//Non-combat event generation TDO
+
+	//********************
+	//Monster spawning and randomization mechanics below this point
+	public void randomBackend() {
+		rng = new Random();
+	}
+		
+	public int randomizer() {
+		int spawnID = rng.nextInt(10);
+			
+		return spawnID;
+	}
+	
+	//Spawning decision switch case
+	public Monster spawnMonster() {
+	    int spawnID = randomizer();
+	    switch (spawnID) {
+	        case 0:
+	            return new NCEvent();
+	        case 1:
+	            return new NCEvent();
+	        case 2:
+	            return new Zombie();
+	        case 3:
+	            return new Zombie();
+	        case 4:
+	            return new Zombie();
+	        case 5:
+	            return new Goblin();
+	        case 6:
+	            return new Goblin();
+	        case 7:
+	            return new Goblin();
+	        case 8:
+	            return new Orc();
+	        case 9:
+	            return new Orc();
+	        case 10:
+	            return new Dragon();
+	        
+	        default:
+	            return new NCEvent(); // Default to NCEvent if spawnID is out of range
+	    }
+	}
 }
