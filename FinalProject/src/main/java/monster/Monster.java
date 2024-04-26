@@ -51,3 +51,22 @@ public class Monster {
     public int getDefense() {
         return defense;
     }
+	
+	//********************
+	//General monster mechanics
+	void attack() {
+	}
+	
+	boolean checkHealth () {
+		return true;
+	}
+	
+	//print operations to gives info on stats
+	boolean checkStats () {
+		return true;
+	}
+	
+	//Applies bonuses to monster stats based on level TDO
+	boolean levelBoost() {
+		return true;
+	}
