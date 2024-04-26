@@ -26,3 +26,28 @@ public class Monster {
         this.attack = attack;
         this.defense = defense;
     }
+
+    //Getters
+    public String getName() {
+        return name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+    
+    public int getLevel() {
+        return level;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
