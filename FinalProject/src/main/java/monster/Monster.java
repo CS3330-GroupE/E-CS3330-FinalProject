@@ -110,5 +110,58 @@ public class Monster {
 	
 	    // Handle any other on-death effects here
 	}
+
+	//********************
+	//Monster subclasses and mechanics below this point
+	public class Zombie extends Monster {
+	    public Zombie() {
+	        super("Zombie", 15, 0, 5, 5, 0);
+	    }
+	    
+	    //Zombie special mechanics
+
+	    @Override
+	    public void attack() {
+	        // Zombie's attack behavior
+	    }
+	}
 	
+	public class Goblin extends Monster {
+	    public Goblin() {
+	        super("Goblin", 8, 0, 5, 3, 3);
+	    }
+	    
+	    //Goblin special mechanics
+
+	    @Override
+	    public void attack() {
+	        // Goblin's attack behavior
+	    }
+	}
+
+	public class Orc extends Monster {
+	    public Orc() {
+	        super("Orc", 20, 1, 6, 8, 2);
+	    }
+
+	    @Override
+	    public void attack() {
+	        // Orc's attack behavior
+	    }
+	}
+
+	public class Dragon extends Monster {
+	    public Dragon() {
+	        super("Dragon", 35, 2, 7, 12, 3);
+	    }
+	    
+	    //Dragon special mechanics
+
+	    @Override
+	    public void attack() {
+	        // Zombie's attack behavior
+	    }
+	}
+	
+	//Non-combat event generation TDO
 }
