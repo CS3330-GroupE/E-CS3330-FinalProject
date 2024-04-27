@@ -17,10 +17,11 @@ public abstract class Character {
 	protected int healthPots;
 	private Item equippedWeapon;
 	private Item equippedEquipment;
+	private Type classType;
 	
 	
 	public Character(int health, int level, int experience, int dexterity, int strength, int intelligence, 
-			         int vitality, int healthPots, Item equippedWeapon, Item equippedEquipment) {
+			         int vitality, int healthPots, Item equippedWeapon, Item equippedEquipment, Type classType) {
 		super();
 		this.health = health;
 		this.level = level;
@@ -32,6 +33,7 @@ public abstract class Character {
 		this.equippedEquipment = equippedEquipment;
 		this.strength = strength;
 		this.dexterity = dexterity;
+		this.classType = classType;
 	}
 	
 	public Character(Character copy) {
@@ -45,6 +47,7 @@ public abstract class Character {
 		this.equippedEquipment = copy.equippedEquipment;
 		this.strength = copy.strength;
 		this.dexterity = copy.dexterity;
+		this.classType = copy.classType;
 	}
 	
 	public Character createCharacter(int input) {
@@ -54,17 +57,17 @@ public abstract class Character {
 			switch(input) {
 			case 1:
 				newCharacter = new Mage(health, level, experience, dexterity, strength, intelligence, 
-	               							vitality, healthPots, equippedWeapon, equippedEquipment);
+	               							vitality, healthPots, equippedWeapon, equippedEquipment, classType);
 				
 				return newCharacter;
 			case 2:
 				newCharacter = new Ranger(health, level, experience, dexterity, strength, intelligence, 
-	               							vitality, healthPots, equippedWeapon, equippedEquipment);
+	               							vitality, healthPots, equippedWeapon, equippedEquipment, classType);
 				
 				return newCharacter;
 			case 3:
 				newCharacter = new Warrior(health, level, experience, dexterity, strength, intelligence, 
-				                       		vitality, healthPots, equippedWeapon, equippedEquipment);
+				                       		vitality, healthPots, equippedWeapon, equippedEquipment, classType);
 				
 				return newCharacter;
 			}
