@@ -182,30 +182,30 @@ public class Monster {
 	    int spawnID = randomizer();
 	    switch (spawnID) {
 	        case 0:
-	            return new NCEvent();
+	            return new Zombie();
 	        case 1:
-	            return new NCEvent();
+	            return new Zombie();
 	        case 2:
 	            return new Zombie();
 	        case 3:
-	            return new Zombie();
+	            return new Goblin();
 	        case 4:
-	            return new Zombie();
+	            return new Goblin();
 	        case 5:
 	            return new Goblin();
 	        case 6:
-	            return new Goblin();
+	            return new Orc();
 	        case 7:
-	            return new Goblin();
+	            return new Orc();
 	        case 8:
 	            return new Orc();
 	        case 9:
-	            return new Orc();
+	            return new Dragon();
 	        case 10:
 	            return new Dragon();
 	        
 	        default:
-	            return new NCEvent(); // Default to NCEvent if spawnID is out of range
+	            return new Dragon(); // Default to Dragon if spawnID is out of range
 	    }
 	}
 }
