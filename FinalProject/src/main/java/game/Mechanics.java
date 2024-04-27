@@ -1,5 +1,9 @@
 package game;
 
+import character.Character;
+import item.Item;
+import monster.Monster;
+
 import java.util.Scanner;
 
 
@@ -16,31 +20,52 @@ import java.util.Scanner;
 public class Mechanics {
 	
 	private boolean gameOver;
+	private boolean characterChosen; //initially false, true once user chooses character
 	//private boolean playerTurn;
-	private Scanner scanner;
-	private int command;
-	private String input;
+	private Scanner scanner; //for user input
+	private int command; //stores user input as an integer
+	private Character character;
+	private String input; //stores user input as a string
 	
 	
 	//constructor
 	public Mechanics() {
 		this.gameOver = false;
+		this.characterChosen = false;
 		//this.playerTurn = true;
 		this.scanner = new Scanner(System.in);
 		this.command = -1;
 		this.input = null;
+		this.character = null;
 	}
 	
 	
 	
 	//starts game logic loop
 	public void startGame() {
-		//selectCharacter() ----> character class or mechanics class?
+		
+		//user choosing character
+		while(!characterChosen) {
+			characterPrompt();
+			input = getUserInput();
+			command = determineCharacter(input);
+		}
+		
+		//creating the character from user input
+		character = character.createCharacter(command);
+		
+		//System.out.println(character.toString());
+		
+		
 		
 		System.out.println("GAME START");
 		
+		//main loop until game ends
 		while(!gameOver) {
-			//get user input
+			
+			
+			//get user input for command
+			commandPrompt();
 			input = getUserInput();
 			command = determineCommand(input);
 			
@@ -71,8 +96,8 @@ public class Mechanics {
 	//gets input from user through a scanner and returns the input
 	//don't need to unit test -> essentially just be testing java functions
 	private String getUserInput() {
-		System.out.println("Enter Command (Move, Attack, Quit):");
-		String input = scanner.nextLine().trim();
+		//System.out.println("Enter Command (Move, Attack, Quit):");
+		String input = scanner.nextLine();
 	
 		return input;
 	}
@@ -90,7 +115,8 @@ public class Mechanics {
 	// - if user input = "attack" -> returns 2
 	// - if user input = "quit" -> returns 3
 	public int determineCommand(String input) {
-		input = input.toLowerCase();
+		
+		input = input.toLowerCase().trim();
 		
 		switch(input) {
 		case "move":
@@ -120,9 +146,72 @@ public class Mechanics {
 		
 		return command;
 	}
+	
+	
+	
+	
+	
+	//gets passed user input from getUserInput() method and determines the character
+	//chosen through a switch statement and returns the character chosen as an integer
+	//
+	//RETURNS:
+	// - if user input = invalid -> returns -1
+	// - if user input = "mage" -> returns 1
+	// - if user input = "ranger" -> returns 2
+	// - if user input = "warrior" -> returns 3
+	public int determineCharacter(String input) {
+		input = input.toLowerCase();
+		
+		switch(input) {
+		case "mage":
+			command = 1;
+			System.out.println("user chooses mage\n");
+			characterChosen = true;
+			break;
+			
+		case "ranger":
+			command = 2;
+			System.out.println("user chooses ranger\n");
+			characterChosen = true;
+			break;
+			
+		case "warrior":
+			command = 3;
+			System.out.println("user chooses warrior\n");
+			characterChosen = true;
+			break;
+			
+		default:
+			command = -1;
+			System.out.println("invalid character\n");
+			break;
+		}
+		
+		return command;
+	}
 
 	
 
+
+	
+	private void characterPrompt() {
+		System.out.println("Please Choose a Character:\n");
+		System.out.println("- Mage\n");
+		System.out.println("- Ranger\n");
+		System.out.println("- Warrior\n");
+		
+		return;
+	}
+	
+	private void commandPrompt() {
+		System.out.println("Enter a Command:\n");
+		System.out.println("- Move\n");
+		System.out.println("- Attack\n");
+		System.out.println("- Quit\n");
+		
+		return;
+	}
+	
 	
 	
 }
