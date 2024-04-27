@@ -1,15 +1,10 @@
 package character;
 
 import item.Item;
-
+//import item.ItemFactory;
 /**
- * 
- * 
- * 
- * 
  * @author Ethan Alexander
  */
-
 
 public abstract class Character {
 	protected int health;
@@ -24,14 +19,19 @@ public abstract class Character {
 	private Item equippedEquipment;
 	
 	
-	public Character(int health, int level, int noHealthPots, int experience, int healthPots) {
+	public Character(int health, int level, int experience, int dexterity, int strength, int intelligence, 
+			         int vitality, int healthPots, Item equippedWeapon, Item equippedEquipment) {
 		super();
 		this.health = health;
 		this.level = level;
 		this.experience = experience;
 		this.healthPots = healthPots;
-		this.equippedWeapon = null;
-		this.equippedEquipment = null;
+		this.intelligence = intelligence;
+		this.vitality = vitality;
+		this.equippedWeapon = equippedWeapon;
+		this.equippedEquipment = equippedEquipment;
+		this.strength = strength;
+		this.dexterity = dexterity;
 	}
 	
 	public Character(Character copy) {
@@ -42,7 +42,31 @@ public abstract class Character {
 		this.equippedEquipment = copy.equippedEquipment;
 	}
 	
-	
+	public Character createCharacter(int input) {
+		
+		Character newCharacter;
+		if(input <= 3 || input >= 1) {
+			switch(input) {
+			case 1:
+				newCharacter = new Mage(health, level, experience, dexterity, strength, intelligence, 
+	               							vitality, healthPots, equippedWeapon, equippedEquipment);
+				
+				return newCharacter;
+			case 2:
+				newCharacter = new Ranger(health, level, experience, dexterity, strength, intelligence, 
+	               							vitality, healthPots, equippedWeapon, equippedEquipment);
+				
+				return newCharacter;
+			case 3:
+				newCharacter = new Warrior(health, level, experience, dexterity, strength, intelligence, 
+				                       		vitality, healthPots, equippedWeapon, equippedEquipment);
+				
+				return newCharacter;
+			}
+		}
+		return null;
+		
+	}
 	
 	void Attack() {
 	}
@@ -72,6 +96,19 @@ public abstract class Character {
 		return 0;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//getters and setters
 	public int getHealth() {
 		return health;
 	}
