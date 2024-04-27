@@ -38,8 +38,13 @@ public abstract class Character {
 		this.health = copy.health;
 		this.level = copy.level;
 		this.experience = copy.experience;
+		this.healthPots = copy.healthPots;
+		this.intelligence = copy.intelligence;
+		this.vitality = copy.vitality;
 		this.equippedWeapon = copy.equippedWeapon;
 		this.equippedEquipment = copy.equippedEquipment;
+		this.strength = copy.strength;
+		this.dexterity = copy.dexterity;
 	}
 	
 	public Character createCharacter(int input) {
