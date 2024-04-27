@@ -1,8 +1,9 @@
 package game;
 
 import character.Character;
-import item.Item;
-import monster.Monster;
+import character.Mage;
+import character.Ranger;
+import character.Warrior;
 
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class Mechanics {
 	//private boolean playerTurn;
 	private Scanner scanner; //for user input
 	private int command; //stores user input as an integer
-	private Character character;
+	private Character playerCharacter;
 	private String input; //stores user input as a string
 	
 	
@@ -36,7 +37,7 @@ public class Mechanics {
 		this.scanner = new Scanner(System.in);
 		this.command = -1;
 		this.input = null;
-		this.character = null;
+		this.playerCharacter = null;
 	}
 	
 	
@@ -52,10 +53,10 @@ public class Mechanics {
 		}
 		
 		//creating the character from user input
-		character = character.createCharacter(command);
+		playerCharacter = createCharacter(command);
 		
-		//System.out.println(character.toString());
-		
+		System.out.println("TYPE CHOSEN: " + playerCharacter.getClass());
+		System.out.println("HP: " + playerCharacter.getHealth());
 		
 		
 		System.out.println("GAME START");
@@ -77,6 +78,40 @@ public class Mechanics {
 	}
 	
 	
+	
+	
+	
+	
+	
+	/**
+	 * @author ethan alexander
+	 * @param input
+	 * @return new character
+	 */
+	public Character createCharacter(int input) {
+		
+		Character newCharacter = null;
+		if(input <= 3 || input >= 1) {
+			switch(input) {
+			case 1:
+				newCharacter = new Mage();
+				break;
+				
+			case 2:
+				newCharacter = new Ranger();
+				break;
+
+			case 3:
+				newCharacter = new Warrior();
+				break;
+				
+			default:
+				return null;
+			}
+		}
+		
+		return newCharacter;	
+	}
 	
 	
 	

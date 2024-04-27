@@ -6,7 +6,7 @@ import item.Item;
  * @author Ethan Alexander
  */
 
-public abstract class Character {
+public class Character {
 	protected int health;
 	protected int level;
 	protected int experience;
@@ -50,6 +50,7 @@ public abstract class Character {
 		this.classType = copy.classType;
 	}
 	
+	/*
 	public Character createCharacter(int input) {
 		
 		Character newCharacter;
@@ -75,6 +76,7 @@ public abstract class Character {
 		return null;
 		
 	}
+	*/
 	
 	void Attack() {
 	}
