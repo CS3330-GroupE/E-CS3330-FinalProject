@@ -4,6 +4,8 @@ import monster.Monster;
 import item.Inventory;
 import item.Item;
 
+import java.util.Scanner;
+
 //import item.ItemFactory;
 /**
  * @author Ethan Alexander
@@ -60,16 +62,27 @@ public class Character {
 	}
 	
 	
-	/*void Attack(Character character, Monster monster) {
+	void Combat(Character character, Monster monster) {
+		Scanner scanner = new Scanner(System.in);
+		int command;
 		
-		while(!monster.isDead() || !character.isDeadPlayer(character)) {
-			
+		while(/*!monster.isDead() ||*/ !character.isDeadPlayer(character)) {
+			System.out.print("Enter:\n 1 to attack \n 2 to dodge \n 3 to consume a Potion");
+			command = scanner.nextInt();
 			switch(command) {
-			
+			case 1:
+				playerAttack();
+				break;
+			case 2:
+			System.out.print("You dodged the attack!\n" );
+				break;
+			case 3:
+				character.usePotion();
+				break;
 			}
 		}
 		
-	}*/
+	}
 	
 	
 	int playerAttack() {
@@ -77,8 +90,30 @@ public class Character {
 		
 		return damage;
 	}
+	
 	void usePotion() {
+		int newHealth = this.getHealth() + 4;
+		this.setHealthPots(this.getHealthPots() - 1);
+		
+		if(this.getClassType() == Type.MAGE && newHealth > 15) {
+			this.setHealth(newHealth + this.getVitality());
+			System.out.print("You are fully healed! Your current health is " + this.getHealth());
+		}
+		if(this.getClassType() == Type.RANGER && newHealth > 20) {
+			this.setHealth(newHealth + this.getVitality());
+			System.out.print("You are fully healed! Your current health is " + this.getHealth());
+		}
+		if(this.getClassType() == Type.WARRIOR && newHealth > 25) {
+			this.setHealth(newHealth + this.getVitality());
+			System.out.print("You are fully healed! Your current health is " + this.getHealth());
+		}
+		else {
+		this.setHealth(newHealth);
+		System.out.print("You healed for 4 HP! Your current health is " + this.getHealth() + "\n");
+		}
+		System.out.print("You currently have " + this.getHealthPots() + " health potions...");
 	}
+	
 	
 	//prints the users current health
 	void checkHealth () {
@@ -114,6 +149,29 @@ public class Character {
 	
 	
 	//getters and setters
+	public int getArmorClass() {
+		return armorClass;
+	}
+
+	public void setArmorClass(int armorClass) {
+		this.armorClass = armorClass;
+	}
+
+	public Type getClassType() {
+		return classType;
+	}
+
+	public void setClassType(Type classType) {
+		this.classType = classType;
+	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+	}
 	public int getHealth() {
 		return health;
 	}
