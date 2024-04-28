@@ -93,7 +93,7 @@ public class Mechanics {
 	public Character createCharacter(int input) {
 		
 		Character newCharacter = null;
-		if(input <= 3 || input >= 1) {
+		if(input <= 3 && input >= 1) {
 			switch(input) {
 			case 1:
 				newCharacter = new Mage();
