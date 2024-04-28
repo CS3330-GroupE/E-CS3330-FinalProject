@@ -1,6 +1,9 @@
 package character;
 
+import monster.Monster;
+import item.Inventory;
 import item.Item;
+
 //import item.ItemFactory;
 /**
  * @author Ethan Alexander
@@ -15,18 +18,21 @@ public class Character {
 	protected int intelligence;
 	protected int vitality;
 	protected int healthPots;
+	protected int armorClass;
 	private Item equippedWeapon;
 	private Item equippedEquipment;
 	private Type classType;
+	private Inventory inventory = new Inventory();
 	
 	
 	public Character(int health, int level, int experience, int dexterity, int strength, int intelligence, 
-			         int vitality, int healthPots, Item equippedWeapon, Item equippedEquipment, Type classType) {
+			         int vitality, int healthPots, int armorClass, Item equippedWeapon, Item equippedEquipment, Type classType, Inventory inventory) {
 		super();
 		this.health = health;
 		this.level = level;
 		this.experience = experience;
 		this.healthPots = healthPots;
+		this.armorClass = armorClass;
 		this.intelligence = intelligence;
 		this.vitality = vitality;
 		this.equippedWeapon = equippedWeapon;
@@ -34,6 +40,7 @@ public class Character {
 		this.strength = strength;
 		this.dexterity = dexterity;
 		this.classType = classType;
+		this.inventory = inventory;
 	}
 	
 	public Character(Character copy) {
@@ -41,6 +48,7 @@ public class Character {
 		this.level = copy.level;
 		this.experience = copy.experience;
 		this.healthPots = copy.healthPots;
+		this.armorClass = copy.armorClass;
 		this.intelligence = copy.intelligence;
 		this.vitality = copy.vitality;
 		this.equippedWeapon = copy.equippedWeapon;
@@ -48,39 +56,27 @@ public class Character {
 		this.strength = copy.strength;
 		this.dexterity = copy.dexterity;
 		this.classType = copy.classType;
+		this.inventory = copy.inventory;
 	}
 	
-	/*
-	public Character createCharacter(int input) {
+	
+	/*void Attack(Character character, Monster monster) {
 		
-		Character newCharacter;
-		if(input <= 3 || input >= 1) {
-			switch(input) {
-			case 1:
-				newCharacter = new Mage(health, level, experience, dexterity, strength, intelligence, 
-	               							vitality, healthPots, equippedWeapon, equippedEquipment, classType);
-				
-				return newCharacter;
-			case 2:
-				newCharacter = new Ranger(health, level, experience, dexterity, strength, intelligence, 
-	               							vitality, healthPots, equippedWeapon, equippedEquipment, classType);
-				
-				return newCharacter;
-			case 3:
-				newCharacter = new Warrior(health, level, experience, dexterity, strength, intelligence, 
-				                       		vitality, healthPots, equippedWeapon, equippedEquipment, classType);
-				
-				return newCharacter;
+		while(!monster.isDead() || !character.isDeadPlayer(character)) {
+			
+			switch(command) {
+			
 			}
 		}
-		return null;
 		
-	}
-	*/
+	}*/
 	
-	void Attack() {
-	}
 	
+	int playerAttack() {
+		int damage = 0;
+		
+		return damage;
+	}
 	void usePotion() {
 	}
 	
@@ -97,18 +93,17 @@ public class Character {
 	
 	
 	boolean levelUp () {
-		this.level = this.level + 1;
 		return true;
 	}
 
-	public int calculateHealth() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	
+	boolean isDeadPlayer(Character character) {
+		if(character.getHealth() > 0) {
+			return false;
+		}
+		return true;
 	}
-
-	
-	
-	
 	
 	
 	
