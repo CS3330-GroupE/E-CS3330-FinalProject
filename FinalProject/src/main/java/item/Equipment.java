@@ -2,6 +2,10 @@ package item;
 
 class Equipment extends Item implements Equippable {
     
+	public Equipment(String name, String description, int strength, int vitality, int dexterity, int intelligence) {
+
+	}
+
 	public void useItem(Character character) {
         System.out.println("Cannot use equipment as an item.");
     }

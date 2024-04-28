@@ -1,7 +1,12 @@
 package item;
 
 class Consumable extends Item {
-	
+
+
+	public Consumable(String name, String description) {
+
+	}
+
 	public void useItem(Character character, Inventory inventory) {
 	  if (inventory.getItems().contains(this)) {
 	      inventory.removeItem(this);
