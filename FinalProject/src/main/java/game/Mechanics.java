@@ -22,7 +22,7 @@ public class Mechanics {
 	
 	private boolean gameOver;
 	private boolean characterChosen; //initially false, true once user chooses character
-	//private boolean playerTurn;
+	private boolean playerTurn;
 	private Scanner scanner; //for user input
 	private int command; //stores user input as an integer
 	private Character playerCharacter;
@@ -33,7 +33,7 @@ public class Mechanics {
 	public Mechanics() {
 		this.gameOver = false;
 		this.characterChosen = false;
-		//this.playerTurn = true;
+		this.playerTurn = true;
 		this.scanner = new Scanner(System.in);
 		this.command = -1;
 		this.input = null;
@@ -55,10 +55,6 @@ public class Mechanics {
 		//creating the character from user input
 		playerCharacter = createCharacter(command);
 		
-		System.out.println("TYPE CHOSEN: " + playerCharacter.getClass());
-		System.out.println("HP: " + playerCharacter.getHealth());
-		
-		
 		System.out.println("GAME START");
 		
 		//main loop until game ends
@@ -70,8 +66,14 @@ public class Mechanics {
 			input = getUserInput();
 			command = determineCommand(input);
 			
-			//do stuff from user input
-			//battleManager();
+			
+			//back and forth between user turn and monster turn
+			if(playerTurn == true) {
+				
+			}
+			else {
+				
+			}
 		}
 		
 		System.out.println("\nGAMEOVER");
