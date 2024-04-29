@@ -53,18 +53,48 @@ public class Monster {
     }
 	
 	//********************
-	//General monster mechanics
-	void attack() {
-	}
+	//Combat method to roll an attack value, compare against character armor, then do damage
+    public void attack(Monster monster, Character character) {
+        int attackValue = rng.nextInt(10) + 1; // Max attack value up for discussion
+
+        if (attackValue >= character.getArmorClass()) {
+        	switch (attackValue) { 
+        		case 10: 
+        			int damage = (monster.getDamage() * 2);
+                    character.takeDamage(damage);
+                    System.out.println(monster.getName() + " critically strikes you for " + damage + " damage!");
+        		default:
+        			damage = monster.getDamage();
+                    character.takeDamage(damage);
+                    System.out.println(monster.getName() + " attacks you for " + damage + " damage!");
+        	}
+        } else {
+            switch (attackValue) { 
+            	case 1: 
+            		System.out.println("The " + monster.getName() + "dramatically trips and falls to the floor!");
+            	default:
+            		System.out.println("The " + monster.getName() + "'s attack missed!");
+            }
+        }
+    }
+    
+    //Call to take damage, sets overkill damage to 0
+    public void takeDamage(int damage) {
+        health -= damage;
+        if (health < 0) {
+            health = 0;
+        }
+    }
 	
-	boolean checkHealth () {
-		return true;
-	}
-	
-	//print operations to gives info on stats
-	boolean checkStats () {
-		return true;
-	}
+    //Call to check monster health and call drops when killed
+    boolean isDead(Monster monster) {
+        if(monster.getHealth() > 0) {
+            return false;
+        } else {
+        	monster.onDeath();
+        }
+        	return true;
+    	}
 	
 	//Applies bonuses to monster stats based on level TDO
 	boolean levelBoost() {
