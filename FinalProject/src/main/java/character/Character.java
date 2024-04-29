@@ -71,7 +71,7 @@ public class Character {
 			command = scanner.nextInt();
 			switch(command) {
 			case 1:
-				character.attack(character, monster); //Changed this line - Brian
+				character.attack(character, monster); //Changed this line - Brian -
 				break;
 			case 2:
 			System.out.print("You dodged the attack!\n" );
@@ -81,17 +81,41 @@ public class Character {
 				break;
 			}
 		}
-		
 	}
-	
-	
+
+	//Combat method to roll an attack value, compare against character armor, then do damage - AUTHOR Brian -
+	public void attack(Character character, Monster monster) {
+    		Random rng = new Random();
+        	int attackValue = rng.nextInt(10) + 1; //Max attack value up for discussion
+        	if (attackValue >= monster.getDefense()) {
+        		switch (attackValue) {
+        			case 10: 
+        				int damage = ((/*TEST VALUE*/1/*PLAYER DAMAGE GOES HERE!!!*/) * 2);
+                    			monster.takeDamage(damage);
+                    			System.out.println("You critically strike the " + monster.getName() + " for " + damage + " damage!");
+        			default:
+        				damage = /*TEST VALUE*/1/*PLAYER DAMAGE GOES HERE!!!*/;
+                    			monster.takeDamage(damage);
+                    			System.out.println("You strike the " + monster.getName() + " for " + damage + " damage!");
+        		}
+        	} else {
+            		switch (attackValue) { 
+            			case 1: 
+            				System.out.println("You miss, dramatically tripping and falling to the floor!");
+            		default:
+            				System.out.println("Your attack missed!");
+            		}
+        	}
+    	}
+
+	/* Replaced with character.attack - Brian -
 	int playerAttack() {
 		int damage = 0;
 		
 		return damage;
-	}
+	} */
 
-	//Call to take damage, sets overkill damage to 0 AUTHOR Brian
+	//Call to take damage, sets overkill damage to 0 - AUTHOR Brian -
 	public void takeDamage(int damage) {
 		health -= damage;
         	if (health < 0) {
