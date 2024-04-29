@@ -71,7 +71,7 @@ public class Character {
 			command = scanner.nextInt();
 			switch(command) {
 			case 1:
-				playerAttack();
+				character.attack(character, monster); //Changed this line - Brian
 				break;
 			case 2:
 			System.out.print("You dodged the attack!\n" );
