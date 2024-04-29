@@ -1,5 +1,7 @@
 package monster;
 
+import character.Character;
+
 import java.util.Random;
 
 import item.Item;

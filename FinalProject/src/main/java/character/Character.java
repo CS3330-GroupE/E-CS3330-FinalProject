@@ -4,6 +4,7 @@ import monster.Monster;
 import item.Inventory;
 import item.Item;
 
+import java.util.Random;
 import java.util.Scanner;
 
 //import item.ItemFactory;
