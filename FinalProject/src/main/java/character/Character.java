@@ -90,6 +90,14 @@ public class Character {
 		
 		return damage;
 	}
+
+	//Call to take damage, sets overkill damage to 0 AUTHOR Brian
+	public void takeDamage(int damage) {
+		health -= damage;
+        	if (health < 0) {
+            	health = 0;
+        	}
+    	}
 	
 	void usePotion() {
 		int newHealth = this.getHealth() + 4;
