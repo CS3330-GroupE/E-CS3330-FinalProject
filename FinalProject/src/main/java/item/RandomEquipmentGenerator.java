@@ -42,73 +42,67 @@ public class RandomEquipmentGenerator {
         String name = prefix + " " + equipmentType + " " + suffix;
     
         
-        //enumMap should be 0 by default and this sets based on equipmentType
-
+        //should be 0 by default starting and build from there
         int strength = 0;
         int vitality = 0;
         int dexterity = 0;
         int intelligence = 0;
+        int armorClass = 0;
 
         switch (equipmentType) {
             case "Sword and Shield":
                 strength = 6;
                 dexterity = 1;
                 intelligence = 1;
-                vitality = 6;
+                vitality = 3;
+                armorClass = 4;
                 break;
             case "Steel Armor":
                 strength = 5;
                 dexterity = 1;
                 intelligence = 1;
-                vitality = 7;
+                vitality = 4;
+                armorClass = 6;
                 break;
             case "Bow":
                 strength = 1;
-                dexterity = 7;
+                dexterity = 8;
                 intelligence = 3;
-                vitality = 3;
+                vitality = 4;
+                armorClass = 0;
                 break;
             case "Leather Armor":
                 strength = 2;
                 dexterity = 5;
                 intelligence = 2;
                 vitality = 5;
+                armorClass = 3;
                 break;
             case "Magic Staff":
                 strength = 2;
                 dexterity = 2;
                 intelligence = 7;
-                vitality = 3;
+                vitality = 4;
+                armorClass = 2;
                 break;
             case "Magic Robes":
                 strength = 1;
                 dexterity = 3;
                 intelligence = 7;
-                vitality = 3;
+                vitality = 5;
+                armorClass = 2;
                 break;
         }
 
         // This adds prefix modifier
         if (prefix.equals("Beginner")) {
-            strength += 2;
-            vitality += 2;
-            dexterity += 2;
-            intelligence += 2;
+            armorClass += 1;
         } else if (prefix.equals("Intermediate")) {
-            strength += 4;
-            vitality += 4;
-            dexterity += 4;
-            intelligence += 4;
+            armorClass += 2;
         } else if (prefix.equals("Expert")) {
-            strength += 6;
-            vitality += 6;
-            dexterity += 6;
-            intelligence += 6;
+            armorClass += 3;
         } else if (prefix.equals("Legendary")) {
-            strength += 10;
-            vitality += 10;
-            dexterity += 10;
-            intelligence += 10;
+            armorClass += 5;
         }
 
         // This adds suffix modifier
@@ -124,17 +118,17 @@ public class RandomEquipmentGenerator {
         
      // Creates the item and returns it
         if ("Sword and Shield".equals(equipmentType)) {
-            return ItemFactory.createItem("Weapon", name, "A sword and shield that can be equipped as a weapon.", strength, vitality, dexterity, intelligence);
+            return ItemFactory.createItem("Weapon", name, "A sword and shield that can be equipped as a weapon.", strength, vitality, dexterity, intelligence, armorClass);
         } else if ("Steel Armor".equals(equipmentType)) {
-            return ItemFactory.createItem("Equipment", name, "A steel armor set that can be used as equipment.", strength, vitality, dexterity, intelligence);
+            return ItemFactory.createItem("Equipment", name, "A steel armor set that can be used as equipment.", strength, vitality, dexterity, intelligence, armorClass);
         } else if ("Bow".equals(equipmentType)) {
-            return ItemFactory.createItem("Weapon", name, "A sturdy bow that can be equipped as a weapon. It even comes with arrows!", strength, vitality, dexterity, intelligence);
+            return ItemFactory.createItem("Weapon", name, "A sturdy bow that can be equipped as a weapon. It even comes with arrows!", strength, vitality, dexterity, intelligence, armorClass);
         } else if ("Leather Armor".equals(equipmentType)) {
-            return ItemFactory.createItem("Equipment", name, "A leather armor set that can be used as equipment.", strength, vitality, dexterity, intelligence);
+            return ItemFactory.createItem("Equipment", name, "A leather armor set that can be used as equipment.", strength, vitality, dexterity, intelligence, armorClass);
         } else if ("Magic Staff".equals(equipmentType)) {
-            return ItemFactory.createItem("Weapon", name, "A shimmering staff that can be equipped as a weapon.", strength, vitality, dexterity, intelligence);
+            return ItemFactory.createItem("Weapon", name, "A shimmering staff that can be equipped as a weapon.", strength, vitality, dexterity, intelligence, armorClass);
         } else if ("Magic Robes".equals(equipmentType)) {
-            return ItemFactory.createItem("Equipment", name, "A set of magical robes that can be used as equipment.", strength, vitality, dexterity, intelligence);
+            return ItemFactory.createItem("Equipment", name, "A set of magical robes that can be used as equipment.", strength, vitality, dexterity, intelligence, armorClass);
         } else {
             return null;
         }

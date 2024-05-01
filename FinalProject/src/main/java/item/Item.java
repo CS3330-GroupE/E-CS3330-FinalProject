@@ -9,7 +9,8 @@ public abstract class Item {
     protected int vitality;
     protected int dexterity;
     protected int intelligence;
-
+    protected int armorClass;
+    
     public String getName() {
         return name;
     }
@@ -38,6 +39,10 @@ public abstract class Item {
         return intelligence;
     }
 
+    public int getArmorClass() {
+    	return armorClass;
+    }    
+    
     public void examineItem() {
         System.out.println("Name: " + name);
         System.out.println("Type: " + type);
@@ -46,6 +51,7 @@ public abstract class Item {
         System.out.println("Vitality: " + vitality);
         System.out.println("Dexterity: " + dexterity);
         System.out.println("Intelligence: " + intelligence);
+        System.out.println("ArmorClass: " + armorClass);
     }
 
     public void takeItem(Item item, Inventory inventory) {

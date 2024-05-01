@@ -35,7 +35,7 @@ public class Inventory {
     public void displayInventory() {
         System.out.println("Inventory:");
         if (items.isEmpty()) {
-            System.out.println(" (Your invetory is empty)");
+            System.out.println(" (Your invetory is empty.)");
         } else {
         	int indexNumber = 0;
             for (Item item : items) {

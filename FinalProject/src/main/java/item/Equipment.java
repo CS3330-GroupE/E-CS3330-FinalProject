@@ -2,7 +2,7 @@ package item;
 
 class Equipment extends Item implements Equippable {
     
-	public Equipment(String name, String description, int strength, int vitality, int dexterity, int intelligence) {
+	public Equipment(String name, String description, int strength, int vitality, int dexterity, int intelligence, int armorClass) {
 
 	}
 
