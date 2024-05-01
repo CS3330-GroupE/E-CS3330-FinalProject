@@ -146,7 +146,7 @@ public class Monster {
 	//Monster subclasses and mechanics below this point
 	public class Zombie extends Monster {
 	    public Zombie() {
-	        super("Zombie", 15, 0, 5, 5, 0);
+	        super("Zombie", 0, 15, 5, 5, 0);
 	    }
 	    
 	    //Zombie special mechanics
@@ -159,7 +159,7 @@ public class Monster {
 	
 	public class Goblin extends Monster {
 	    public Goblin() {
-	        super("Goblin", 8, 0, 5, 3, 3);
+	        super("Goblin", 0, 8, 5, 3, 3);
 	    }
 	    
 	    //Goblin special mechanics
@@ -172,7 +172,7 @@ public class Monster {
 
 	public class Orc extends Monster {
 	    public Orc() {
-	        super("Orc", 20, 1, 6, 8, 2);
+	        super("Orc", 1, 20, 6, 8, 2);
 	    }
 
 	    @Override
@@ -183,7 +183,7 @@ public class Monster {
 
 	public class Dragon extends Monster {
 	    public Dragon() {
-	        super("Dragon", 35, 2, 7, 12, 3);
+	        super("Dragon", 2, 35, 7, 12, 3);
 	    }
 	    
 	    //Dragon special mechanics
