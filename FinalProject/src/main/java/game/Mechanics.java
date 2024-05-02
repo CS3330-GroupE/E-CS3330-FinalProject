@@ -41,7 +41,7 @@ public class Mechanics {
 		this.command = -1;
 		this.input = null;
 		this.playerCharacter = null;
-		this.playerInventory = new Inventory();
+		this.playerInventory = new Inventory(); 
 	}
 	
 	
@@ -88,6 +88,7 @@ public class Mechanics {
 					
 				case 3:
 					//quit the game
+					quitGame();
 					break;
 					
 				default:
@@ -106,7 +107,6 @@ public class Mechanics {
 		
 		System.out.println("\nGAMEOVER");
 	}
-	
 	
 	
 	
@@ -211,7 +211,6 @@ public class Mechanics {
 		
 		case "quit":
 			command = 3;
-			quitGame();
 			System.out.println("player quits\n");
 			break;
 		
@@ -291,9 +290,6 @@ public class Mechanics {
 	}
 	
 	
-	private void viewInventoryPrompt() {
-		//view inventory
-	}
 	
 	
 	

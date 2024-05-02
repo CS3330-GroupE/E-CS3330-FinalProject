@@ -3,7 +3,13 @@ package item;
 class Weapon extends Item implements Equippable {
     
 	public Weapon(String name, String description, int strength, int vitality, int dexterity, int intelligence, int armorClass) {
-
+		this.name = name;
+		this.description = description;
+		this.strength = strength;
+		this.vitality = vitality;
+		this.dexterity = dexterity;
+		this.intelligence = intelligence;
+		this.armorClass = armorClass;
 	}
 
 	public void useItem(Character character) {
