@@ -4,6 +4,8 @@ import character.Character;
 import character.Mage;
 import character.Ranger;
 import character.Warrior;
+import item.Inventory;
+import item.ItemFactory;
 
 import java.util.Scanner;
 
@@ -14,7 +16,7 @@ import java.util.Scanner;
  * game itself. It starts the game, quits the game, and has the main loop logic that the user
  * will interact with while playing.
  * 
- * @author Blake Simpson
+ * @author blake simpson
  * 
  * 
  */
@@ -27,6 +29,7 @@ public class Mechanics {
 	private int command; //stores user input as an integer
 	private Character playerCharacter;
 	private String input; //stores user input as a string
+	private Inventory playerInventory;
 	
 	
 	//constructor
@@ -38,6 +41,7 @@ public class Mechanics {
 		this.command = -1;
 		this.input = null;
 		this.playerCharacter = null;
+		this.playerInventory = new Inventory();
 	}
 	
 	
@@ -60,17 +64,41 @@ public class Mechanics {
 		//main loop until game ends
 		while(!gameOver) {
 			
-			
-			//get user input for command
-			commandPrompt();
-			input = getUserInput();
-			command = determineCommand(input);
-			
-			
 			//back and forth between user turn and monster turn
 			if(playerTurn == true) {
+				//get command from user
+					//check inventory
+					//begin battle
+					//quit
+				
+				//get user input for command
+				commandPrompt();
+				input = getUserInput();
+				command = determineCommand(input);
+				
+				switch(command) {
+				case 1:
+					//begin battle
+					break;
+					
+				case 2:
+					//check inventory
+					playerInventory.displayInventory();
+					break;
+					
+				case 3:
+					//quit the game
+					break;
+					
+				default:
+					//invalid command (shouldn't ever happen -> checks in determineCommand())
+					break;
+						
+				}
+				
 				
 			}
+			
 			else {
 				
 			}
@@ -97,14 +125,20 @@ public class Mechanics {
 			switch(input) {
 			case 1:
 				newCharacter = new Mage();
+				playerInventory.addItem(ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.",
+						0, 0, 2, 0, 0));
 				break;
 				
 			case 2:
 				newCharacter = new Ranger();
+				playerInventory.addItem(ItemFactory.createItem("Weapon", "Bow of Wielding", "A sturdy bow that can be equipped as a weapon. It even comes with arrows.",
+						0, 0, 2, 0, 0));
 				break;
 
 			case 3:
 				newCharacter = new Warrior();
+				playerInventory.addItem(ItemFactory.createItem("Weapon", "Long Sword", "A long sword that can be equipped as a weapon.",
+						0, 0, 2, 0, 0));
 				break;
 				
 			default:
@@ -135,7 +169,7 @@ public class Mechanics {
 	private String getUserInput() {
 		//System.out.println("Enter Command (Move, Attack, Quit):");
 		String input = scanner.nextLine();
-	
+		
 		return input;
 	}
 	
@@ -143,27 +177,35 @@ public class Mechanics {
 	
 	
 	
+	
+	
+	//use/view inventory
+	//begin battle
+	//quit
+	//
+	//
 	//gets passed user input from getUserInput() method and determines the
 	//command being used through a switch statement and returns the command as an integer
 	//
 	//RETURNS:
 	// - if user input = invalid -> returns -1
-	// - if user input = "move" -> returns 1
-	// - if user input = "attack" -> returns 2
+	// - if user input = "attack" -> returns 1
+	// - if user input = "check inventory" -> returns 2
 	// - if user input = "quit" -> returns 3
 	public int determineCommand(String input) {
 		
 		input = input.toLowerCase().trim();
 		
 		switch(input) {
-		case "move":
+		case "attack":
 			command = 1;
-			System.out.println("player moves\n");
+			System.out.println("player attacks\n");
+			
 			break;
 			
-		case "attack":
+		case "view inventory":
 			command = 2;
-			System.out.println("player attacks\n");
+			System.out.println("player checks inventory\n");
 			break;
 		
 		
@@ -179,7 +221,6 @@ public class Mechanics {
 			System.out.println("Invalid Command\n");
 			break;
 		}
-		
 		
 		return command;
 	}
@@ -227,10 +268,10 @@ public class Mechanics {
 		return command;
 	}
 
-	
 
 
-	
+
+
 	private void characterPrompt() {
 		System.out.println("Please Choose a Character:\n");
 		System.out.println("- Mage\n");
@@ -242,12 +283,19 @@ public class Mechanics {
 	
 	private void commandPrompt() {
 		System.out.println("Enter a Command:\n");
-		System.out.println("- Move\n");
 		System.out.println("- Attack\n");
+		System.out.println("- View Inventory\n");
 		System.out.println("- Quit\n");
 		
 		return;
 	}
+	
+	
+	private void viewInventoryPrompt() {
+		//view inventory
+	}
+	
+	
 	
 	
 	
