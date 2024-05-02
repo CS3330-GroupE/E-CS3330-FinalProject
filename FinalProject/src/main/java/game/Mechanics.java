@@ -49,6 +49,8 @@ public class Mechanics {
 	//starts game logic loop
 	public void startGame() {
 		
+		startGameLogo();
+		
 		//user choosing character
 		while(!characterChosen) {
 			characterPrompt();
@@ -59,18 +61,14 @@ public class Mechanics {
 		//creating the character from user input
 		playerCharacter = createCharacter(command);
 		
-		System.out.println("GAME START");
+		//System.out.println("GAME START");
 		
 		//main loop until game ends
 		while(!gameOver) {
 			
 			//back and forth between user turn and monster turn
 			if(playerTurn == true) {
-				//get command from user
-					//check inventory
-					//begin battle
-					//quit
-				
+
 				//get user input for command
 				commandPrompt();
 				input = getUserInput();
@@ -100,8 +98,9 @@ public class Mechanics {
 				
 			}
 			
+			//monsters turn IN BATTLE ONLY
 			else {
-				
+				//monster attack player
 			}
 		}
 		
@@ -125,18 +124,21 @@ public class Mechanics {
 			switch(input) {
 			case 1:
 				newCharacter = new Mage();
+				//adding default mage weapon to inventory
 				playerInventory.addItem(ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.",
 						0, 0, 2, 0, 0));
 				break;
 				
 			case 2:
 				newCharacter = new Ranger();
+				//adding default ranger weapon to inventory
 				playerInventory.addItem(ItemFactory.createItem("Weapon", "Bow of Wielding", "A sturdy bow that can be equipped as a weapon. It even comes with arrows.",
 						0, 0, 2, 0, 0));
 				break;
 
 			case 3:
 				newCharacter = new Warrior();
+				//adding default warrior weapon to inventory
 				playerInventory.addItem(ItemFactory.createItem("Weapon", "Long Sword", "A long sword that can be equipped as a weapon.",
 						0, 0, 2, 0, 0));
 				break;
@@ -270,27 +272,46 @@ public class Mechanics {
 
 
 
-
+	
+	
 	private void characterPrompt() {
-		System.out.println("Please Choose a Character:\n");
-		System.out.println("- Mage\n");
-		System.out.println("- Ranger\n");
-		System.out.println("- Warrior\n");
-		
-		return;
+	    System.out.println("===========================================");
+	    System.out.println("|             Choose a Character           |");
+	    System.out.println("===========================================");
+	    System.out.println("|  1. Mage                                |");
+	    System.out.println("|  2. Ranger                              |");
+	    System.out.println("|  3. Warrior                             |");
+	    System.out.println("===========================================");
 	}
-	
+
 	private void commandPrompt() {
-		System.out.println("Enter a Command:\n");
-		System.out.println("- Attack\n");
-		System.out.println("- View Inventory\n");
-		System.out.println("- Quit\n");
-		
-		return;
+		System.out.println("\n\n\n");
+	    System.out.println("===========================================");
+	    System.out.println("|               Enter a Command            |");
+	    System.out.println("===========================================");
+	    System.out.println("|  1. Attack                              |");
+	    System.out.println("|  2. View Inventory                      |");
+	    System.out.println("|  3. Quit                                |");
+	    System.out.println("===========================================");
 	}
+
 	
 	
-	
+	private void startGameLogo() {
+	    System.out.println("===========================================");
+	    System.out.println("|                                         |");
+	    System.out.println("|               GAME TITLE                |");
+	    System.out.println("|                                         |");
+	    System.out.println("|                   BY:                   |");
+	    System.out.println("|                                         |");
+	    System.out.println("|            JONATHAN HATFIELD            |");
+	    System.out.println("|             ETHAN ALEXANDER             |");
+	    System.out.println("|               BRIAN BLUHM               |");
+	    System.out.println("|              BLAKE SIMPSON              |");
+	    System.out.println("|                                         |");
+	    System.out.println("===========================================");
+	    System.out.println("\n\n");
+	}
 	
 	
 	
