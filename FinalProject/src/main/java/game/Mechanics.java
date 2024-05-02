@@ -25,6 +25,9 @@ public class Mechanics {
 	private boolean gameOver;
 	private boolean characterChosen; //initially false, true once user chooses character
 	private boolean playerTurn;
+	private boolean inInventory;
+	private boolean inBattle;
+	private boolean inMainMenu;
 	private Scanner scanner; //for user input
 	private int command; //stores user input as an integer
 	private Character playerCharacter;
@@ -37,6 +40,9 @@ public class Mechanics {
 		this.gameOver = false;
 		this.characterChosen = false;
 		this.playerTurn = true;
+		this.inInventory = false;
+		this.inBattle = false;
+		this.inMainMenu = true;
 		this.scanner = new Scanner(System.in);
 		this.command = -1;
 		this.input = null;
@@ -61,41 +67,30 @@ public class Mechanics {
 		//creating the character from user input
 		playerCharacter = createCharacter(command);
 		
-		//System.out.println("GAME START");
-		
 		//main loop until game ends
 		while(!gameOver) {
 			
 			//back and forth between user turn and monster turn
 			if(playerTurn == true) {
-
-				//get user input for command
-				commandPrompt();
-				input = getUserInput();
-				command = determineCommand(input);
 				
-				switch(command) {
-				case 1:
-					//begin battle
-					break;
-					
-				case 2:
-					//check inventory
-					playerInventory.displayInventory();
-					break;
-					
-				case 3:
-					//quit the game
-					quitGame();
-					break;
-					
-				default:
-					//invalid command (shouldn't ever happen -> checks in determineCommand())
-					break;
-						
+				//changes which preset text is presented with available commands depending on
+				//where user is in game menu
+				//handles command depending on which menu user is current in00
+				if(inMainMenu == true) {
+					//main menu commands 
+					mainMenuHandler();
 				}
 				
+				else if(inInventory == true) {
+					//inventory commands
+					inventoryMenuHandler();
+				}
 				
+				else if(inBattle == true) {
+					//battle commands
+					battleMenuHandler();
+				}
+					
 			}
 			
 			//monsters turn IN BATTLE ONLY
@@ -105,6 +100,111 @@ public class Mechanics {
 		}
 		
 		System.out.println("\nGAMEOVER");
+	}
+	
+	
+	
+	//handles main menu commands from user
+	public void mainMenuHandler() {
+		
+		commandPrompt();
+		input = getUserInput();
+		command = determineCommand(input);
+		
+		
+		//handle command
+		switch(command) {
+		case 1:
+			//begin battle
+			//battle handler
+			inBattle = true;
+			inMainMenu = false;
+			break;
+			
+		case 2:
+			//view inventory
+			//inventory handler
+			playerInventory.displayInventory();
+			inInventory = true;
+			inMainMenu = false;
+			break;
+			
+		case 3:
+			//quit		
+			quitGame();
+			break;
+			
+		default:
+			//invalid command
+			break;
+		}
+		
+		
+	}
+	
+	
+	
+	//handles inventory menu commands from user
+	public void inventoryMenuHandler() {
+		
+		inventoryCommandPrompt();
+		input = getUserInput();
+		command = determineInventoryCommand(input);
+		
+		
+		//handle inventory command
+		switch(command) {
+		case 1:
+			//check stats
+			break;
+			
+		case 2:
+			//equip item
+			break;
+			
+		case 3:
+			//back
+			
+			inInventory = false;
+			inMainMenu = true;
+			break;
+			
+		default:
+			//invalid command
+			break;
+		}
+	}
+	
+	
+	
+	
+	//handles battle menu commands from user
+	public void battleMenuHandler() {
+		
+		battleCommandPrompt();
+		input = getUserInput();
+		command = determineBattleCommand(input);
+		
+		//handle battle command
+		switch(command) {
+		case 1:
+			//battle command 1
+			break;
+			
+		case 2:
+			//battle command 2
+			break;
+			
+		case 3:
+			//battle command 3
+			break;
+			
+		default:
+			//invalid command
+			break;
+		}
+	
+		
 	}
 	
 	
@@ -199,15 +299,14 @@ public class Mechanics {
 		input = input.toLowerCase().trim();
 		
 		switch(input) {
-		case "attack":
+		case "begin battle":
 			command = 1;
-			System.out.println("player attacks\n");
+			System.out.println("player begins battle\n");
 			
 			break;
 			
 		case "view inventory":
 			command = 2;
-			System.out.println("player checks inventory\n");
 			break;
 		
 		
@@ -217,6 +316,67 @@ public class Mechanics {
 			break;
 		
 		
+		default:
+			command = -1;
+			System.out.println("Invalid Command\n");
+			break;
+		}
+		
+		return command;
+	}
+	
+	
+	
+	public int determineInventoryCommand(String input) {
+		input = input.toLowerCase().trim();
+		
+		switch(input) {
+		case "check stat":
+			command = 1;
+			System.out.println("check stat\n");
+			break;
+			
+		case "equip item":
+			command = 2;
+			System.out.println("equip item\n");
+			break;
+			
+		case "back":
+			command = 3;
+			System.out.println("back to main menu\n");
+			break;
+			
+		default:
+			command = -1;
+			System.out.println("Invalid Command\n");
+			break;
+		}
+		
+		return command;
+	}
+	
+	
+	
+	
+	public int determineBattleCommand(String input) {
+		input = input.toLowerCase().trim();
+		
+		switch(input) {
+		case "battle command 1":
+			command = 1;
+			System.out.println("battle command 1\n");
+			break;
+			
+		case "battle command 2":
+			command = 2;
+			System.out.println("battle command 2\n");
+			break;
+			
+		case "battle command 3":
+			command = 3;
+			System.out.println("battle command 3\n");
+			break;
+			
 		default:
 			command = -1;
 			System.out.println("Invalid Command\n");
@@ -244,30 +404,35 @@ public class Mechanics {
 		switch(input) {
 		case "mage":
 			command = 1;
-			System.out.println("user chooses mage\n");
+			System.out.println("Player Character: Mage");
 			characterChosen = true;
 			break;
 			
 		case "ranger":
 			command = 2;
-			System.out.println("user chooses ranger\n");
+			System.out.println("Player Character: Ranger");
 			characterChosen = true;
 			break;
 			
 		case "warrior":
 			command = 3;
-			System.out.println("user chooses warrior\n");
+			System.out.println("Player Character: Warrior");
 			characterChosen = true;
 			break;
 			
 		default:
 			command = -1;
-			System.out.println("invalid character\n");
+			System.out.println("Invalid Character\n");
 			break;
 		}
 		
 		return command;
 	}
+	
+	
+	
+	
+
 
 
 
@@ -276,7 +441,7 @@ public class Mechanics {
 	
 	private void characterPrompt() {
 	    System.out.println("===========================================");
-	    System.out.println("|             Choose a Character           |");
+	    System.out.println("|             Choose a Character          |");
 	    System.out.println("===========================================");
 	    System.out.println("|  1. Mage                                |");
 	    System.out.println("|  2. Ranger                              |");
@@ -287,15 +452,36 @@ public class Mechanics {
 	private void commandPrompt() {
 		System.out.println("\n\n\n");
 	    System.out.println("===========================================");
-	    System.out.println("|               Enter a Command            |");
+	    System.out.println("|               Enter a Command           |");
 	    System.out.println("===========================================");
-	    System.out.println("|  1. Attack                              |");
+	    System.out.println("|  1. Begin Battle                        |");
 	    System.out.println("|  2. View Inventory                      |");
 	    System.out.println("|  3. Quit                                |");
 	    System.out.println("===========================================");
 	}
-
 	
+	private void inventoryCommandPrompt() {
+		System.out.println("\n\n\n");
+	    System.out.println("===========================================");
+	    System.out.println("|          Enter Inventory Command        |");
+	    System.out.println("===========================================");
+	    System.out.println("|  1. Check Stat (Enter Inventory Number) |");
+	    System.out.println("|  2. Equip Item (Enter Inventory Number) |");
+	    System.out.println("|  3. Back                                |");
+	    System.out.println("===========================================");
+	}
+	
+	private void battleCommandPrompt() {
+		System.out.println("\n\n\n");
+	    System.out.println("===========================================");
+	    System.out.println("|           Enter Battle Command          |");
+	    System.out.println("===========================================");
+	    System.out.println("|  1. Battle Command 1                    |");
+	    System.out.println("|  2. Battle Command 2                    |");
+	    System.out.println("|  3. Battle Command 3                    |");
+	    System.out.println("===========================================");
+	}
+
 	
 	private void startGameLogo() {
 	    System.out.println("===========================================");

@@ -40,7 +40,7 @@ public class Inventory {
         	int indexNumber = 0;
             for (Item item : items) {
             	indexNumber ++;
-                System.out.println(" (" + indexNumber + ")" + item.getName());
+                System.out.println(" (" + indexNumber + ") " + item.getName());
             }
         }
     }
