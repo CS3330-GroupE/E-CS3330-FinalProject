@@ -1,6 +1,7 @@
 package game;
 
 import java.util.Scanner;
+import item.Item;
 
 public class Commands {
 	
@@ -80,18 +81,26 @@ public class Commands {
 		input = input.toLowerCase().trim();
 		
 		switch(input) {
+		
+		case "check current equipment":
+			command = 1;		
+			//check current equipment
+			System.out.println("check current equipment\n");
+			break;
+		
 		case "check stat":
-			command = 1;
+			command = 2;			
+			//checkStat(inventoryNumber);			
 			System.out.println("check stat\n");
 			break;
 			
 		case "equip item":
-			command = 2;
+			command = 3;
 			System.out.println("equip item\n");
 			break;
 			
 		case "back":
-			command = 3;
+			command = 4;
 			System.out.println("back to main menu\n");
 			break;
 			
@@ -103,6 +112,7 @@ public class Commands {
 		
 		return command;
 	}
+	
 	
 	
 	
@@ -176,5 +186,14 @@ public class Commands {
 		}
 		
 		return command;
+	}
+	
+	
+	
+	protected void checkStat(int inventoryNumber) {
+		
+		
+		
+		
 	}
 }

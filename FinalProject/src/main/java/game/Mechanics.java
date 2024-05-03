@@ -157,20 +157,24 @@ public class Mechanics {
 		//handle inventory command
 		switch(command) {
 		case 1:
-			//check stats
+			//check current equipment
 			break;
 			
 		case 2:
-			//equip item
+			//check stats
 			break;
 			
 		case 3:
+			//equip item
+			break;
+		
+		case 4:
 			//back
 			
 			inInventory = false;
 			inMainMenu = true;
 			break;
-			
+		
 		default:
 			//invalid command
 			break;

@@ -28,9 +28,10 @@ public class PresetText {
 	    System.out.println("===========================================");
 	    System.out.println("|          Enter Inventory Command        |");
 	    System.out.println("===========================================");
-	    System.out.println("|  1. Check Stat (Enter Inventory Number) |");
-	    System.out.println("|  2. Equip Item (Enter Inventory Number) |");
-	    System.out.println("|  3. Back                                |");
+	    System.out.println("|  1. Check Current Equipment             |");
+	    System.out.println("|  2. Check Stat (Enter Inventory Number) |");
+	    System.out.println("|  3. Equip Item (Enter Inventory Number) |");
+	    System.out.println("|  4. Back                                |");
 	    System.out.println("===========================================");
 	}
 	
