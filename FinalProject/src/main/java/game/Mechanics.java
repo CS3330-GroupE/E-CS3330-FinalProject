@@ -133,8 +133,8 @@ public class Mechanics {
 			
 		    int spawnID = Commands.randomizerMonstSpawn();
 		    switch (spawnID) {
-		        case 0:
-		        	monsterHolder = new Zombie("Zombie", 0, 15, 5, 5, 0);
+		        case 0:													  //for reference
+		        	monsterHolder = new Zombie("Zombie", 0, 15, 5, 5, 0); //String name, int level, int health, int attack, int damage, int defense
 		        	break;
 		        case 1:
 		        	monsterHolder = new Goblin("Goblin", 0, 8, 5, 3, 3);
@@ -186,14 +186,18 @@ public class Mechanics {
 		//handle inventory command
 		switch(command) {
 		case 1:
+			playerCharacter.checkEquipment();
 			//check current equipment
 			break;
 			
 		case 2:
+			playerCharacter.checkStats();
 			//check stats
 			break;
 			
 		case 3:
+			
+			
 			//equip item
 			break;
 		

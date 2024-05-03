@@ -119,6 +119,8 @@ public class Character {
 	}
 	
 	
+	
+	
 	//prints the users current health
 	void checkHealth () {
 		System.out.print("Current health is : " + this.getHealth());
@@ -126,8 +128,7 @@ public class Character {
 	
 	//print operations to gives info on stats
 	public void checkStats () {
-		Item weapon = this.getEquippedWeapon();
-		Item equipment = this.getEquippedEquipment();
+
 		
 		System.out.print("Current Player Info:\n\n");
 		
@@ -139,15 +140,23 @@ public class Character {
 		System.out.print("Strength: " + this.getStrength() + "\n");
 		System.out.print("Intelligence: " + this.getIntelligence() + "\n");
 		System.out.print("Current Number of Health Pots: " + this.getHealthPots() + "\n");
-//		System.out.print("Weapon: " + weapon.getName() + "\n");
-//		System.out.print("Equipment: " + equipment.getName() + "\n");
+
 		System.out.print("Armor Class: " + this.getArmorClass() + "\n");
 		
 	}
 	
+	public void checkEquipment() {
+		Item weapon = this.getEquippedWeapon();
+		Item equipment = this.getEquippedEquipment();
+		
+		System.out.print(weapon.getName() + ":\n");
+		System.out.print(equipment.getName() + "\n");
+	}
 	
 	
 	boolean levelUp () {
+		int newLevel = this.getLevel() + 1;
+		this.setLevel(newLevel);
 		return true;
 	}
 

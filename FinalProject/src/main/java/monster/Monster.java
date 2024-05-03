@@ -62,16 +62,19 @@ public class Monster {
     public void attack(Monster monster, Character character) {
     	Random rng = new Random();
         int attackValue = rng.nextInt(10) + 1; // Max attack value up for discussion
-
+        
+        System.out.print("Monster current damage is "+ monster.getDamage()+"\n");
+        System.out.print("Monster current attack is "+ monster.getAttack()+"\n");
+        
         if (attackValue >= character.getArmorClass()) {
         	switch (attackValue) { 
         		case 10: 
         			int damage = (monster.getDamage() * 2);
-                    character.takeDamage(damage);
+                    playerTakeDamage(character , damage);
                     System.out.println(monster.getName() + " critically strikes you for " + damage + " damage!");
         		default:
         			damage = monster.getDamage();
-                    character.takeDamage(damage);
+                    playerTakeDamage(character, damage);
                     System.out.println(monster.getName() + " attacks you for " + damage + " damage!");
         	}
         } else {
@@ -84,9 +87,21 @@ public class Monster {
         }
     }
     
+    public void playerTakeDamage(Character player, int damage) {
+    	int health = player.getHealth();
+    	
+    	health = health - damage;
+    	if(health < 0) {
+    		player.setHealth(health);
+    	}
+    	else {
+    		player.setHealth(health);
+    	}
+    }
+    
     //Call to take damage, sets overkill damage to 0
     public void takeDamage(int damage) {
-        health -= damage;
+       health -= damage;
         if (health < 0) {
             health = 0;
         }
