@@ -95,7 +95,7 @@ public class Character {
     }
 	
 	
-	void usePotion() {
+	public void usePotion() {
 		int newHealth = this.getHealth() + 4;
 		this.setHealthPots(this.getHealthPots() - 1);
 		
@@ -192,7 +192,7 @@ public class Character {
 
 	
 	
-	boolean isDeadPlayer(Character character) {
+	public boolean isDeadPlayer(Character character) {
 		if(character.getHealth() > 0) {
 			return false;
 		}

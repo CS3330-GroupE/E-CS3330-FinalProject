@@ -27,6 +27,7 @@ public class Monster {
         this.level = level;
         this.health = health;
         this.attack = attack;
+        this.damage = damage;
         this.defense = defense;
        
     }
@@ -108,7 +109,7 @@ public class Monster {
     }
 	
     //Call to check monster health and call drops when killed
-    boolean isDead(Monster monster) {
+    public boolean isDead(Monster monster) {
         if(monster.getHealth() > 0) {
             return false;
         } else {

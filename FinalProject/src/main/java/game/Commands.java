@@ -126,12 +126,12 @@ public class Commands {
 			command = 1;
 			break;
 			
-		case "evade attack":
+		case "use potion":
 			command = 2;
 			//System.out.println("battle command 2\n");
 			break;
 			
-		case "drink health potion":
+		case "run":
 			command = 3;
 			//System.out.println("battle command 3\n");
 			break;
@@ -192,6 +192,13 @@ public class Commands {
 	public static int randomizerMonstSpawn() {
 		Random rng = new Random();
 		int spawnID = rng.nextInt((3 - 0) + 1);
+			
+		return spawnID;
+	}
+	
+	public static int randomizerRun() {
+		Random rng = new Random();
+		int spawnID = rng.nextInt((2 - 1) + 1);
 			
 		return spawnID;
 	}

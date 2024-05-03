@@ -230,6 +230,7 @@ public class Mechanics {
 		//handle battle command
 		switch(command) {
 		case 1:
+			
 			System.out.println("You attack the " + monsterHolder.getName() + "!\n");
 			playerCharacter.attack(playerCharacter, monsterHolder);
 			monsterHolder.attack(monsterHolder, playerCharacter);
@@ -237,15 +238,32 @@ public class Mechanics {
 			playerCharacter.checkStats();
 			monsterHolder.checkMonsterHealth();
 			
+			if(playerCharacter.isDeadPlayer(playerCharacter)) {
+				System.out.print("\n\nYOU DIED\n\n");
+				gameOver = true;
+			}
+			if(monsterHolder.isDead(monsterHolder))
 			//battle command 1
 			break;
 			
 		case 2:
-			//battle command 2
+			
+			playerCharacter.usePotion();
 			break;
 			
 		case 3:
-			//battle command 3
+			int run = Commands.randomizerRun();
+			switch(run){
+				case 1:
+					System.out.print("You successfully escaped!");
+					inBattle = false;
+					inMainMenu = true;
+					break;
+				default:
+					System.out.print("Attempt to escape failed!");
+					break;
+			
+			}
 			break;
 			
 		default:
