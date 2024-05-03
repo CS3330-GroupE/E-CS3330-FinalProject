@@ -32,15 +32,4 @@ class Equipment extends Item implements Equippable {
 		}
 
 	}
-
-	/*
-	 * public void unequip(Character character, Inventory inventory) {
-	 * 
-	 * if (character.getEquipment().contains(this)) {
-	 * character.getEquipment().remove(this); inventory.addItem(this);
-	 * System.out.println("You unequipped the " + name); character.updateStats(); }
-	 * else { System.out.println("You don't have " + name + " equipped."); }
-	 * 
-	 * }
-	 */
 }

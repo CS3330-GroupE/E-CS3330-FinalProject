@@ -285,35 +285,38 @@ public class Mechanics {
 	 * @return new character
 	 */
 	public Character createCharacter(int input) {
-		
+		//stats are this order: Strength, Vitality, Dexterity, Intelligence, Armor class
 		Character newCharacter = null;
 		if(input <= 3 && input >= 1) {
 			switch(input) {
 			case 1:
 				newCharacter = new Mage();
-				//adding default mage weapon to inventory
+				//adding default loadouts
 				newCharacter.setEquippedWeapon(ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.",
-						0, 0, 2, 0, 0));
-				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Magic Robes", "Magical robes that give emit magical energy.",
-						0, 0, 2, 0, 2));
+						2, 2, 7, 4, 2));
+				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Magic Robes", "Basiuc magical robes that give emit magical energy and can be equipped.",
+						1, 3, 7, 5, 2));
 				newCharacter.updateStats();
-				//equip item above ^^
+			
 				break;
 				
 			case 2:
 				newCharacter = new Ranger();
-				//adding default ranger weapon to inventory
-				playerInventory.addItem(ItemFactory.createItem("Weapon", "Bow of Wielding", "A sturdy bow that can be equipped as a weapon. It even comes with arrows.",
-						0, 0, 2, 0, 0));
-				//equip item above ^^
+				//Equip default loadouts
+				newCharacter.setEquippedWeapon(ItemFactory.createItem("Weapon", "Bow of Wielding", "A sturdy bow that can be equipped as a weapon. It even comes with arrows.",
+						1, 8, 3, 4, 0));
+				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Dusty Leather Armor", "A basic leather body with chaps that can be equipped.",
+						2, 5, 2, 5, 3));
+				newCharacter.updateStats();
 				break;
 
 			case 3:
 				newCharacter = new Warrior();
-				//adding default warrior weapon to inventory
-				playerInventory.addItem(ItemFactory.createItem("Weapon", "Long Sword", "A long sword that can be equipped as a weapon.",
-						0, 0, 2, 0, 0));
-				//equip item above ^^
+				//Equip default loadouts
+				newCharacter.setEquippedWeapon(ItemFactory.createItem("Weapon", "Steel Sword and Shield", "A long sword that can be equipped as a weapon and shield.",
+						6, 1, 1, 3, 4));
+				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Steel Armor", "Basic armor, but still tough! Can be equipped",
+						5, 1, 1, 4, 6));
 				break;
 				
 			default:
