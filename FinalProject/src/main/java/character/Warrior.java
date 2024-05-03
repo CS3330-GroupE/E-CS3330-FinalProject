@@ -3,7 +3,7 @@ package character;
 public class Warrior extends Character {
 		
 		public Warrior() {
-			super(20, 1, 0, 4, 1, 4, 4, 4, 4, null, null, Type.WARRIOR, null);
+			super(20, 1, 0, 4, 1, 4, 4, 4, 4, null, null, Type.WARRIOR);
 			//health = 20
 			//level = 1
 			//experience = 0

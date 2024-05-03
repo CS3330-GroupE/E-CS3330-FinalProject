@@ -22,11 +22,13 @@ public class Monster {
     private int defense;
 
     public Monster(String name, int level, int health, int attack, int damage, int defense) {
+    	super();
         this.name = name;
         this.level = level;
         this.health = health;
         this.attack = attack;
         this.defense = defense;
+       
     }
     
     //Getters
@@ -58,6 +60,7 @@ public class Monster {
     //General monster mechanics
     //Combat method to roll an attack value, compare against character armor, then do damage
     public void attack(Monster monster, Character character) {
+    	Random rng = new Random();
         int attackValue = rng.nextInt(10) + 1; // Max attack value up for discussion
 
         if (attackValue >= character.getArmorClass()) {
@@ -142,51 +145,10 @@ public class Monster {
 	    // Handle any other on-death effects here
 	}
 	
-   /* @Override
-    public void attack() {
-        // Zombie's attack behavior
-    } */
-	
-	
-	//********************
-	//Monster subclasses and mechanics below this point
-	public class Zombie extends Monster {
-	    public Zombie() {
-	        super("Zombie", 0, 15, 5, 5, 0);
-	    }
-	    
-	    //Zombie special mechanics
 
+	public void checkMonsterHealth() {
+		System.out.print("Monsters current health is " + this.getHealth());
 	}
-	
-	public class Goblin extends Monster {
-	    public Goblin() {
-	        super("Goblin", 0, 8, 5, 3, 3);
-	    }
-	    
-	    //Goblin special mechanics
-
-	}
-
-	public class Orc extends Monster {
-	    public Orc() {
-	        super("Orc", 1, 20, 6, 8, 2);
-	    }
-
-	}
-
-	public class Dragon extends Monster {
-	    public Dragon() {
-	        super("Dragon", 2, 35, 7, 12, 3);
-	    }
-	    
-	    //Dragon special mechanics
-
-
-	}
-	
-	//Non-combat event generation TDO
-	
 
 	//********************
 	//Monster spawning and randomization mechanics below this point
@@ -195,40 +157,98 @@ public class Monster {
 	}
 		
 	public int randomizer() {
-		int spawnID = rng.nextInt(10);
+		int spawnID = rng.nextInt(4);
 			
 		return spawnID;
 	}
-	
-	//Spawning decision switch case
-	public Monster spawnMonster() {
-	    int spawnID = randomizer();
-	    switch (spawnID) {
-	        case 0:
-	            return new Zombie();
-	        case 1:
-	            return new Zombie();
-	        case 2:
-	            return new Zombie();
-	        case 3:
-	            return new Zombie();
-	        case 4:
-	            return new Goblin();
-	        case 5:
-	            return new Goblin();
-	        case 6:
-	            return new Goblin();
-	        case 7:
-	            return new Orc();
-	        case 8:
-	            return new Orc();
-	        case 9:
-	            return new Dragon();
-	        case 10:
-	            return new Dragon();
-	        
-	        default:
-	            return new Dragon(); // Default to Dragon if spawnID is out of range
-	    }
-	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Moved these items down here in case they we
+
+
+/* @Override
+public void attack() {
+    // Zombie's attack behavior
+} */
+
+
+//********************
+//Monster subclasses and mechanics below this point
+//public class Zombie extends Monster {
+//    public Zombie() {
+//        super("Zombie", 0, 15, 5, 5, 0);
+//    }
+//    
+//    //Zombie special mechanics
+//
+//}
+//
+//public class Goblin extends Monster {
+//    public Goblin() {
+//        super("Goblin", 0, 8, 5, 3, 3);
+//    }
+//    
+//    //Goblin special mechanics
+//
+//}
+//
+//public class Orc extends Monster {
+//    public Orc() {
+//        super("Orc", 1, 20, 6, 8, 2);
+//    }
+//
+//}
+
+
+    
+    //Dragon special mechanics
+
+
+
+//Non-combat event generation TDO
+
+//Spawning decision switch case
+//	public Monster spawnMonster() {
+//	    int spawnID = randomizer();
+//	    switch (spawnID) {
+//	        case 0:
+//	            return new Zombie();
+//	        case 1:
+//	            return new Zombie();
+//	        case 2:
+//	            return new Zombie();
+//	        case 3:
+//	            return new Zombie();
+//	        case 4:
+//	            return new Goblin();
+//	        case 5:
+//	            return new Goblin();
+//	        case 6:
+//	            return new Goblin();
+//	        case 7:
+//	            return new Orc();
+//	        case 8:
+//	            return new Orc();
+//	        case 9:
+//	            return new Dragon();
+//	        case 10:
+//	            return new Dragon();
+//	        
+//	        default:
+//	            return new Dragon(); // Default to Dragon if spawnID is out of range
+

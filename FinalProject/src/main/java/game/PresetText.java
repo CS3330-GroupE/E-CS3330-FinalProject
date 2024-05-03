@@ -40,9 +40,9 @@ public class PresetText {
 	    System.out.println("===========================================");
 	    System.out.println("|           Enter Battle Command          |");
 	    System.out.println("===========================================");
-	    System.out.println("|  1. Battle Command 1                    |");
-	    System.out.println("|  2. Battle Command 2                    |");
-	    System.out.println("|  3. Battle Command 3                    |");
+	    System.out.println("|  1. Attack                              |");
+	    System.out.println("|  2. Use Health Pot                      |");
+	    System.out.println("|  3. Run                                 |");
 	    System.out.println("===========================================");
 	}
 

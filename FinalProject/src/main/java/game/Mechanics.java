@@ -6,7 +6,11 @@ import character.Ranger;
 import character.Warrior;
 import item.Inventory;
 import item.ItemFactory;
-
+import monster.Monster;
+import monster.Dragon;
+import monster.Goblin;
+import monster.Orc;
+import monster.Zombie;
 
 
 /**
@@ -32,6 +36,7 @@ public class Mechanics {
 	private Inventory playerInventory;
 	private PresetText presetText;
 	private Commands commandHandler;
+	private Monster monsterHolder;
 	
 	
 	//constructor
@@ -106,6 +111,12 @@ public class Mechanics {
 	
 	
 	
+	
+	/**
+	 * @author Brian Bluhm
+	 *  random monster spawner
+	 * @return new monster
+	 */
 	//handles main menu commands from user
 	public void mainMenuHandler() {
 		
@@ -119,6 +130,23 @@ public class Mechanics {
 		case 1:
 			//begin battle
 			//battle handler
+			
+		    int spawnID = Commands.randomizerMonstSpawn();
+		    switch (spawnID) {
+		        case 0:
+		        	monsterHolder = new Zombie("Zombie", 0, 15, 5, 5, 0);
+		        	break;
+		        case 1:
+		        	monsterHolder = new Goblin("Goblin", 0, 8, 5, 3, 3);
+		        	break;
+		        case 2:
+		        	monsterHolder = new Orc("Orc", 1, 20, 6, 8, 2);
+		        	break;
+		        case 3:
+		        	monsterHolder = new Dragon("Dragon", 2, 35, 7, 12, 3);
+		        	break;
+		    }
+		    
 			inBattle = true;
 			inMainMenu = false;
 			break;
@@ -145,7 +173,8 @@ public class Mechanics {
 	}
 	
 	
-	
+
+
 	//handles inventory menu commands from user
 	public void inventoryMenuHandler() {
 		
@@ -191,9 +220,19 @@ public class Mechanics {
 		input = commandHandler.getUserInput();
 		command = commandHandler.determineBattleCommand(input);
 		
+
+		
+		
 		//handle battle command
 		switch(command) {
 		case 1:
+			System.out.println("You attack the " + monsterHolder.getName() + "!\n");
+			playerCharacter.attack(playerCharacter, monsterHolder);
+			monsterHolder.attack(monsterHolder, playerCharacter);
+			
+			playerCharacter.checkStats();
+			monsterHolder.checkMonsterHealth();
+			
 			//battle command 1
 			break;
 			
@@ -233,6 +272,7 @@ public class Mechanics {
 				//adding default mage weapon to inventory
 				playerInventory.addItem(ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.",
 						0, 0, 2, 0, 0));
+				//equip item above ^^
 				break;
 				
 			case 2:
@@ -240,6 +280,7 @@ public class Mechanics {
 				//adding default ranger weapon to inventory
 				playerInventory.addItem(ItemFactory.createItem("Weapon", "Bow of Wielding", "A sturdy bow that can be equipped as a weapon. It even comes with arrows.",
 						0, 0, 2, 0, 0));
+				//equip item above ^^
 				break;
 
 			case 3:
@@ -247,6 +288,7 @@ public class Mechanics {
 				//adding default warrior weapon to inventory
 				playerInventory.addItem(ItemFactory.createItem("Weapon", "Long Sword", "A long sword that can be equipped as a weapon.",
 						0, 0, 2, 0, 0));
+				//equip item above ^^
 				break;
 				
 			default:

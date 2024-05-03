@@ -1,6 +1,7 @@
 package game;
 
 import java.util.Scanner;
+import java.util.Random;
 import item.Item;
 
 public class Commands {
@@ -121,24 +122,23 @@ public class Commands {
 		input = input.toLowerCase().trim();
 		
 		switch(input) {
-		case "battle command 1":
+		case "attack":
 			command = 1;
-			System.out.println("battle command 1\n");
 			break;
 			
-		case "battle command 2":
+		case "evade attack":
 			command = 2;
-			System.out.println("battle command 2\n");
+			//System.out.println("battle command 2\n");
 			break;
 			
-		case "battle command 3":
+		case "drink health potion":
 			command = 3;
-			System.out.println("battle command 3\n");
+			//System.out.println("battle command 3\n");
 			break;
 			
 		default:
 			command = -1;
-			System.out.println("Invalid Command\n");
+			//System.out.println("Invalid Command\n");
 			break;
 		}
 		
@@ -189,6 +189,12 @@ public class Commands {
 	}
 	
 	
+	public static int randomizerMonstSpawn() {
+		Random rng = new Random();
+		int spawnID = rng.nextInt((3 - 0) + 1);
+			
+		return spawnID;
+	}
 	
 	protected void checkStat(int inventoryNumber) {
 		

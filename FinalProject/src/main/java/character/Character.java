@@ -25,11 +25,10 @@ public class Character {
 	private Item equippedWeapon;
 	private Item equippedEquipment;
 	private Type classType;
-	private Inventory inventory = new Inventory();
 	
 	
 	public Character(int health, int level, int experience, int dexterity, int strength, int intelligence, 
-			         int vitality, int healthPots, int armorClass, Item equippedWeapon, Item equippedEquipment, Type classType, Inventory inventory) {
+			         int vitality, int healthPots, int armorClass, Item equippedWeapon, Item equippedEquipment, Type classType) {
 		super();
 		this.health = health;
 		this.level = level;
@@ -43,7 +42,6 @@ public class Character {
 		this.strength = strength;
 		this.dexterity = dexterity;
 		this.classType = classType;
-		this.inventory = inventory;
 	}
 	
 	public Character(Character copy) {
@@ -59,30 +57,8 @@ public class Character {
 		this.strength = copy.strength;
 		this.dexterity = copy.dexterity;
 		this.classType = copy.classType;
-		this.inventory = copy.inventory;
 	}
 	
-	
-	void Combat(Character character, Monster monster) {
-		Scanner scanner = new Scanner(System.in);
-		int command;
-		
-		while(/*!monster.isDead() ||*/ !character.isDeadPlayer(character)) {
-			System.out.print("Enter:\n 1 to attack \n 2 to dodge \n 3 to consume a Potion");
-			command = scanner.nextInt();
-			switch(command) {
-			case 1:
-				character.attack(character, monster); //Changed this line - Brian -
-				break;
-			case 2:
-			System.out.print("You dodged the attack!\n" );
-				break;
-			case 3:
-				character.usePotion();
-				break;
-			}
-		}
-	}
 
 	//Combat method to roll an attack value, compare against character armor, then do damage - AUTHOR Brian -
 	public void attack(Character character, Monster monster) {
@@ -109,12 +85,6 @@ public class Character {
         	}
     	}
 
-	/* Replaced with character.attack - Brian -
-	int playerAttack() {
-		int damage = 0;
-		
-		return damage;
-	} */
 
 	//Call to take damage, sets overkill damage to 0 - AUTHOR Brian -
 	public void takeDamage(int damage) {
@@ -122,7 +92,8 @@ public class Character {
         	if (health < 0) {
             	health = 0;
         	}
-    	}
+    }
+	
 	
 	void usePotion() {
 		int newHealth = this.getHealth() + 4;
@@ -155,7 +126,23 @@ public class Character {
 	
 	//print operations to gives info on stats
 	public void checkStats () {
-		System.out.print("Health: " + this.health);
+		Item weapon = this.getEquippedWeapon();
+		Item equipment = this.getEquippedEquipment();
+		
+		System.out.print("Current Player Info:\n\n");
+		
+		System.out.print("Class: " + this.getClassType() + "\n");
+		System.out.print("Health: " + this.getHealth() + "\n");
+		System.out.print("XP: " + this.getExperience()+ "\n");
+		System.out.print("Vitality: " + this.getVitality()+ "\n");
+		System.out.print("Dexterity: " + this.getDexterity()+ "\n");
+		System.out.print("Strength: " + this.getStrength() + "\n");
+		System.out.print("Intelligence: " + this.getIntelligence() + "\n");
+		System.out.print("Current Number of Health Pots: " + this.getHealthPots() + "\n");
+//		System.out.print("Weapon: " + weapon.getName() + "\n");
+//		System.out.print("Equipment: " + equipment.getName() + "\n");
+		System.out.print("Armor Class: " + this.getArmorClass() + "\n");
+		
 	}
 	
 	
@@ -198,13 +185,6 @@ public class Character {
 		this.classType = classType;
 	}
 
-	public Inventory getInventory() {
-		return inventory;
-	}
-
-	public void setInventory(Inventory inventory) {
-		this.inventory = inventory;
-	}
 	public int getHealth() {
 		return health;
 	}
