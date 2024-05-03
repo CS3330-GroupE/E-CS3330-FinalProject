@@ -1,8 +1,11 @@
 package item;
 
+import character.Character;
+
 class Weapon extends Item implements Equippable {
-    
-	public Weapon(String name, String description, int strength, int vitality, int dexterity, int intelligence, int armorClass) {
+
+	public Weapon(String name, String description, int strength, int vitality, int dexterity, int intelligence,
+			int armorClass) {
 		this.name = name;
 		this.description = description;
 		this.strength = strength;
@@ -13,25 +16,31 @@ class Weapon extends Item implements Equippable {
 	}
 
 	public void useItem(Character character) {
-        System.out.println("Nothing happens");
-    }
-
-	public void equip(Character character, Inventory inventory) {
-		/*
-		 * if (inventory.getItems().contains(this)) {
-		 * character.equippedWeapon().add(this); inventory.removeItem(this);
-		 * System.out.println("You equipped the " + name); character.updateStats(stats);
-		 * } else { System.out.println("You don't have " + name +
-		 * " in your inventory."); }
-		 */
+		System.out.println("Nothing happens");
 	}
 
-    public void unequip(Character character, Inventory inventory) {
-		/*
-		 * if (character.equippedWeapon().contains(this)) {
-		 * character.equippedWeapon().remove(this); inventory.addItem(this);
-		 * System.out.println("You unequipped the " + name); character.updateStats(); }
-		 * else { System.out.println("You don't have " + name + " equipped."); }
-		 */
-    }
+	public void equip(Character character, Inventory inventory) {
+
+		if (inventory.getItems().contains(this)) {
+			inventory.addItem(character.getEquippedWeapon());
+			character.setEquippedWeapon(this);
+			inventory.removeItem(this);
+			System.out.println("You equipped the " + name);
+			character.updateStats();
+		} else {
+			System.out.println("You don't have " + name + " in your inventory.");
+		}
+
+	}
+
+	/*
+	 * public void unequip(Character character, Inventory inventory) {
+	 * 
+	 * if (character.equippedWeapon().contains(this)) {
+	 * character.equippedWeapon().remove(this); inventory.addItem(this);
+	 * System.out.println("You unequipped the " + name); character.updateStats(); }
+	 * else { System.out.println("You don't have " + name + " equipped."); }
+	 * 
+	 * }
+	 */
 }

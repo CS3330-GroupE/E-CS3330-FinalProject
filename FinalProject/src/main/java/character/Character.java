@@ -141,10 +141,14 @@ public class Character {
 		System.out.print("Intelligence: " + this.getIntelligence() + "\n");
 		System.out.print("Current Number of Health Pots: " + this.getHealthPots() + "\n");
 
+
+		System.out.print("Weapon: " + equippedWeapon.getName() + "\n");
+		System.out.print("Equipment: " + equippedEquipment.getName() + "\n");
+
 		System.out.print("Armor Class: " + this.getArmorClass() + "\n");
 		
 	}
-	
+
 	public void checkEquipment() {
 		Item weapon = this.getEquippedWeapon();
 		Item equipment = this.getEquippedEquipment();
@@ -152,7 +156,33 @@ public class Character {
 		System.out.print(weapon.getName() + ":\n");
 		System.out.print(equipment.getName() + "\n");
 	}
+
+	//added by Jonathan Hatfield
+    public void updateStats() {
+        if (equippedWeapon != null) {
+            updateStatsWithItem(equippedWeapon);
+        }
+        if (equippedEquipment != null) {
+            updateStatsWithItem(equippedEquipment);
+        }
+    }
+
 	
+    private void updateStatsWithItem(Item item) {
+        // This will get the item stats
+        int itemDexterity = item.getDexterity();
+        int itemStrength = item.getStrength();
+        int itemIntelligence = item.getIntelligence();
+        int itemVitality = item.getVitality();
+        int itemArmorClass = item.getArmorClass();
+
+        // This will update the stats 
+        dexterity += itemDexterity;
+        strength += itemStrength;
+        intelligence += itemIntelligence;
+        vitality += itemVitality;
+        armorClass += itemArmorClass;
+    }
 	
 	boolean levelUp () {
 		int newLevel = this.getLevel() + 1;

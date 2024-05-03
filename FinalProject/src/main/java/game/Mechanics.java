@@ -11,7 +11,7 @@ import monster.Dragon;
 import monster.Goblin;
 import monster.Orc;
 import monster.Zombie;
-
+import item.Inventory;
 
 /**
  * This Mechanics class handles all things relating to the flow control and logic of the
@@ -274,8 +274,11 @@ public class Mechanics {
 			case 1:
 				newCharacter = new Mage();
 				//adding default mage weapon to inventory
-				playerInventory.addItem(ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.",
+				newCharacter.setEquippedWeapon(ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.",
 						0, 0, 2, 0, 0));
+				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Magic Robes", "Magical robes that give emit magical energy.",
+						0, 0, 2, 0, 2));
+				newCharacter.updateStats();
 				//equip item above ^^
 				break;
 				
