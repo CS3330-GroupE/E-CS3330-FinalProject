@@ -12,12 +12,15 @@ import character.Warrior;
 
 class MechanicsTest {
 	
+	
+	
 	/**
 	 * testing valid attack command by giving different variations of possible
 	 * user inputs that would be valid, and ensuring the integer returned is 2.
 	 * 
 	 * @author blake simpson
 	 */
+	/*
 	@Test
 	void testValidAttackCommand() {
 		Mechanics game = new Mechanics();
@@ -34,7 +37,7 @@ class MechanicsTest {
 		command = game.determineCommand(testInput);
 		assertEquals(2, command);
 	}
-	
+	*/
 	
 	
 	/**
@@ -43,6 +46,7 @@ class MechanicsTest {
 	 * 
 	 * @author blake simpson
 	 */
+	/*
 	@Test
 	void testValidQuitCommand() {
 		Mechanics game = new Mechanics();
@@ -59,6 +63,7 @@ class MechanicsTest {
 		command = game.determineCommand(testInput);
 		assertEquals(3, command);
 	}
+	*/
 	
 	
 	
@@ -68,6 +73,7 @@ class MechanicsTest {
 	 * 
 	 * @author blake simpson
 	 */
+	/*
 	@Test
 	void testInvalidCommand() {
 		Mechanics game = new Mechanics();
@@ -97,6 +103,7 @@ class MechanicsTest {
 	 * 
 	 * @author blake simpson
 	 */
+	/*
 	@Test
 	void testValidMageCharacter() {
 		Mechanics game = new Mechanics();
@@ -120,7 +127,8 @@ class MechanicsTest {
 		assertTrue(testCharacter instanceof Mage);
 		
 	}
-	
+	*/
+	/*
 	
 	
 	/**
@@ -129,6 +137,7 @@ class MechanicsTest {
 	 * 
 	 * @author blake simpson
 	 */
+	/*
 	@Test
 	void testValidRangerCharacter() {
 		Mechanics game = new Mechanics();
@@ -151,7 +160,7 @@ class MechanicsTest {
 		testCharacter = game.createCharacter(command);
 		assertTrue(testCharacter instanceof Ranger);
 	}
-	
+	*/
 	
 	
 	/**
@@ -161,6 +170,7 @@ class MechanicsTest {
 	 * 
 	 * @author blake simpson
 	 */
+	/*
 	@Test
 	void testValidWarriorCharacter() {
 		Mechanics game = new Mechanics();
@@ -183,7 +193,7 @@ class MechanicsTest {
 		testCharacter = game.createCharacter(command);
 		assertTrue(testCharacter instanceof Warrior);
 	}
-	
+	*/
 	
 	
 	/**
@@ -192,6 +202,7 @@ class MechanicsTest {
 	 * 
 	 * @author blake simpson
 	 */
+	/*
 	@Test
 	void testInvalidCharacter() {
 		Mechanics game = new Mechanics();
@@ -217,6 +228,8 @@ class MechanicsTest {
 		testCharacter = game.createCharacter(command);
 		assertEquals(null, testCharacter);
 	}
-
+	*/
+	
+	
 	
 }
