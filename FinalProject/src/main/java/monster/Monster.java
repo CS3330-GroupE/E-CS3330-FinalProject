@@ -179,7 +179,7 @@ public class Monster {
 	
 
 	public void checkMonsterHealth() {
-		System.out.print("\nMonsters current health is " + this.getHealth()+"\n");
+		System.out.print("\nThe "+ getName() +"'s current health is " + this.getHealth()+"\n");
 	}
 
 	//********************
