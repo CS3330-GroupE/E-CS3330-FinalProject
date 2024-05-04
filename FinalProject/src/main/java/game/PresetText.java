@@ -41,7 +41,7 @@ public class PresetText {
 	    System.out.println("|           Enter Battle Command          |");
 	    System.out.println("===========================================");
 	    System.out.println("|  1. Attack                              |");
-	    System.out.println("|  2. Use Health Pot                      |");
+	    System.out.println("|  2. Use Health Potion                   |");
 	    System.out.println("|  3. Run                                 |");
 	    System.out.println("===========================================");
 	}

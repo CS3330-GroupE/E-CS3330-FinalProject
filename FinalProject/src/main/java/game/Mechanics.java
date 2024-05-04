@@ -247,7 +247,9 @@ public class Mechanics {
 				gameOver = true;
 			}
 			if(monsterHolder.isDead(monsterHolder)) {
-				
+				monsterHolder.onDeath(playerCharacter, playerInventory);
+				inBattle = false;
+				inMainMenu = true;
 			}
 			//battle command 1
 			break;
@@ -286,7 +288,7 @@ public class Mechanics {
 			break;
 			
 		default:
-			//invalid command
+			System.out.print("Invalid Command!\n");
 			break;
 		}
 	

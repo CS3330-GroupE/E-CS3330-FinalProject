@@ -2,9 +2,10 @@ package monster;
 
 import character.Character;
 
-import java.util.Random;
 
+import java.util.Random;
 import item.Item;
+import item.Inventory;
 import item.RandomEquipmentGenerator;
 
 public class Monster {
@@ -109,9 +110,7 @@ public class Monster {
     public boolean isDead(Monster monster) {
         if(monster.getHealth() > 0) {
             return false;
-        } else {
-        	monster.onDeath();
-        }
+        } 
         return true;
     }
 	
@@ -124,6 +123,7 @@ public class Monster {
 	//Mechanics upon monster death
 	//Random item drops
 	public Item dropTreasure() {
+		Random rng = new Random();
 	    int dropRNG = rng.nextInt(5); // Generate a drop chance
 
 	    // If the drop value is not 0 or 1, drop a random item
@@ -136,26 +136,32 @@ public class Monster {
 	
 	//Random EXP
 	public double dropEXP() {
+		Random rng = new Random();
 	    int baseExp = rng.nextInt(20) + 10; // Generate a random two-digit integer between 10 and 29
-	    double bonusExp = getLevel() * 0.2; // Apply a bonus based on the level of the monster
-	    return baseExp * bonusExp;
+	    //double bonusExp = getLevel() * 0.2; // Apply a bonus based on the level of the monster
+	    return baseExp /* bonusExp*/;
 	}
 	
 	//onDeath method to drop kill rewards, runs from isDead method
-	public void onDeath() {
+	public void onDeath(Character character,Inventory inventory) {
 	    double exp = dropEXP();
 	    Item treasure = dropTreasure();
 
 	    System.out.println("The " + getName() + " has been defeated!");
 	    System.out.println("You gained " + exp + " experience points.");
 
+	    character.setExperience(exp + character.getExperience());
+	    if(character.getExperience() >= 100) {
+	    	character.levelUp();
+	    }
+	    
+	    
 	    if (treasure != null) {
 	        System.out.println("The " + getName() + " dropped " + treasure.getName());
+	        inventory.addItem(treasure);
 	    } else {
 	        System.out.println("The " + getName() + " did not drop any treasure.");
 	    }
-
-	    // Handle any other on-death effects here
 	}
 	
 

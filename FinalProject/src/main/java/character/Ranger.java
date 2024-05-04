@@ -3,7 +3,7 @@ package character;
 public class Ranger extends Character {
 	
 	public Ranger() {
-		super(20, 1, 0, 4, 1, 4, 4, 4, 4, null, null, Type.RANGER);
+		super(20, 20, 1, 0, 4, 1, 4, 4, 4, 4, null, null, Type.RANGER, 0);
 		//health = 20
 		//level = 1
 		//experience = 0
@@ -16,7 +16,6 @@ public class Ranger extends Character {
 		//equippedWeapon = null
 		//equippedEquipment = null
 		//classType = Type.RANGER
-		//inventory = null
 	}
 	
 	public Ranger(Ranger copy) {

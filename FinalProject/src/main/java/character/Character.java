@@ -13,9 +13,10 @@ import java.util.Scanner;
  */
 
 public class Character {
+	private int baseHealth;
 	protected int health;
 	protected int level;
-	protected int experience;
+	protected double experience;
 	protected int dexterity;
 	protected int strength;
 	protected int intelligence;
@@ -25,11 +26,13 @@ public class Character {
 	private Item equippedWeapon;
 	private Item equippedEquipment;
 	private Type classType;
+	private int gold;
 	
 	
-	public Character(int health, int level, int experience, int dexterity, int strength, int intelligence, 
-			         int vitality, int healthPots, int armorClass, Item equippedWeapon, Item equippedEquipment, Type classType) {
+	public Character(int baseHealth, int health, int level, double experience, int dexterity, int strength, int intelligence, 
+			         int vitality, int healthPots, int armorClass, Item equippedWeapon, Item equippedEquipment, Type classType, int gold) {
 		super();
+		this.baseHealth = health;
 		this.health = health;
 		this.level = level;
 		this.experience = experience;
@@ -42,9 +45,11 @@ public class Character {
 		this.strength = strength;
 		this.dexterity = dexterity;
 		this.classType = classType;
+		this.gold = gold;
 	}
 	
 	public Character(Character copy) {
+		this.baseHealth = copy.baseHealth;
 		this.health = copy.health;
 		this.level = copy.level;
 		this.experience = copy.experience;
@@ -57,6 +62,7 @@ public class Character {
 		this.strength = copy.strength;
 		this.dexterity = copy.dexterity;
 		this.classType = copy.classType;
+		this.gold = copy.gold;
 	}
 	
 
@@ -67,21 +73,21 @@ public class Character {
         	if (attackValue >= monster.getDefense()) {
         		switch (attackValue) {
         			case 10: 
-        				int damage = ((/*TEST VALUE*/1/*PLAYER DAMAGE GOES HERE!!!*/) * 2);
+        				int damage = (getPlayerDamage(character) * 2);
                     			monster.takeDamage(damage);
                     			System.out.println("You critically strike the " + monster.getName() + " for " + damage + " damage!");
         			default:
-        				damage = /*TEST VALUE*/1/*PLAYER DAMAGE GOES HERE!!!*/;
-                    			monster.takeDamage(damage);
-                    			System.out.println("You strike the " + monster.getName() + " for " + damage + " damage!");
+        			damage = getPlayerDamage(character);
+                    monster.takeDamage(damage);
+                    System.out.println("You strike the " + monster.getName() + " for " + damage + " damage!");
         		}
         	} else {
-            		switch (attackValue) { 
-            			case 1: 
-            				System.out.println("You miss, dramatically tripping and falling to the floor!");
+        		switch (attackValue) { 
+            		case 1: 
+            			System.out.println("You miss, dramatically tripping and falling to the floor!");
             		default:
-            				System.out.println("Your attack missed!");
-            		}
+            			System.out.println("Your attack missed!");
+            	}
         	}
     	}
 
@@ -118,17 +124,17 @@ public class Character {
 				System.out.print("\nUnable to use Health Potion. Health is already full!\n");
 			}
 		
-		if(this.getClassType() == Type.MAGE && newHealth >= 15) {
-			newHealth = 15;
-			this.setHealth(newHealth + this.getVitality());
-			System.out.print("Your current health is " + this.getHealth()+"\n");
-		}
-		if(this.getClassType() == Type.RANGER && newHealth >= 25) {
+			if(this.getClassType() == Type.MAGE && newHealth >= (15 + this.getVitality())) {
+				newHealth = 15;
+				this.setHealth(newHealth + this.getVitality());
+				System.out.print("Your current health is " + this.getHealth()+"\n");
+			}
+			if(this.getClassType() == Type.RANGER && newHealth >= (20 + this.getVitality())) {
 				newHealth = 20;
 				this.setHealth(newHealth + this.getVitality());
 				System.out.print("Your current health is " + this.getHealth()+"\n");
 			}
-			if(this.getClassType() == Type.WARRIOR && newHealth >= 30) {
+			if(this.getClassType() == Type.WARRIOR && newHealth >= (25 + this.getVitality())) {
 				newHealth = 25;
 				this.setHealth(newHealth + this.getVitality());
 				System.out.print("Your current health is " + this.getHealth()+"\n");
@@ -156,18 +162,11 @@ public class Character {
 		
 		System.out.print("Class: " + this.getClassType() + "\n");
 		System.out.print("Health: " + this.getHealth() + "\n");
-		System.out.print("XP: " + this.getExperience()+ "\n");
+		System.out.print("XP: " + this.getExperience()+ "/100\n");
 		System.out.print("Vitality: " + this.getVitality()+ "\n");
 		System.out.print("Dexterity: " + this.getDexterity()+ "\n");
 		System.out.print("Strength: " + this.getStrength() + "\n");
 		System.out.print("Intelligence: " + this.getIntelligence() + "\n");
-		System.out.print("Current Number of Health Pots: " + this.getHealthPots() + "\n");
-
-
-		System.out.print("Weapon: " + equippedWeapon.getName() + "\n");
-		System.out.print("Equipment: " + equippedEquipment.getName() + "\n");
-
-		System.out.print("Armor Class: " + this.getArmorClass() + "\n");
 		
 	}
 
@@ -177,18 +176,48 @@ public class Character {
 		
 		System.out.print(weapon.getName() + ":\n");
 		System.out.print(equipment.getName() + "\n");
+		System.out.print("Armor Class: " + this.getArmorClass() + "\n");
+		System.out.print("Current Number of Health Pots: " + this.getHealthPots() + "\n");
 	}
 
 	//added by Jonathan Hatfield
     public void updateStats() {
         if (equippedWeapon != null) {
             updateStatsWithItem(equippedWeapon);
+            updateHealth();
         }
         if (equippedEquipment != null) {
             updateStatsWithItem(equippedEquipment);
+            updateHealth();
         }
     }
+    
+    public void updateStatsUnequip() {
+    	if(equippedWeapon != null) {
+    		updateStatsWithOutItem(equippedWeapon);
+    		updateHealth();
+    	}
+    	if(equippedEquipment != null) {
+    		updateStatsWithOutItem(equippedEquipment);
+    		updateHealth();
+    	}
+    }
 
+    private void updateStatsWithOutItem(Item item) {
+        // This will get the item stats
+        int itemDexterity = item.getDexterity();
+        int itemStrength = item.getStrength();
+        int itemIntelligence = item.getIntelligence();
+        int itemVitality = item.getVitality();
+        int itemArmorClass = item.getArmorClass();
+
+        // This will update the stats 
+        dexterity -= itemDexterity;
+        strength -= itemStrength;
+        intelligence -= itemIntelligence;
+        vitality -= itemVitality;
+        armorClass -= itemArmorClass;
+    }
 	
     private void updateStatsWithItem(Item item) {
         // This will get the item stats
@@ -206,10 +235,25 @@ public class Character {
         armorClass += itemArmorClass;
     }
 	
-	boolean levelUp () {
+	public void levelUp () {
+		
+		System.out.print("\n\nLEVELUP!!\n\n");
+		
 		int newLevel = this.getLevel() + 1;
 		this.setLevel(newLevel);
-		return true;
+		if(this.getClassType() == Type.MAGE) {
+			this.setIntelligence(1 + intelligence);
+			this.setDexterity(1 + vitality);
+		}
+		if(this.getClassType() == Type.WARRIOR) {
+			this.setStrength(1 + strength);
+			this.setDexterity(1 + vitality);
+		}
+		if(this.getClassType() == Type.RANGER) {
+			this.setDexterity(1 + dexterity);
+			this.setDexterity(1 + vitality);
+		}
+		updateHealth();
 	}
 
 	
@@ -221,12 +265,23 @@ public class Character {
 		return true;
 	}
 	
+	public int getPlayerDamage(Character player) {
+		if(player.getClassType() == Type.MAGE) {
+			return player.getIntelligence();
+		}
+		if(player.getClassType() == Type.WARRIOR) {
+			return player.getStrength();
+		}
+		if(player.getClassType() == Type.RANGER) {
+			return player.getDexterity();
+		}
+		return 0;
+	}
 	
 	
-	
-	
-	
-	
+	public void updateHealth() {
+		this.setHealth(baseHealth + vitality);
+	}
 	
 	
 	//getters and setters
@@ -262,11 +317,11 @@ public class Character {
 		this.level = level;
 	}
 
-	public int getExperience() {
+	public double getExperience() {
 		return experience;
 	}
 
-	public void setExperience(int experience) {
+	public void setExperience(double experience) {
 		this.experience = experience;
 	}
 
