@@ -84,7 +84,7 @@ public class Commands {
 			System.out.println("check current equipment\n");
 			break;
 		
-		case "check stat":
+		case "check stats":
 			command = 2;			
 			//checkStat(inventoryNumber);			
 			System.out.println("check stat\n");
