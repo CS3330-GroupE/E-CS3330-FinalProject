@@ -2,7 +2,7 @@ package game;
 
 import java.util.Scanner;
 import java.util.Random;
-import item.Item;
+
 
 public class Commands {
 	
@@ -245,4 +245,18 @@ public class Commands {
 		
 		
 	}
-}
+	
+	/*
+	 * public int getIndexInput() { int number;
+	 * 
+	 * do { System.out.print("Enter a valid inventory slot: "); while
+	 * (!scanner.hasNextInt()) { System.out.println("That's not a valid number!");
+	 * System.out.print("Enter a valid inventory slot: "); scanner.next(); } number
+	 * = scanner.nextInt(); if (number < 0) {
+	 * System.out.println("That must not be a valid inventory slot. Try again."); }
+	 * } while (number < 0);
+	 * 
+	 * System.out.println("You entered: " + number); return number; }
+	 */
+	}
+

@@ -1,6 +1,6 @@
 package game;
 
-import java.util.Scanner;
+
 
 import character.Character;
 import character.Mage;
@@ -14,7 +14,8 @@ import monster.Dragon;
 import monster.Goblin;
 import monster.Orc;
 import monster.Zombie;
-
+import item.Weapon;
+import item.Equipment;
 
 /**
  * This Mechanics class handles all things relating to the flow control and logic of the
@@ -211,7 +212,15 @@ public class Mechanics {
 			break;
 			
 		case 3:
+			playerInventory.addItem(ItemFactory.createRandomItem());
+			playerInventory.addItem(ItemFactory.createRandomItem());
+			playerInventory.addItem(ItemFactory.createRandomItem());
+			playerInventory.addItem(ItemFactory.createRandomItem());
+
+			playerCharacter.checkStats();
 			equipItem(playerCharacter);
+			playerCharacter.checkStats();
+
 
 			//equip item
 			break;
@@ -365,7 +374,7 @@ public class Mechanics {
 	
 	
 	/**
-	 * @author ethan alexander
+	 * @author ethan alexander and Jonathan Hatfield
 	 * @param input
 	 * @return new character
 	 */
@@ -381,7 +390,7 @@ public class Mechanics {
 						2, 2, 7, 4, 2));
 				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Magic Robes", "Basic magical robes that give emit magical energy and can be equipped.",
 						1, 3, 7, 5, 2));
-				newCharacter.updateStats();
+				newCharacter.updateStats(newCharacter);
 			
 				break;
 				
@@ -392,7 +401,7 @@ public class Mechanics {
 						1, 8, 3, 4, 0));
 				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Leather Armor", "A basic leather body with chaps that can be equipped.",
 						2, 5, 2, 5, 3));
-				newCharacter.updateStats();
+				newCharacter.updateStats(newCharacter);
 				break;
 
 			case 3:
@@ -402,7 +411,7 @@ public class Mechanics {
 						6, 1, 1, 3, 4));
 				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Steel Armor", "Basic armor, but still tough! Can be equipped",
 						5, 1, 1, 4, 6));
-				newCharacter.updateStats();
+				newCharacter.updateStats(newCharacter);
 				break;
 				
 			default:
@@ -423,29 +432,8 @@ public class Mechanics {
 		gameOver = true;
 		
 	}
-	
-    public int getIndexInput() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            int number;
 
-            do {
-                System.out.print("Enter a non-negative whole number: ");
-                while (!scanner.hasNextInt()) {
-                    System.out.println("That's not a valid number!");
-                    System.out.print("Enter a non-negative whole number: ");
-                    scanner.next();
-                }
-                number = scanner.nextInt();
-                if (number < 0) {
-                    System.out.println("That's not a non-negative number!");
-                }
-            } while (number < 0);
-
-            System.out.println("You entered: " + number);
-            scanner.close();
-            return number;
-        }
-    }
+   
 
 	
     public void equipItem(Character character) {
@@ -453,15 +441,36 @@ public class Mechanics {
         playerInventory.displayInventory();
 
         // Get the index input from the user
-        int index = getIndexInput();
+        input = commandHandler.getUserInput();
+        int index = Integer.parseInt(input);
 
         // Retrieve the item from the inventory
         if (index >= 0 && index < playerInventory.getItems().size()) {
             Item item = playerInventory.getItems().get(index);
-            playerInventory.addItem(character.getEquippedEquipment());
-            character.setEquippedEquipment(item);
-            System.out.println("Equipping item: " + item.getName());
-            // Additional logic for equipping the item...
+            
+            // Check if the item is a Weapon
+            if (item instanceof Weapon) {
+                // Unequip any previously equipped weapon
+                if (character.getEquippedWeapon() != null) {
+                    playerInventory.addItem(character.getEquippedWeapon());
+                }
+                // Equip the new weapon
+                character.setEquippedWeapon((Weapon)item);
+                character.updateStats(character);
+                System.out.println("Equipping weapon: " + item.getName());
+            }
+            // Check if the item is Equipment
+            else if (item instanceof Equipment) {
+                // Unequip any previously equipped equipment
+                if (character.getEquippedEquipment() != null) {
+                    playerInventory.addItem(character.getEquippedEquipment());
+                }
+                // Equip the new equipment
+                character.setEquippedEquipment((Equipment)item);
+                character.updateStats(character);
+                System.out.println("Equipping equipment: " + item.getName());
+            }
+ 
         } else {
             System.out.println("Invalid index.");
         }

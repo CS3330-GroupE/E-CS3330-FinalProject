@@ -2,10 +2,9 @@ package item;
 
 import character.Character;
 
-class Equipment extends Item implements Equippable {
+public class Equipment extends Item implements Equippable {
 
-	public Equipment(String name, String description, int strength, int vitality, int dexterity, int intelligence,
-			int armorClass) {
+	public Equipment(String name, String description, int strength, int vitality, int dexterity, int intelligence, int armorClass) {
 		this.name = name;
 		this.description = description;
 		this.strength = strength;
@@ -26,7 +25,7 @@ class Equipment extends Item implements Equippable {
 			character.setEquippedEquipment(this);
 			inventory.removeItem(this);
 			System.out.println("You equipped the " + name);
-			character.updateStats();
+			character.updateStats(character);
 		} else {
 			System.out.println("You don't have " + name + " in your inventory.");
 		}

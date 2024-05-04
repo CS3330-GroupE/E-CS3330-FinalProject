@@ -25,8 +25,12 @@ public class Character {
 	private Item equippedEquipment;
 	private Type classType;
 	private int gold;
-
-	
+	protected int baseDexterity;
+	protected int baseStrength;
+	protected int baseIntelligence;
+	protected int baseVitality;
+	protected int baseHealthPots;
+	protected int baseArmorClass;
 	
 	public Character(int baseHealth, int health, int level, double experience, int dexterity, int strength, int intelligence, 
 			         int vitality, int healthPots, int armorClass, Item equippedWeapon, Item equippedEquipment, Type classType, int gold) {
@@ -181,58 +185,55 @@ public class Character {
 	}
 
 	//added by Jonathan Hatfield
-    public void updateStats() {
-        if (equippedWeapon != null) {
-            updateStatsWithItem(equippedWeapon);
-            updateHealth();
-        }
-        if (equippedEquipment != null) {
-            updateStatsWithItem(equippedEquipment);
-            updateHealth();
-        }
+	public void updateStats(Character character) {
+	    // Reset stats to base
+	    resetStats(character);
+
+	    // Update stats with equipped weapon
+	    if (equippedWeapon != null) {
+	        updateStatsWithItem(equippedWeapon, character);
+	    }
+
+	    // Update stats with equipped equipment
+	    if (equippedEquipment != null) {
+	        updateStatsWithItem(equippedEquipment, character);
+	    }
+	}
+    
+	/*
+	 * public void updateStatsUnequip() { if(equippedWeapon != null) {
+	 * updateStatsWithOutItem(equippedWeapon); updateHealth(); }
+	 * if(equippedEquipment != null) { updateStatsWithOutItem(equippedEquipment);
+	 * updateHealth(); } }
+	 */
+
+	/*
+	 * private void updateStatsWithOutItem(Item item) { // This will get the item
+	 * stats int itemDexterity = item.getDexterity(); int itemStrength =
+	 * item.getStrength(); int itemIntelligence = item.getIntelligence(); int
+	 * itemVitality = item.getVitality(); int itemArmorClass = item.getArmorClass();
+	 * 
+	 * // This will update the stats dexterity -= itemDexterity; strength -=
+	 * itemStrength; intelligence -= itemIntelligence; vitality -= itemVitality;
+	 * armorClass -= itemArmorClass; }
+	 */
+	
+    private void resetStats(Character character) {
+        character.setDexterity(character.getBaseDexterity());
+        character.setStrength(character.getBaseStrength());
+        character.setIntelligence(character.getBaseIntelligence());
+        character.setVitality(character.getBaseVitality());
+        character.setArmorClass(character.getBaseArmorClass());
     }
     
-    public void updateStatsUnequip() {
-    	if(equippedWeapon != null) {
-    		updateStatsWithOutItem(equippedWeapon);
-    		updateHealth();
-    	}
-    	if(equippedEquipment != null) {
-    		updateStatsWithOutItem(equippedEquipment);
-    		updateHealth();
-    	}
-    }
-
-    private void updateStatsWithOutItem(Item item) {
-        // This will get the item stats
-        int itemDexterity = item.getDexterity();
-        int itemStrength = item.getStrength();
-        int itemIntelligence = item.getIntelligence();
-        int itemVitality = item.getVitality();
-        int itemArmorClass = item.getArmorClass();
-
-        // This will update the stats 
-        dexterity -= itemDexterity;
-        strength -= itemStrength;
-        intelligence -= itemIntelligence;
-        vitality -= itemVitality;
-        armorClass -= itemArmorClass;
-    }
-	
-    private void updateStatsWithItem(Item item) {
-        // This will get the item stats
-        int itemDexterity = item.getDexterity();
-        int itemStrength = item.getStrength();
-        int itemIntelligence = item.getIntelligence();
-        int itemVitality = item.getVitality();
-        int itemArmorClass = item.getArmorClass();
-
-        // This will update the stats 
-        dexterity += itemDexterity;
-        strength += itemStrength;
-        intelligence += itemIntelligence;
-        vitality += itemVitality;
-        armorClass += itemArmorClass;
+    
+    private void updateStatsWithItem(Item item, Character character) {
+        // Update stats with item
+        character.setDexterity(character.getDexterity() + item.getDexterity());
+        character.setStrength(character.getStrength() + item.getStrength());
+        character.setIntelligence(character.getIntelligence() + item.getIntelligence());
+        character.setVitality(character.getVitality() + item.getVitality());
+        character.setArmorClass(character.getArmorClass() + item.getArmorClass());
     }
 	
 	public void levelUp () {
@@ -242,16 +243,16 @@ public class Character {
 		int newLevel = this.getLevel() + 1;
 		this.setLevel(newLevel);
 		if(this.getClassType() == Type.MAGE) {
-			this.setIntelligence(1 + intelligence);
-			this.setDexterity(1 + vitality);
+			this.setBaseIntelligence(1 + intelligence);
+			this.setBaseDexterity(1 + vitality);
 		}
 		if(this.getClassType() == Type.WARRIOR) {
-			this.setStrength(1 + strength);
-			this.setDexterity(1 + vitality);
+			this.setBaseStrength(1 + strength);
+			this.setBaseDexterity(1 + vitality);
 		}
 		if(this.getClassType() == Type.RANGER) {
-			this.setDexterity(1 + dexterity);
-			this.setDexterity(1 + vitality);
+			this.setBaseDexterity(1 + dexterity);
+			this.setBaseVitality(1 + vitality);
 		}
 		updateHealth();
 	}
@@ -396,6 +397,53 @@ public class Character {
 		this.gold = gold;
 	}
 
+	public int getBaseDexterity() {
+		return baseDexterity;
+	}
+
+	public void setBaseDexterity(int baseDexterity) {
+		this.baseDexterity = baseDexterity;
+	}
+
+	public int getBaseStrength() {
+		return baseStrength;
+	}
+
+	public void setBaseStrength(int baseStrength) {
+		this.baseStrength = baseStrength;
+	}
+
+	public int getBaseIntelligence() {
+		return baseIntelligence;
+	}
+
+	public void setBaseIntelligence(int baseIntelligence) {
+		this.baseIntelligence = baseIntelligence;
+	}
+
+	public int getBaseVitality() {
+		return baseVitality;
+	}
+
+	public void setBaseVitality(int baseVitality) {
+		this.baseVitality = baseVitality;
+	}
+
+	public int getBaseHealthPots() {
+		return baseHealthPots;
+	}
+
+	public void setBaseHealthPots(int baseHealthPots) {
+		this.baseHealthPots = baseHealthPots;
+	}
+
+	public int getBaseArmorClass() {
+		return baseArmorClass;
+	}
+
+	public void setBaseArmorClass(int baseArmorClass) {
+		this.baseArmorClass = baseArmorClass;
+	}
 
 
 }
