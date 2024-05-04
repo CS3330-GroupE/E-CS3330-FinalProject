@@ -126,7 +126,7 @@ public class Commands {
 			command = 1;
 			break;
 			
-		case "use potion":
+		case "use health potion":
 			command = 2;
 			//System.out.println("battle command 2\n");
 			break;
@@ -198,7 +198,7 @@ public class Commands {
 	
 	public static int randomizerRun() {
 		Random rng = new Random();
-		int spawnID = rng.nextInt((2 - 1) + 1);
+		int spawnID = rng.nextInt((4 - 1) + 1);
 			
 		return spawnID;
 	}

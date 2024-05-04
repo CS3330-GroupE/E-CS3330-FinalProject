@@ -64,9 +64,6 @@ public class Monster {
     	Random rng = new Random();
         int attackValue = rng.nextInt(10) + 1; // Max attack value up for discussion
         
-        System.out.print("Monster current damage is "+ monster.getDamage()+"\n");
-        System.out.print("Monster current attack is "+ monster.getAttack()+"\n");
-        
         if (attackValue >= character.getArmorClass()) {
         	switch (attackValue) { 
         		case 10: 
@@ -163,7 +160,7 @@ public class Monster {
 	
 
 	public void checkMonsterHealth() {
-		System.out.print("Monsters current health is " + this.getHealth());
+		System.out.print("Monsters current health is " + this.getHealth()+"\n");
 	}
 
 	//********************

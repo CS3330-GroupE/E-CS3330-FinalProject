@@ -135,15 +135,19 @@ public class Mechanics {
 		    switch (spawnID) {
 		        case 0:													  //for reference
 		        	monsterHolder = new Zombie("Zombie", 0, 15, 5, 5, 0); //String name, int level, int health, int attack, int damage, int defense
+		        	System.out.print("\nA wild Zombie Appears!\n");
 		        	break;
 		        case 1:
 		        	monsterHolder = new Goblin("Goblin", 0, 8, 5, 3, 3);
+		        	System.out.print("\nA wild Goblin Appears!\n");
 		        	break;
 		        case 2:
 		        	monsterHolder = new Orc("Orc", 1, 20, 6, 8, 2);
+		        	System.out.print("\nA wild Orc Appears!\n");
 		        	break;
 		        case 3:
 		        	monsterHolder = new Dragon("Dragon", 2, 35, 7, 12, 3);
+		        	System.out.print("\nA wild Dragon Appears!\n");
 		        	break;
 		    }
 		    
@@ -235,14 +239,16 @@ public class Mechanics {
 			playerCharacter.attack(playerCharacter, monsterHolder);
 			monsterHolder.attack(monsterHolder, playerCharacter);
 			
-			playerCharacter.checkStats();
+			playerCharacter.checkHealth();
 			monsterHolder.checkMonsterHealth();
 			
 			if(playerCharacter.isDeadPlayer(playerCharacter)) {
 				System.out.print("\n\nYOU DIED\n\n");
 				gameOver = true;
 			}
-			if(monsterHolder.isDead(monsterHolder))
+			if(monsterHolder.isDead(monsterHolder)) {
+				
+			}
 			//battle command 1
 			break;
 			
@@ -255,12 +261,25 @@ public class Mechanics {
 			int run = Commands.randomizerRun();
 			switch(run){
 				case 1:
-					System.out.print("You successfully escaped!");
+					System.out.print("You successfully escaped!\n");
 					inBattle = false;
 					inMainMenu = true;
 					break;
+				case 2:
+					System.out.print("Attempt to escape failed!\n");
+					monsterHolder.attack(monsterHolder, playerCharacter);
+					break;
+				case 3:
+					System.out.print("Attempt to escape failed!\n");
+					monsterHolder.attack(monsterHolder, playerCharacter);
+					break;
+				case 4:
+					System.out.print("Attempt to escape failed!\n");
+					monsterHolder.attack(monsterHolder, playerCharacter);
+					break;
 				default:
-					System.out.print("Attempt to escape failed!");
+					System.out.print("Attempt to escape failed!\n");
+					monsterHolder.attack(monsterHolder, playerCharacter);
 					break;
 			
 			}
