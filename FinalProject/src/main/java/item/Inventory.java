@@ -37,7 +37,7 @@ public class Inventory {
         if (items.isEmpty()) {
             System.out.println(" (Your invetory is empty.)");
         } else {
-        	int indexNumber = 0;
+        	int indexNumber = -1;
             for (Item item : items) {
             	indexNumber ++;
                 System.out.println(" (" + indexNumber + ") " + item.getName());

@@ -1,17 +1,19 @@
 package game;
 
+import java.util.Scanner;
+
 import character.Character;
 import character.Mage;
 import character.Ranger;
 import character.Warrior;
 import item.Inventory;
+import item.Item;
 import item.ItemFactory;
 import monster.Monster;
 import monster.Dragon;
 import monster.Goblin;
 import monster.Orc;
 import monster.Zombie;
-import item.Item;
 
 
 /**
@@ -209,8 +211,8 @@ public class Mechanics {
 			break;
 			
 		case 3:
-			
-			
+			equipItem(playerCharacter);
+
 			//equip item
 			break;
 		
@@ -388,7 +390,7 @@ public class Mechanics {
 				//Equip default loadouts
 				newCharacter.setEquippedWeapon(ItemFactory.createItem("Weapon", "Bow of Wielding", "A sturdy bow that can be equipped as a weapon. It even comes with arrows.",
 						1, 8, 3, 4, 0));
-				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Dusty Leather Armor", "A basic leather body with chaps that can be equipped.",
+				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Leather Armor", "A basic leather body with chaps that can be equipped.",
 						2, 5, 2, 5, 3));
 				newCharacter.updateStats();
 				break;
@@ -422,6 +424,49 @@ public class Mechanics {
 		
 	}
 	
+    public int getIndexInput() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            int number;
+
+            do {
+                System.out.print("Enter a non-negative whole number: ");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("That's not a valid number!");
+                    System.out.print("Enter a non-negative whole number: ");
+                    scanner.next();
+                }
+                number = scanner.nextInt();
+                if (number < 0) {
+                    System.out.println("That's not a non-negative number!");
+                }
+            } while (number < 0);
+
+            System.out.println("You entered: " + number);
+            scanner.close();
+            return number;
+        }
+    }
+
+	
+    public void equipItem(Character character) {
+        // Display inventory
+        playerInventory.displayInventory();
+
+        // Get the index input from the user
+        int index = getIndexInput();
+
+        // Retrieve the item from the inventory
+        if (index >= 0 && index < playerInventory.getItems().size()) {
+            Item item = playerInventory.getItems().get(index);
+            playerInventory.addItem(character.getEquippedEquipment());
+            character.setEquippedEquipment(item);
+            System.out.println("Equipping item: " + item.getName());
+            // Additional logic for equipping the item...
+        } else {
+            System.out.println("Invalid index.");
+        }
+    }
+
 	
 	
 	
