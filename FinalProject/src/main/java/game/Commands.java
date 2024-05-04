@@ -18,10 +18,6 @@ public class Commands {
 
 	}
 	
-	
-	
-	
-	
 	//gets input from user through a scanner and returns the input
 	//don't need to unit test -> essentially just be testing java functions
 	protected String getUserInput() {
@@ -29,8 +25,6 @@ public class Commands {
 		
 		return input;
 	}
-	
-	
 	
 	//use/view inventory
 	//begin battle
@@ -53,13 +47,11 @@ public class Commands {
 		case "begin battle":
 			command = 1;
 			System.out.println("player begins battle\n");
-			
 			break;
 			
 		case "view inventory":
 			command = 2;
 			break;
-		
 		
 		case "visit bazaar":
 			command = 3;
@@ -69,7 +61,6 @@ public class Commands {
 			command = 4;
 			System.out.println("player quits\n");
 			break;
-		
 		
 		default:
 			command = -1;
@@ -232,13 +223,7 @@ public class Commands {
 		return spawnID;
 	}
 	
-	public static int randomizerRun() {
-		Random rng = new Random();
-		int spawnID = rng.nextInt((4 - 1) + 1);
-			
-		return spawnID;
-	}
-	
+
 	protected void checkStat(int inventoryNumber) {
 		
 		

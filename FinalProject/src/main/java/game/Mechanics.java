@@ -42,7 +42,7 @@ public class Mechanics {
 	private PresetText presetText;
 	private Commands commandHandler;
 	private Monster monsterHolder;
-	
+	private HelperFunctions functions;
 	
 	
 	//constructor
@@ -59,6 +59,7 @@ public class Mechanics {
 		this.playerInventory = new Inventory();
 		this.presetText = new PresetText();
 		this.commandHandler = new Commands();
+		this.functions = new HelperFunctions();
 	}
 	
 	
@@ -171,7 +172,7 @@ public class Mechanics {
 			inMainMenu = false;
 			break;
 		case 3:
-			
+			//go to shop
 			inShop = true;
 			inMainMenu = false;
 			break;
@@ -212,16 +213,16 @@ public class Mechanics {
 			break;
 			
 		case 3:
-			playerInventory.addItem(ItemFactory.createRandomItem());
-			playerInventory.addItem(ItemFactory.createRandomItem());
-			playerInventory.addItem(ItemFactory.createRandomItem());
-			playerInventory.addItem(ItemFactory.createRandomItem());
+//			for testing purposes
+//			playerInventory.addItem(ItemFactory.createRandomItem());
+//			playerInventory.addItem(ItemFactory.createRandomItem());
+//			playerInventory.addItem(ItemFactory.createRandomItem());
+//			playerInventory.addItem(ItemFactory.createRandomItem());
 
 			playerCharacter.checkStats();
 			equipItem(playerCharacter);
 			playerCharacter.checkStats();
-
-
+			
 			//equip item
 			break;
 		
@@ -244,46 +245,24 @@ public class Mechanics {
 		presetText.shopCommandPrompt();
 		input = commandHandler.getUserInput();
 		command = commandHandler.determineShopCommand(input);
-		
-		
+			
 		//handle inventory command
 		switch(command) {
 		case 1:
-			if(playerCharacter.getGold() >= 50) {
-				Item item = ItemFactory.createRandomItem();
-				System.out.print("\nYou just bought a "+ item.getName()+"\n");
-				playerInventory.addItem(item);
-				playerCharacter.setGold(playerCharacter.getGold() - 50);
-			}
-			else {
-				System.out.print("If you lack the currencies, vacate the premisees.");
-			}
+			
+			functions.buyRandomItem(playerCharacter, playerInventory);
 			break;
 			
 		case 2:
-			if(playerCharacter.getGold() >= 15) {
-				System.out.print("\nYou bought one health potion.\n");
-				playerCharacter.setHealthPots(playerCharacter.getHealthPots() + 1);
-				playerCharacter.setGold(playerCharacter.getGold() - 15);
-			}
-			else {
-				System.out.print("What did I tell ya'?\nIf you don't have the dough, pest vamonos!");
-			}
+			functions.buyHealthPotion(playerCharacter);
 			break;
 			
 		case 3:
-			if(playerCharacter.getGold() >= 20) {
-				System.out.print("\nYour health has been fully restored.\n");
-				playerCharacter.updateHealth();
-			}
-			else {
-				System.out.print("\nWhat do I look like? A charity case?\nIf you don't have the coin, scram!\n");
-			}
+			functions.buyFullHealth(playerCharacter);
 			break;
-		
+			
 		case 4:
 			//back
-			
 			inShop = false;
 			inMainMenu = true;
 			break;
@@ -302,19 +281,12 @@ public class Mechanics {
 		input = commandHandler.getUserInput();
 		command = commandHandler.determineBattleCommand(input);
 		
-
-		
-		
+	
 		//handle battle command
 		switch(command) {
 		case 1:
 			
-			System.out.println("You attack the " + monsterHolder.getName() + "!\n");
-			playerCharacter.attack(playerCharacter, monsterHolder);
-			monsterHolder.attack(monsterHolder, playerCharacter);
-			
-			playerCharacter.checkHealth();
-			monsterHolder.checkMonsterHealth();
+			functions.Combat(monsterHolder, playerCharacter);
 			
 			if(playerCharacter.isDeadPlayer(playerCharacter)) {
 				System.out.print("\n\nYOU DIED\n\n");
@@ -334,31 +306,16 @@ public class Mechanics {
 			break;
 			
 		case 3:
-			int run = Commands.randomizerRun();
-			switch(run){
-				case 1:
-					System.out.print("You successfully escaped!\n");
-					inBattle = false;
-					inMainMenu = true;
-					break;
-				case 2:
-					System.out.print("Attempt to escape failed!\n");
-					monsterHolder.attack(monsterHolder, playerCharacter);
-					break;
-				case 3:
-					System.out.print("Attempt to escape failed!\n");
-					monsterHolder.attack(monsterHolder, playerCharacter);
-					break;
-				case 4:
-					System.out.print("Attempt to escape failed!\n");
-					monsterHolder.attack(monsterHolder, playerCharacter);
-					break;
-				default:
-					System.out.print("Attempt to escape failed!\n");
-					monsterHolder.attack(monsterHolder, playerCharacter);
-					break;
 			
+			if(functions.run(monsterHolder, playerCharacter)) {
+				inBattle = false;
+				inMainMenu = true;
 			}
+			if(playerCharacter.isDeadPlayer(playerCharacter)) {
+				System.out.print("\n\nYOU DIED\n\n");
+				gameOver = true;
+			}
+			
 			break;
 		default:
 			System.out.print("Invalid Command!\n");
@@ -367,11 +324,7 @@ public class Mechanics {
 	
 		
 	}
-	
-	
-	
-	
-	
+		
 	
 	/**
 	 * @author ethan alexander and Jonathan Hatfield
@@ -434,8 +387,6 @@ public class Mechanics {
 	}
 
    
-
-	
     public void equipItem(Character character) {
         // Display inventory
         playerInventory.displayInventory();
@@ -474,9 +425,5 @@ public class Mechanics {
         } else {
             System.out.println("Invalid index.");
         }
-    }
-
-	
-	
-	
+    }	
 }

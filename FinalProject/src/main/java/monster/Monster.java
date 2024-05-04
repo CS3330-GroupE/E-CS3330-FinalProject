@@ -71,17 +71,21 @@ public class Monster {
         			int damage = (monster.getDamage() * 2);
                     playerTakeDamage(character , damage);
                     System.out.println(monster.getName() + " critically strikes you for " + damage + " damage!");
+                    break;
         		default:
         			damage = monster.getDamage();
                     playerTakeDamage(character, damage);
                     System.out.println(monster.getName() + " attacks you for " + damage + " damage!");
+                    break;
         	}
         } else {
             switch (attackValue) { 
             	case 1: 
             		System.out.println("The " + monster.getName() + "dramatically trips and falls to the floor!");
+            		break;
             	default:
             		System.out.println("The " + monster.getName() + "'s attack missed!");
+            		break;
             }
         }
     }

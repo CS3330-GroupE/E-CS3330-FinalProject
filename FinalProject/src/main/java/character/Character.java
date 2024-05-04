@@ -71,28 +71,32 @@ public class Character {
 
 	//Combat method to roll an attack value, compare against character armor, then do damage - AUTHOR Brian -
 	public void attack(Character character, Monster monster) {
-    		Random rng = new Random();
-        	int attackValue = rng.nextInt(10) + 1; //Max attack value up for discussion
-        	if (attackValue >= monster.getDefense()) {
-        		switch (attackValue) {
-        			case 10: 
-        				int damage = (getPlayerDamage(character) * 2);
-                    			monster.takeDamage(damage);
-                    			System.out.println("You critically strike the " + monster.getName() + " for " + damage + " damage!");
-        			default:
-        			damage = getPlayerDamage(character);
+    	Random rng = new Random();
+        int attackValue = rng.nextInt(10) + 1; //Max attack value up for discussion
+        if (attackValue >= monster.getDefense()) {
+        	switch (attackValue) {
+        		case 10:         				
+        			int damage = (getPlayerDamage(character) * 2);
                     monster.takeDamage(damage);
-                    System.out.println("You strike the " + monster.getName() + " for " + damage + " damage!");
+                    System.out.println("You critically strike the " + monster.getName() + " for " + damage + " damage!");
+                    break;	
+        		default:
+        			damage = getPlayerDamage(character);
+        			monster.takeDamage(damage);
+        			System.out.println("You strike the " + monster.getName() + " for " + damage + " damage!");
+        			break;
         		}
-        	} else {
-        		switch (attackValue) { 
-            		case 1: 
-            			System.out.println("You miss, dramatically tripping and falling to the floor!");
-            		default:
-            			System.out.println("Your attack missed!");
-            	}
-        	}
-    	}
+        } else {
+        	switch (attackValue) { 
+            	case 1: 
+            		System.out.println("You miss, dramatically tripping and falling to the floor!");
+            		break;
+            	default:
+            		System.out.println("Your attack missed!");
+            		break;
+            }
+        }
+    }
 
 
 	//Call to take damage, sets overkill damage to 0 - AUTHOR Brian -
