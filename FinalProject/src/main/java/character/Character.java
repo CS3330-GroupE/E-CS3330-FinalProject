@@ -255,6 +255,7 @@ public class Character {
 			this.setBaseVitality(1 + vitality);
 		}
 		updateHealth();
+		updateStats(this);
 	}
 
 	
