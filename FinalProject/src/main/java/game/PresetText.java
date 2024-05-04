@@ -19,7 +19,8 @@ public class PresetText {
 	    System.out.println("===========================================");
 	    System.out.println("|  1. Begin Battle                        |");
 	    System.out.println("|  2. View Inventory                      |");
-	    System.out.println("|  3. Quit                                |");
+	    System.out.println("|  3. Visit Bazaar                        |");
+	    System.out.println("|  4. Quit                                |");
 	    System.out.println("===========================================");
 	}
 	
@@ -62,5 +63,19 @@ public class PresetText {
 	    System.out.println("===========================================");
 	    System.out.println("\n\n");
 	}
+	
+	protected void shopCommandPrompt() {
+		System.out.println("\n\n\n");
+	    System.out.println("===========================================");
+	    System.out.println("|           Welcome to the Bazarr!        |");
+	    System.out.println("===========================================");
+	    System.out.println("|  1. Buy Random Item (50 gold)           |");
+	    System.out.println("|  2. Buy Health Potion (15 gold)         |");
+	    System.out.println("|  3. Restore Full Health (20 gold)       |");
+	    System.out.println("|  4. Back                                |");
+	    System.out.println("===========================================");
+	}
+	
+	
 
 }

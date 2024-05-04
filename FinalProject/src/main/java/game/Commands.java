@@ -61,8 +61,12 @@ public class Commands {
 			break;
 		
 		
-		case "quit":
+		case "visit bazaar":
 			command = 3;
+			break;
+		
+		case "quit":
+			command = 4;
 			System.out.println("player quits\n");
 			break;
 		
@@ -182,6 +186,38 @@ public class Commands {
 		default:
 			command = -1;
 			System.out.println("Invalid Character\n");
+			break;
+		}
+		
+		return command;
+	}
+	
+	protected int determineShopCommand(String input) {
+		input = input.toLowerCase().trim();
+		
+		switch(input) {
+		
+		case "buy random item":
+			command = 1;		
+			//check current equipment
+			break;
+		
+		case "buy health potion":
+			command = 2;			
+			//checkStat(inventoryNumber);			
+			break;
+			
+		case "restore full health":
+			command = 3;
+			break;
+			
+		case "back":
+			command = 4;
+			break;
+			
+		default:
+			command = -1;
+			System.out.println("Invalid Command\n");
 			break;
 		}
 		

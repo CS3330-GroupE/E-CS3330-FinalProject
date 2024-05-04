@@ -134,6 +134,12 @@ public class Monster {
 	    }
 	}
 	
+	public int dropGold() {
+		Random rng = new Random();
+		int gold = rng.nextInt(30 + 1) + 11;
+		
+		return gold;
+	}
 	//Random EXP
 	public double dropEXP() {
 		Random rng = new Random();
@@ -146,9 +152,12 @@ public class Monster {
 	public void onDeath(Character character,Inventory inventory) {
 	    double exp = dropEXP();
 	    Item treasure = dropTreasure();
-
+	    int gold = dropGold();
+	    
 	    System.out.println("The " + getName() + " has been defeated!");
 	    System.out.println("You gained " + exp + " experience points.");
+	    System.out.println("You also find " + gold + " gold on the " + getName() +".");
+	    character.setGold(character.getGold() + gold);
 
 	    character.setExperience(exp + character.getExperience());
 	    if(character.getExperience() >= 100) {
@@ -166,7 +175,7 @@ public class Monster {
 	
 
 	public void checkMonsterHealth() {
-		System.out.print("Monsters current health is " + this.getHealth()+"\n");
+		System.out.print("\nMonsters current health is " + this.getHealth()+"\n");
 	}
 
 	//********************

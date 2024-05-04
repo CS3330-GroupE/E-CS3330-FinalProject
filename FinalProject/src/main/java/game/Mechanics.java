@@ -11,7 +11,8 @@ import monster.Dragon;
 import monster.Goblin;
 import monster.Orc;
 import monster.Zombie;
-import item.Inventory;
+import item.Item;
+
 
 /**
  * This Mechanics class handles all things relating to the flow control and logic of the
@@ -30,6 +31,7 @@ public class Mechanics {
 	private boolean inInventory;
 	private boolean inBattle;
 	private boolean inMainMenu;
+	private boolean inShop;
 	private int command; //stores user input as an integer
 	private Character playerCharacter;
 	private String input; //stores user input as a string
@@ -37,6 +39,7 @@ public class Mechanics {
 	private PresetText presetText;
 	private Commands commandHandler;
 	private Monster monsterHolder;
+	
 	
 	
 	//constructor
@@ -97,7 +100,10 @@ public class Mechanics {
 				else if(inBattle == true) {
 					//battle commands
 					battleMenuHandler();
-				}		
+				}
+				else if(inShop == true) {
+					shopMenuHandler();
+				}
 			}
 			
 			//monsters turn IN BATTLE ONLY
@@ -130,7 +136,6 @@ public class Mechanics {
 		case 1:
 			//begin battle
 			//battle handler
-			
 		    int spawnID = Commands.randomizerMonstSpawn();
 		    switch (spawnID) {
 		        case 0:													  //for reference
@@ -162,8 +167,12 @@ public class Mechanics {
 			inInventory = true;
 			inMainMenu = false;
 			break;
-			
 		case 3:
+			
+			inShop = true;
+			inMainMenu = false;
+			break;
+		case 4:
 			//quit		
 			quitGame();
 			break;
@@ -219,6 +228,60 @@ public class Mechanics {
 	}
 	
 	
+	public void shopMenuHandler() {
+		
+		presetText.shopCommandPrompt();
+		input = commandHandler.getUserInput();
+		command = commandHandler.determineShopCommand(input);
+		
+		
+		//handle inventory command
+		switch(command) {
+		case 1:
+			if(playerCharacter.getGold() >= 50) {
+				Item item = ItemFactory.createRandomItem();
+				System.out.print("\nYou just bought a "+ item.getName()+"\n");
+				playerInventory.addItem(item);
+				playerCharacter.setGold(playerCharacter.getGold() - 50);
+			}
+			else {
+				System.out.print("If you lack the currencies, vacate the premisees.");
+			}
+			break;
+			
+		case 2:
+			if(playerCharacter.getGold() >= 15) {
+				System.out.print("\nYou bought one health potion.\n");
+				playerCharacter.setHealthPots(playerCharacter.getHealthPots() + 1);
+				playerCharacter.setGold(playerCharacter.getGold() - 15);
+			}
+			else {
+				System.out.print("What did I tell ya'?\nIf you don't have the dough, pest vamonos!");
+			}
+			break;
+			
+		case 3:
+			if(playerCharacter.getGold() >= 20) {
+				System.out.print("\nYour health has been fully restored.\n");
+				playerCharacter.updateHealth();
+			}
+			else {
+				System.out.print("\nWhat do I look like? A charity case?\nIf you don't have the coin, scram!\n");
+			}
+			break;
+		
+		case 4:
+			//back
+			
+			inShop = false;
+			inMainMenu = true;
+			break;
+		
+		default:
+			//invalid command
+			break;
+		}
+	}
 	
 	
 	//handles battle menu commands from user
@@ -286,7 +349,6 @@ public class Mechanics {
 			
 			}
 			break;
-			
 		default:
 			System.out.print("Invalid Command!\n");
 			break;
@@ -315,7 +377,7 @@ public class Mechanics {
 				//adding default loadouts
 				newCharacter.setEquippedWeapon(ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.",
 						2, 2, 7, 4, 2));
-				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Magic Robes", "Basiuc magical robes that give emit magical energy and can be equipped.",
+				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Magic Robes", "Basic magical robes that give emit magical energy and can be equipped.",
 						1, 3, 7, 5, 2));
 				newCharacter.updateStats();
 			
@@ -338,6 +400,7 @@ public class Mechanics {
 						6, 1, 1, 3, 4));
 				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Steel Armor", "Basic armor, but still tough! Can be equipped",
 						5, 1, 1, 4, 6));
+				newCharacter.updateStats();
 				break;
 				
 			default:

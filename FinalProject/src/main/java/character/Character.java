@@ -27,6 +27,7 @@ public class Character {
 	private Item equippedEquipment;
 	private Type classType;
 	private int gold;
+
 	
 	
 	public Character(int baseHealth, int health, int level, double experience, int dexterity, int strength, int intelligence, 
@@ -174,10 +175,11 @@ public class Character {
 		Item weapon = this.getEquippedWeapon();
 		Item equipment = this.getEquippedEquipment();
 		
-		System.out.print(weapon.getName() + ":\n");
-		System.out.print(equipment.getName() + "\n");
+		System.out.print("Weapon: "+weapon.getName() + ":\n");
+		System.out.print("Equipment: "+equipment.getName() + "\n");
 		System.out.print("Armor Class: " + this.getArmorClass() + "\n");
 		System.out.print("Current Number of Health Pots: " + this.getHealthPots() + "\n");
+		System.out.print("Current Gold: " + this.getGold() + "\n");
 	}
 
 	//added by Jonathan Hatfield
@@ -380,5 +382,22 @@ public class Character {
 	public void setVitality(int vitality) {
 		this.vitality = vitality;
 	}
+	public int getBaseHealth() {
+		return baseHealth;
+	}
+
+	public void setBaseHealth(int baseHealth) {
+		this.baseHealth = baseHealth;
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+
 
 }
