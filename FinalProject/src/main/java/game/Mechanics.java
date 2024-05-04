@@ -213,16 +213,19 @@ public class Mechanics {
 			break;
 			
 		case 3:
+
 //			for testing purposes
 //			playerInventory.addItem(ItemFactory.createRandomItem());
 //			playerInventory.addItem(ItemFactory.createRandomItem());
 //			playerInventory.addItem(ItemFactory.createRandomItem());
 //			playerInventory.addItem(ItemFactory.createRandomItem());
 
-			playerCharacter.checkStats();
+
 			equipItem(playerCharacter);
-			playerCharacter.checkStats();
+
 			
+
+
 			//equip item
 			break;
 		
@@ -338,6 +341,7 @@ public class Mechanics {
 			switch(input) {
 			case 1:
 				newCharacter = new Mage();
+				newCharacter.setBaseStats(newCharacter);
 				//adding default loadouts
 				newCharacter.setEquippedWeapon(ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.",
 						2, 2, 7, 4, 2));
@@ -349,6 +353,7 @@ public class Mechanics {
 				
 			case 2:
 				newCharacter = new Ranger();
+				newCharacter.setBaseStats(newCharacter);
 				//Equip default loadouts
 				newCharacter.setEquippedWeapon(ItemFactory.createItem("Weapon", "Bow of Wielding", "A sturdy bow that can be equipped as a weapon. It even comes with arrows.",
 						1, 8, 3, 4, 0));
@@ -359,6 +364,7 @@ public class Mechanics {
 
 			case 3:
 				newCharacter = new Warrior();
+				newCharacter.setBaseStats(newCharacter);
 				//Equip default loadouts
 				newCharacter.setEquippedWeapon(ItemFactory.createItem("Weapon", "Steel Sword and Shield", "A long sword that can be equipped as a weapon and shield.",
 						6, 1, 1, 3, 4));

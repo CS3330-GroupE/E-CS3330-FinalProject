@@ -247,21 +247,73 @@ public class Character {
 		int newLevel = this.getLevel() + 1;
 		this.setLevel(newLevel);
 		if(this.getClassType() == Type.MAGE) {
-			this.setBaseIntelligence(1 + intelligence);
-			this.setBaseDexterity(1 + vitality);
+			setBaseIntelligence(getBaseIntelligence() + 2);
+			setBaseVitality(getBaseVitality() + 2);
 		}
 		if(this.getClassType() == Type.WARRIOR) {
-			this.setBaseStrength(1 + strength);
-			this.setBaseDexterity(1 + vitality);
+			setBaseStrength(getBaseStrength() + 2);
+			setBaseVitality(getBaseVitality() + 2);
 		}
 		if(this.getClassType() == Type.RANGER) {
-			this.setBaseDexterity(1 + dexterity);
-			this.setBaseVitality(1 + vitality);
+			setBaseDexterity(getBaseDexterity() + 2);
+			setBaseVitality(getBaseVitality() + 2);
 		}
 		updateHealth();
 		updateStats(this);
 	}
 
+	 public void setBaseStats(Character character) {
+		 	Type type = character.getClassType();
+	        switch (type) {
+	            
+	        	case MAGE:
+	                setBaseMageStats();
+	                break;
+	            
+	            case RANGER:
+	                setBaseRangerStats();
+	                break;
+	           
+	            case WARRIOR:
+	                setBaseWarriorStats();
+	                break;
+	            
+	            default:
+	            	
+	                break;
+	        }
+	    }
+
+	    private void setBaseMageStats() {
+	        setBaseHealth(10);
+	        setBaseDexterity(7);
+	        setBaseStrength(7);
+	        setBaseIntelligence(7);
+	        setBaseVitality(7);
+	        setBaseHealthPots(3);
+	        setBaseArmorClass(7);
+	    }
+
+	    private void setBaseRangerStats() {
+	        setBaseHealth(12);
+	        setBaseDexterity(6);
+	        setBaseStrength(6);
+	        setBaseIntelligence(6);
+	        setBaseVitality(6);
+	        setBaseHealthPots(3);
+	        setBaseArmorClass(6);
+	    }
+
+	    private void setBaseWarriorStats() {
+	        setBaseHealth(15);
+	        setBaseDexterity(5);
+	        setBaseStrength(5);
+	        setBaseIntelligence(5);
+	        setBaseVitality(5);
+	        setBaseHealthPots(3);
+	        setBaseArmorClass(5);
+	    }
+	
 	
 	
 	public boolean isDeadPlayer(Character character) {
