@@ -410,22 +410,24 @@ public class Mechanics {
                 // Unequip any previously equipped weapon
                 if (character.getEquippedWeapon() != null) {
                     playerInventory.addItem(character.getEquippedWeapon());
+                    playerInventory.removeItem(item);
                 }
                 // Equip the new weapon
                 character.setEquippedWeapon((Weapon)item);
                 character.updateStats(character);
-                System.out.println("Equipping weapon: " + item.getName());
+                System.out.println("Equipped weapon: " + item.getName());
             }
             // Check if the item is Equipment
             else if (item instanceof Equipment) {
                 // Unequip any previously equipped equipment
                 if (character.getEquippedEquipment() != null) {
                     playerInventory.addItem(character.getEquippedEquipment());
+                    playerInventory.removeItem(item);
                 }
                 // Equip the new equipment
                 character.setEquippedEquipment((Equipment)item);
                 character.updateStats(character);
-                System.out.println("Equipping equipment: " + item.getName());
+                System.out.println("Equipped armor: " + item.getName());
             }
  
         } else {
