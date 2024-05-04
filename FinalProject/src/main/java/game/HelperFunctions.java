@@ -38,7 +38,7 @@ public class HelperFunctions {
 			playerCharacter.setGold(playerCharacter.getGold() - 15);
 		}
 		else {
-			System.out.print("What did I tell ya'?\nIf you don't have the dough, pest vamonos!");
+			System.out.print("If you don't have the dough, you got to go.\n");
 		}
 	}
 
