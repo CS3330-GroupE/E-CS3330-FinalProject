@@ -112,40 +112,43 @@ public class Character {
 		int newHealth = this.getHealth();
 		if(this.getHealthPots() > 0) {
 			
-			if(this.getClassType() == Type.MAGE && newHealth < 15 + this.getVitality()) {
+			if(this.getClassType() == Type.MAGE && newHealth < (this.getBaseHealth() + this.getVitality())) {
 				this.setHealth(newHealth + 4);
-				System.out.print("\nYou healed for 4 HP! Your current health is " + this.getHealth() + "\n");
+				System.out.print("\nYou healed for 4 HP! ");
 				this.setHealthPots(this.getHealthPots() - 1);
 			}
-			else if(this.getClassType() == Type.RANGER && newHealth < 20 + this.getVitality()) {
+			else if(this.getClassType() == Type.RANGER && newHealth < (this.getBaseHealth() + this.getVitality())) {
 				this.setHealth(newHealth + 4);
-				System.out.print("\nYou healed for 4 HP! Your current health is " + this.getHealth() + "\n");
+				System.out.print("\nYou healed for 4 HP! ");
 				this.setHealthPots(this.getHealthPots() - 1);
 			}
-			else if(this.getClassType() == Type.WARRIOR && newHealth < (25 + this.getVitality())) {
+			else if(this.getClassType() == Type.WARRIOR && newHealth < (this.getBaseHealth() + this.getVitality())) {
 				this.setHealth(newHealth + 4);
-				System.out.print("\nYou healed for 4 HP! Your current health is " + this.getHealth() + "\n");
+				System.out.print("\nYou healed for 4 HP! ");
 				this.setHealthPots(this.getHealthPots() - 1);
 			}
 			else {
 				System.out.print("\nUnable to use Health Potion. Health is already full!\n");
+				return;
 			}
-		
-			if(this.getClassType() == Type.MAGE && newHealth >= (15 + this.getVitality())) {
+			
+			if(this.getHealth() >= (this.getBaseHealth() + this.getVitality())) {
+				System.out.print("\nYou've completely healed! ");
+			}
+			
+			if(this.getClassType() == Type.MAGE && this.getHealth() >= (this.getBaseHealth() + this.getVitality())) {
 				newHealth = 15;
 				this.setHealth(baseHealth + this.getVitality());
-				System.out.print("Your current health is " + this.getHealth()+"\n");
 			}
-			if(this.getClassType() == Type.RANGER && newHealth >= (20 + this.getVitality())) {
+			if(this.getClassType() == Type.RANGER && this.getHealth() >= (this.getBaseHealth() + this.getVitality())) {
 				newHealth = 20;
 				this.setHealth(baseHealth + this.getVitality());
-				System.out.print("Your current health is " + this.getHealth()+"\n");
 			}
-			if(this.getClassType() == Type.WARRIOR && newHealth >= (25 + this.getVitality())) {
+			if(this.getClassType() == Type.WARRIOR && this.getHealth() >= (this.getBaseHealth() + this.getVitality())) {
 				newHealth = 25;
 				this.setHealth(baseHealth + this.getVitality());
-				System.out.print("Your current health is " + this.getHealth()+"\n");
 			}
+				System.out.print("Your current health is " + this.getHealth()+"\n");
 		}
 		else {
 			System.out.print("Drats!!!\n");
