@@ -258,8 +258,8 @@ public class Character {
 			setBaseDexterity(getBaseDexterity() + 2);
 			setBaseVitality(getBaseVitality() + 2);
 		}
-		this.updateHealth();
 		updateStats(this);
+		this.updateHealth();
 	}
 
 	 public void setBaseStats(Character character) {
