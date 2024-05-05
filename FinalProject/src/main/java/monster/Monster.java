@@ -63,11 +63,11 @@ public class Monster {
     //Combat method to roll an attack value, compare against character armor, then do damage
     public void attack(Monster monster, Character character) {
     	Random rng = new Random();
-        int attackValue = rng.nextInt(10) + 1; // Max attack value up for discussion
+        int attackValue = rng.nextInt(25) + 1; // Max attack value up for discussion
         
         if (attackValue >= character.getArmorClass()) {
         	switch (attackValue) { 
-        		case 10: 
+        		case 10-14: 
         			int damage = (monster.getDamage() * 2);
                     playerTakeDamage(character , damage);
                     System.out.println(monster.getName() + " critically strikes you for " + damage + " damage!");
@@ -81,7 +81,7 @@ public class Monster {
         } else {
             switch (attackValue) { 
             	case 1: 
-            		System.out.println("The " + monster.getName() + "dramatically trips and falls to the floor!");
+            		System.out.println("The " + monster.getName() + " dramatically trips and falls to the floor!");
             		break;
             	default:
             		System.out.println("The " + monster.getName() + "'s attack missed!");
