@@ -21,8 +21,9 @@ public class Monster {
     private int damage;
     //value player must beat to deal damage
     private int defense;
+    private String title;
 
-    public Monster(String name, int level, int health, int attack, int damage, int defense) {
+    public Monster(String name, int level, int health, int attack, int damage, int defense, String title) {
     	super();
         this.name = name;
         this.level = level;
@@ -30,6 +31,7 @@ public class Monster {
         this.attack = attack;
         this.damage = damage;
         this.defense = defense;
+        this.title = "wild";
        
     }
     
@@ -42,20 +44,48 @@ public class Monster {
         return health;
     }
     
+    public void setHealth(int health) {
+		this.health = health;
+	}
+    
     public int getLevel() {
         return level;
     }
+    
+    public void setLevel(int level) {
+		this.level = level;
+	}
 
     public int getAttack() {
         return attack;
     }
+    
+    public void setAttack(int attack) {
+		this.attack = attack;
+	}
 
     public int getDamage() {
         return damage;
     }
+    
+    public void setDamage(int damage) {
+		this.damage = damage;
+	}
 
     public int getDefense() {
         return defense;
+    }
+    
+    public void setDefense(int defense) {
+		this.defense = defense;
+	}
+    
+    public String getTitle() {
+    	return title;
+    }
+    
+    public void setTitle(String title) {
+    	this.title = title;
     }
     
     //********************
