@@ -1,5 +1,13 @@
 package item;
 
+/**
+ * This Item class is to allow abstraction between weapons and equipment and allow the factory to determine which 
+ * type of item to create based on type. 
+ * 
+ * @author Jonathan Hatfield
+ * 
+ * 
+ */
 
 public abstract class Item {
     protected String name;
@@ -43,6 +51,7 @@ public abstract class Item {
     	return armorClass;
     }    
     
+    //Allows items to be interacted with for more information
     public void examineItem() {
         System.out.println("Name: " + name);
         System.out.println("Type: " + type);
@@ -54,7 +63,5 @@ public abstract class Item {
         System.out.println("ArmorClass: " + armorClass);
     }
 
-    public void takeItem(Item item, Inventory inventory) {
-        inventory.addItem(item);
-    }
+
 }

@@ -1,6 +1,13 @@
 package item;
 
-
+/**
+ * This ItemFactory class handles all things relating to creating items based on complete random values
+ * or the creation can be specific items. The items will initialize into the according subclass based on the given type 
+ * 
+ * @author Jonathan Hatfield
+ * 
+ * 
+ */
 public class ItemFactory {
 
     // Creates a random item using Random Equipment Generator

@@ -391,7 +391,11 @@ public class Mechanics {
 		
 	}
 
-   //by Jonathan
+	/**
+	 * @author Jonathan Hatfield
+	 *  Removes selected item from inventory and equips to player character
+	 *  Adds former equipment to inventory
+	 */
     public void equipItem(Character character) {
         // Display inventory
         playerInventory.displayInventory();

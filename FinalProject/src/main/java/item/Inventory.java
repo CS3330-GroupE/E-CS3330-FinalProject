@@ -3,6 +3,14 @@ package item;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * This Inventory class handles storing item objects in an array to be interacted with by the player
+ * 
+ * @author Jonathan Hatfield
+ * 
+ * 
+ */
+
 public class Inventory {
     private List<Item> items;
 
