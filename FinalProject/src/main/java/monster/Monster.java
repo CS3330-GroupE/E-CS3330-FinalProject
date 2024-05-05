@@ -119,9 +119,38 @@ public class Monster {
     }
 	
 	//Applies bonuses to monster stats based on level
-	boolean levelBoost() {
-		return true;
-	}
+    public void levelBoost(Monster monster, Character character) {
+        // Get the character's level
+        int characterLevel = character.getLevel();
+
+        // Increase the monster's level based on the character's level
+        monster.setLevel(monster.getLevel() + characterLevel);
+
+        // Increase health and damage based on the character's level
+        monster.setHealth(monster.getHealth() + 5 * characterLevel);
+        monster.setDamage(monster.getDamage() + 2 * characterLevel);
+
+        // Roll a random number between 1 and 10
+        int roll = (int) (Math.random() * 10) + 1;
+
+        // Check the roll result
+        if (roll >= 8 && roll <= 9) {
+            // Elite monster: Increase level by 2 and defense by 1
+            monster.setLevel(monster.getLevel() + 2);
+            monster.setHealth(monster.getHealth() + 2 * 5);
+            monster.setDamage(monster.getDamage() + 2 * 2);
+            monster.setDefense(monster.getDefense() + 1);
+            monster.setTitle("Elite");
+        } else if (roll == 10) {
+            // Boss monster: Increase level by 3, defense and attack by 1
+        	monster.setLevel(monster.getLevel() + 3);
+            monster.setHealth(monster.getHealth() + 3 * 5);
+            monster.setDamage(monster.getDamage() + 3 * 2);
+            monster.setDefense(monster.getDefense() + 1);
+            monster.setAttack(monster.getAttack() + 1);
+            monster.setTitle("Boss");
+        }
+    }
 	
 	//********************
 	//Mechanics upon monster death
