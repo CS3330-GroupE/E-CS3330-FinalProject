@@ -143,23 +143,27 @@ public class Mechanics {
 		    int spawnID = Commands.randomizerMonstSpawn();
 		    switch (spawnID) {
 		        case 0:													  //for reference
-		        	monsterHolder = new Zombie("Zombie", 0, 15, 5, 5, 0); //String name, int level, int health, int attack, int damage, int defense
-		        	System.out.print("\nA wild Zombie Appears!\n\n\n");
+		        	monsterHolder = new Zombie("Zombie", 0, 15, 5, 5, 0, "wild"); //String name, int level, int health, int attack, int damage, int defense, String title
+				monsterHolder.levelBoost(monsterHolder, playerCharacter);
+		        	System.out.print("\nA " + monsterHolder.getTitle() + " Zombie Appears!\n\n\n");
 		        	presetText.printZombie();
 		        	break;
 		        case 1:
-		        	monsterHolder = new Goblin("Goblin", 0, 8, 5, 3, 3);
-		        	System.out.print("\nA wild Goblin Appears!\n\n\n");
+		        	monsterHolder = new Goblin("Goblin", 0, 8, 5, 3, 3, "wild");
+				monsterHolder.levelBoost(monsterHolder, playerCharacter);
+		        	System.out.print("\nA " + monsterHolder.getTitle() + " Goblin Appears!\n\n\n");
 		        	presetText.printGoblin();
 		        	break;
 		        case 2:
-		        	monsterHolder = new Orc("Orc", 1, 20, 6, 8, 2);
-		        	System.out.print("\nA wild Orc Appears!\n\n\n");
+		        	monsterHolder = new Orc("Orc", 1, 20, 6, 8, 2, "wild");
+				monsterHolder.levelBoost(monsterHolder, playerCharacter);
+		        	System.out.print("\nA " + monsterHolder.getTitle() + " Orc Appears!\n\n\n");
 		        	presetText.printOrc();
 		        	break;
 		        case 3:
-		        	monsterHolder = new Dragon("Dragon", 2, 35, 7, 12, 3);
-		        	System.out.print("\nA wild Dragon Appears!\n\n\n");
+		        	monsterHolder = new Dragon("Dragon", 2, 35, 7, 12, 3, "wild");
+				monsterHolder.levelBoost(monsterHolder, playerCharacter);
+		        	System.out.print("\nA " + monsterHolder.getTitle() + " Dragon Appears!\n\n\n");
 		        	presetText.printDragon();
 		        	break;
 		    }
