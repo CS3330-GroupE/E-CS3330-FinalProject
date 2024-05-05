@@ -356,7 +356,7 @@ public class Mechanics {
 				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Magic Robes", "Basic magical robes that give emit magical energy and can be equipped.",
 						1, 3, 7, 5, 2));
 				newCharacter.updateStats(newCharacter);
-			
+				newCharacter.updateHealth();
 				break;
 				
 			case 2:
@@ -368,6 +368,7 @@ public class Mechanics {
 				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Leather Armor", "A basic leather body with chaps that can be equipped.",
 						2, 5, 2, 5, 3));
 				newCharacter.updateStats(newCharacter);
+				newCharacter.updateHealth();
 				break;
 
 			case 3:
@@ -379,6 +380,7 @@ public class Mechanics {
 				newCharacter.setEquippedEquipment(ItemFactory.createItem("Equipment", "Steel Armor", "Basic armor, but still tough! Can be equipped",
 						5, 1, 1, 4, 6));
 				newCharacter.updateStats(newCharacter);
+				newCharacter.updateHealth();
 				break;
 				
 			default:

@@ -112,17 +112,17 @@ public class Character {
 		int newHealth = this.getHealth();
 		if(this.getHealthPots() > 0) {
 			
-			if(this.getClassType() == Type.MAGE && newHealth < 15) {
+			if(this.getClassType() == Type.MAGE && newHealth < 15 + this.getVitality()) {
 				this.setHealth(newHealth + 4);
 				System.out.print("\nYou healed for 4 HP! Your current health is " + this.getHealth() + "\n");
 				this.setHealthPots(this.getHealthPots() - 1);
 			}
-			else if(this.getClassType() == Type.RANGER && newHealth < 20) {
+			else if(this.getClassType() == Type.RANGER && newHealth < 20 + this.getVitality()) {
 				this.setHealth(newHealth + 4);
 				System.out.print("\nYou healed for 4 HP! Your current health is " + this.getHealth() + "\n");
 				this.setHealthPots(this.getHealthPots() - 1);
 			}
-			else if(this.getClassType() == Type.WARRIOR && newHealth < 25) {
+			else if(this.getClassType() == Type.WARRIOR && newHealth < (25 + this.getVitality())) {
 				this.setHealth(newHealth + 4);
 				System.out.print("\nYou healed for 4 HP! Your current health is " + this.getHealth() + "\n");
 				this.setHealthPots(this.getHealthPots() - 1);
@@ -133,17 +133,17 @@ public class Character {
 		
 			if(this.getClassType() == Type.MAGE && newHealth >= (15 + this.getVitality())) {
 				newHealth = 15;
-				this.setHealth(newHealth + this.getVitality());
+				this.setHealth(baseHealth + this.getVitality());
 				System.out.print("Your current health is " + this.getHealth()+"\n");
 			}
 			if(this.getClassType() == Type.RANGER && newHealth >= (20 + this.getVitality())) {
 				newHealth = 20;
-				this.setHealth(newHealth + this.getVitality());
+				this.setHealth(baseHealth + this.getVitality());
 				System.out.print("Your current health is " + this.getHealth()+"\n");
 			}
 			if(this.getClassType() == Type.WARRIOR && newHealth >= (25 + this.getVitality())) {
 				newHealth = 25;
-				this.setHealth(newHealth + this.getVitality());
+				this.setHealth(baseHealth + this.getVitality());
 				System.out.print("Your current health is " + this.getHealth()+"\n");
 			}
 		}
@@ -166,7 +166,7 @@ public class Character {
 
 		
 		System.out.print("Current Player Info:\n\n");
-		
+		System.out.print("Level: "+ this.getLevel()+"\n");
 		System.out.print("Class: " + this.getClassType() + "\n");
 		System.out.print("Health: " + this.getHealth() + "\n");
 		System.out.print("XP: " + this.getExperience()+ "/100\n");
@@ -258,7 +258,7 @@ public class Character {
 			setBaseDexterity(getBaseDexterity() + 2);
 			setBaseVitality(getBaseVitality() + 2);
 		}
-		updateHealth();
+		this.updateHealth();
 		updateStats(this);
 	}
 
