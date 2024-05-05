@@ -2,7 +2,7 @@ package item;
 
 import character.Character;
 
-public class Equipment extends Item implements Equippable {
+public class Equipment extends Item {
 
 	public Equipment(String name, String description, int strength, int vitality, int dexterity, int intelligence, int armorClass) {
 		this.name = name;

@@ -221,19 +221,8 @@ public class Mechanics {
 			break;
 			
 		case 3:
-
-//			for testing purposes
-//			playerInventory.addItem(ItemFactory.createRandomItem());
-//			playerInventory.addItem(ItemFactory.createRandomItem());
-//			playerInventory.addItem(ItemFactory.createRandomItem());
-//			playerInventory.addItem(ItemFactory.createRandomItem());
-
-
 			equipItem(playerCharacter);
-
 			
-
-
 			//equip item
 			break;
 		
@@ -402,7 +391,7 @@ public class Mechanics {
 		
 	}
 
-   
+   //by Jonathan
     public void equipItem(Character character) {
         // Display inventory
         playerInventory.displayInventory();
@@ -417,16 +406,19 @@ public class Mechanics {
             
             // Check if the item is a Weapon
             if (item instanceof Weapon) {
+            	
                 // Unequip any previously equipped weapon
                 if (character.getEquippedWeapon() != null) {
                     playerInventory.addItem(character.getEquippedWeapon());
                     playerInventory.removeItem(item);
                 }
+                
                 // Equip the new weapon
                 character.setEquippedWeapon((Weapon)item);
                 character.updateStats(character);
                 System.out.println("Equipped weapon: " + item.getName());
             }
+            
             // Check if the item is Equipment
             else if (item instanceof Equipment) {
                 // Unequip any previously equipped equipment
@@ -434,6 +426,7 @@ public class Mechanics {
                     playerInventory.addItem(character.getEquippedEquipment());
                     playerInventory.removeItem(item);
                 }
+                
                 // Equip the new equipment
                 character.setEquippedEquipment((Equipment)item);
                 character.updateStats(character);
