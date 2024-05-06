@@ -447,5 +447,18 @@ public class Mechanics {
         	System.out.println("Invalid input");
         	
         }
-    }	
+    }
+    
+    
+    //for testing
+	public Character getPlayerCharacter() {
+		return playerCharacter;
+	}
+
+
+
+	public void setPlayerCharacter(Character playerCharacter) {
+		this.playerCharacter = playerCharacter;
+	}
+
 }
