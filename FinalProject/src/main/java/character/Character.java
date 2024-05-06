@@ -5,9 +5,13 @@ import item.Item;
 import java.util.Random;
 
 
-//import item.ItemFactory;
+
 /**
  * @author Ethan Alexander
+ * 
+ * This is the implementation of the main actor in the program. Contains methods for the character to enact in game.
+ * Also contains many background methods that are use to keep track of stats as the player progresses through the game. 
+ * 
  */
 
 public class Character {
@@ -107,11 +111,16 @@ public class Character {
         	}
     }
 	
-	
+	//increases players health by 4 if players health isn't full already and if the player has health potions
 	public void usePotion() {
+		//players current health
 		int newHealth = this.getHealth();
+		
+		//checks if player has health potions
 		if(this.getHealthPots() > 0) {
 			
+			//this part checks if the players health is below their maximum health depending on their subclass. 
+			//if so, adds four to health
 			if(this.getClassType() == Type.MAGE && newHealth < (this.getBaseHealth() + this.getVitality())) {
 				this.setHealth(newHealth + 4);
 				System.out.print("\nYou healed for 4 HP! ");
@@ -132,10 +141,13 @@ public class Character {
 				return;
 			}
 			
+			//checks if player is full health
 			if(this.getHealth() >= (this.getBaseHealth() + this.getVitality())) {
 				System.out.print("\nYou've completely healed! ");
 			}
 			
+			//if players health exceeds their maximum health, the health gets reset to the players maximum health 
+			//dependent on class
 			if(this.getClassType() == Type.MAGE && this.getHealth() >= (this.getBaseHealth() + this.getVitality())) {
 				newHealth = 15;
 				this.setHealth(baseHealth + this.getVitality());
@@ -151,6 +163,7 @@ public class Character {
 				System.out.print("Your current health is " + this.getHealth()+"\n");
 		}
 		else {
+			//default message if player has no health potions
 			System.out.print("Drats!!!\n");
 		}
 		System.out.print("\nYou currently have " + this.getHealthPots() + " health potions...\n");
@@ -179,7 +192,8 @@ public class Character {
 		System.out.print("Intelligence: " + this.getIntelligence() + "\n");
 		
 	}
-
+	
+	//prints players current equipment
 	public void checkEquipment() {
 		Item weapon = this.getEquippedWeapon();
 		Item equipment = this.getEquippedEquipment();
@@ -207,24 +221,8 @@ public class Character {
 	    }
 	}
     
-	/*
-	 * public void updateStatsUnequip() { if(equippedWeapon != null) {
-	 * updateStatsWithOutItem(equippedWeapon); updateHealth(); }
-	 * if(equippedEquipment != null) { updateStatsWithOutItem(equippedEquipment);
-	 * updateHealth(); } }
-	 */
-
-	/*
-	 * private void updateStatsWithOutItem(Item item) { // This will get the item
-	 * stats int itemDexterity = item.getDexterity(); int itemStrength =
-	 * item.getStrength(); int itemIntelligence = item.getIntelligence(); int
-	 * itemVitality = item.getVitality(); int itemArmorClass = item.getArmorClass();
-	 * 
-	 * // This will update the stats dexterity -= itemDexterity; strength -=
-	 * itemStrength; intelligence -= itemIntelligence; vitality -= itemVitality;
-	 * armorClass -= itemArmorClass; }
-	 */
 	
+	//resets all stats to the base stats
     public void resetStats(Character character) {
         character.setDexterity(character.getBaseDexterity());
         character.setStrength(character.getBaseStrength());
@@ -233,7 +231,7 @@ public class Character {
         character.setArmorClass(character.getBaseArmorClass());
     }
     
-    
+    //will add the item's stats to the base stats and set the flexible stats to their summation
     public void updateStatsWithItem(Item item, Character character) {
         // Update stats with item
         character.setDexterity(character.getDexterity() + item.getDexterity());
@@ -243,14 +241,17 @@ public class Character {
         character.setArmorClass(character.getArmorClass() + item.getArmorClass());
     }
 	
+    //adds 1 to level and updates stats
 	public void levelUp () {
 		
 		System.out.print("\n\nLEVELUP!!\n\n");
 		
-		
+		//gets level, adds 1 to it, sets xp back to zero, and sets level to newLevel value
 		int newLevel = this.getLevel() + 1;
 		this.setExperience(0);
 		this.setLevel(newLevel);
+		
+		//class type dictates which stats will increase
 		if(this.getClassType() == Type.MAGE) {
 			this.setBaseIntelligence(getBaseIntelligence() + 2);
 			this.setBaseVitality(getBaseVitality() + 2);
@@ -264,12 +265,15 @@ public class Character {
 			this.setBaseVitality(getBaseVitality() + 2);
 		}
 		
+		//updates stats based on new current base stats plus equipment stats
 		if(this.getEquippedEquipment() != null && this.getEquippedWeapon() != null) {
 			updateStats(this);
 		}
+		//changes max health based on all the changes above
 		this.updateHealth();
 	}
 
+	//creates the base stats for players
 	 public void setBaseStats(Character character) {
 		 	Type type = character.getClassType();
 	        switch (type) {
@@ -291,7 +295,7 @@ public class Character {
 	                break;
 	        }
 	    }
-
+	 
 	    private void setBaseMageStats() {
 	    	this.setBaseHealth(10);
 	        this.setBaseDexterity(7);
@@ -323,7 +327,7 @@ public class Character {
 	    }
 	
 	
-	
+	//checks if the player is dead, returns true if so
 	public boolean isDeadPlayer(Character character) {
 		if(character.getHealth() > 0) {
 			return false;
@@ -331,6 +335,7 @@ public class Character {
 		return true;
 	}
 	
+	//based on class returns the current value that governs that classes damage
 	public int getPlayerDamage(Character player) {
 		if(player.getClassType() == Type.MAGE) {
 			return player.getIntelligence();
@@ -344,7 +349,7 @@ public class Character {
 		return 0;
 	}
 	
-	
+	//updates health based on base health and vitality
 	public void updateHealth() {
 		this.setHealth(baseHealth + vitality);
 	}
