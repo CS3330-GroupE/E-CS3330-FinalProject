@@ -23,8 +23,6 @@ public class ItemFactory {
                 return new Weapon(name, description, strength, vitality, dexterity, intelligence, armorClass);
             case "Equipment":
                 return new Equipment(name, description, strength, vitality, dexterity, intelligence, armorClass);
-            case "Consumable":
-                return new Consumable(name, description);
             default:
                 throw new IllegalArgumentException("Invalid type");
         }
