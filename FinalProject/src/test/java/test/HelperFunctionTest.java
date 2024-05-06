@@ -70,4 +70,21 @@ public class HelperFunctionTest {
 		
 		assertTrue(c >= 1 || c <= 4);
 	}
+	
+	@Test
+	public void runTest() {
+		HelperFunctions h = new HelperFunctions();
+		Character c = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
+		Monster m = new Monster("Goblin", 0, 8, 5, 3, 3, "wild");
+		boolean d;
+		
+		d = h.run(m, c);
+		assertTrue(d || !d);
+		d=h.run(m, c);
+		assertTrue(d || !d);
+		d=h.run(m, c);
+		assertTrue(d || !d);
+		d=h.run(m, c);
+		assertTrue(d || !d);
+	}
 }

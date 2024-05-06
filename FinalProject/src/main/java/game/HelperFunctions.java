@@ -77,14 +77,6 @@ public class HelperFunctions {
 				System.out.print("Attempt to escape failed!\n");
 				monsterHolder.attack(monsterHolder, playerCharacter);
 				return false;
-			case 3:
-				System.out.print("Attempt to escape failed!\n");
-				monsterHolder.attack(monsterHolder, playerCharacter);
-				return false;
-			case 4:
-				System.out.print("Attempt to escape failed!\n");
-				monsterHolder.attack(monsterHolder, playerCharacter);
-				return false;
 			default:
 				System.out.print("Attempt to escape failed!\n");
 				monsterHolder.attack(monsterHolder, playerCharacter);
@@ -95,7 +87,7 @@ public class HelperFunctions {
 	
 	public static int randomizerRun() {
 		Random rng = new Random();
-		int spawnID = rng.nextInt((4 - 1) + 1);
+		int spawnID = rng.nextInt((2 - 1) + 1);
 			
 		return spawnID;
 	}

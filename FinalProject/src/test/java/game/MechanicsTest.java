@@ -2,8 +2,13 @@ package game;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 import org.junit.jupiter.api.Test;
 
+import character.Character;
 import character.Type;
 
 class MechanicsTest {
@@ -27,4 +32,19 @@ class MechanicsTest {
 		assertEquals(m.getPlayerCharacter().getClassType(), Type.WARRIOR);
 	}
 	
+	
+	@Test
+	public void mainMenuTest() throws Exception {
+		Mechanics m = new Mechanics();
+		Scanner c = new Scanner(System.in);
+		Character character = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
+		
+		m.setPlayerCharacter(character);
+		
+		//Begin Battle / Visit Bazaar / View Inventory
+		m.mainMenuHandler();
+		assertFalse(m.isInMainMenu());
+		
+		c.close();
+		}
 }

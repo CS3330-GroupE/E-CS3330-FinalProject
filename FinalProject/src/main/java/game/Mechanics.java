@@ -454,11 +454,20 @@ public class Mechanics {
 	public Character getPlayerCharacter() {
 		return playerCharacter;
 	}
-
-
-
 	public void setPlayerCharacter(Character playerCharacter) {
 		this.playerCharacter = playerCharacter;
+	}
+	public Monster getMonsterHolder() {
+		return monsterHolder;
+	}
+	public void setMonsterHolder(Monster monsterHolder) {
+		this.monsterHolder = monsterHolder;
+	}
+	public boolean isInMainMenu() {
+		return inMainMenu;
+	}
+	public void setInMainMenu(boolean inMainMenu) {
+		this.inMainMenu = inMainMenu;
 	}
 
 }
