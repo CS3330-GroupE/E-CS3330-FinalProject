@@ -11,9 +11,10 @@ public class PresetText {
 	    System.out.println("|  Warrior                                |");
 	    System.out.println("===========================================");
 	}
+	
 
 	public void commandPrompt() {
-		System.out.println("\n\n\n");
+		System.out.print("\n\n\n");
 	    System.out.println("===========================================");
 	    System.out.println("|               Enter a Command           |");
 	    System.out.println("===========================================");
@@ -25,7 +26,7 @@ public class PresetText {
 	}
 	
 	public void inventoryCommandPrompt() {
-		System.out.println("\n\n\n");
+		System.out.print("\n\n\n");
 	    System.out.println("===========================================");
 	    System.out.println("|          Enter Inventory Command        |");
 	    System.out.println("===========================================");
@@ -37,7 +38,7 @@ public class PresetText {
 	}
 	
 	public void battleCommandPrompt() {
-		System.out.println("\n\n\n");
+		System.out.print("\n\n\n");
 	    System.out.println("===========================================");
 	    System.out.println("|           Enter Battle Command          |");
 	    System.out.println("===========================================");
@@ -61,11 +62,11 @@ public class PresetText {
 	    System.out.println("|              BLAKE SIMPSON              |");
 	    System.out.println("|                                         |");
 	    System.out.println("===========================================");
-	    System.out.println("\n\n");
+	    System.out.print("\n\n");
 	}
 	
 	public void shopCommandPrompt() {
-		System.out.println("\n\n\n");
+		System.out.print("\n\n\n");
 	    System.out.println("===========================================");
 	    System.out.println("|           Welcome to the Bazarr!        |");
 	    System.out.println("===========================================");
