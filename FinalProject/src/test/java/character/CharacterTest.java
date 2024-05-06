@@ -43,6 +43,24 @@ public void testConstructor(){
     	assertEquals(equippedEquipment, character.getEquippedEquipment());
     	assertEquals(classType, character.getClassType());
     	assertEquals(gold, character.getGold());
+    	
+    	
+    	Character c = new Character(character);
+    	
+    	assertEquals(baseHealth, c.getBaseHealth());
+    	assertEquals(health, c.getHealth());
+    	assertEquals(strength, c.getStrength());
+    	assertEquals(vitality, c.getVitality());
+    	assertEquals(dexterity, c.getDexterity());
+    	assertEquals(intelligence, c.getIntelligence());
+    	assertEquals(armorClass, c.getArmorClass());
+    	assertEquals(level, c.getLevel());
+    	assertEquals(experience, c.getExperience());
+    	assertEquals(healthPots, c.getHealthPots());
+    	assertEquals(equippedWeapon, c.getEquippedWeapon());
+    	assertEquals(equippedEquipment, c.getEquippedEquipment());
+    	assertEquals(classType, c.getClassType());
+    	assertEquals(gold, c.getGold());
 
 	}
 
@@ -50,6 +68,9 @@ public void testConstructor(){
 public void isDeadTest() {
 	Character character = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
 	assertTrue(character.isDeadPlayer(character));
+	
+	Character c = new Character(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, null, null, Type.MAGE, 0);
+	assertFalse(c.isDeadPlayer(c));
 	
 }
 
@@ -59,10 +80,10 @@ public void levelUpTest() {
 	Character warrior = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.WARRIOR, 0);
 	Character ranger = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.RANGER, 0);
 
-	int s = 1;
-	int i = 1;
-	int d = 1;
-	int v = 1;
+	int s = 0;
+	int i = 0;
+	int d = 0;
+	int v = 0;
 	
 	mage.setBaseStrength(s);
 	mage.setBaseIntelligence(i);
@@ -83,34 +104,82 @@ public void levelUpTest() {
 	warrior.levelUp();
 	ranger.levelUp();
 	
-	assertEquals(mage.getBaseStrength(), s+2);
-	assertEquals(mage.getBaseIntelligence(), i+2);
-	assertEquals(mage.getBaseDexterity(), d+2);
-	assertEquals(mage.getBaseVitality(), v+2);
+	assertEquals(mage.getBaseStrength(), 0);
+	assertEquals(mage.getBaseIntelligence(), 2);
+	assertEquals(mage.getBaseDexterity(), 0);
+	assertEquals(mage.getBaseVitality(), 2);
 	
-	assertEquals(warrior.getBaseStrength(), s+2);
-	assertEquals(warrior.getBaseIntelligence(), i+2);
-	assertEquals(warrior.getBaseDexterity(), d+2);
-	assertEquals(warrior.getBaseVitality(), v+2);
+	assertEquals(warrior.getBaseStrength(), 2);
+	assertEquals(warrior.getBaseIntelligence(), 0);
+	assertEquals(warrior.getBaseDexterity(), 0);
+	assertEquals(warrior.getBaseVitality(), 2);
 	
-	assertEquals(ranger.getBaseStrength(), s+2);
-	assertEquals(ranger.getBaseIntelligence(), i+2);
-	assertEquals(ranger.getBaseDexterity(), d+2);
-	assertEquals(ranger.getBaseVitality(), v+2);
+	assertEquals(ranger.getBaseStrength(), 0);
+	assertEquals(ranger.getBaseIntelligence(), 0);
+	assertEquals(ranger.getBaseDexterity(), 2);
+	assertEquals(ranger.getBaseVitality(), 2);
 		
 }
 
 @Test
 public void usePotionTest() {
-	Character m = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
-	m.setBaseHealth(0);
+	Character m = new Character(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, null, null, Type.MAGE, 0);
+	Character w = new Character(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, null, null, Type.WARRIOR, 0);
+	Character r = new Character(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, null, null, Type.RANGER, 0);
 	
+	
+	m.setHealthPots(1);
 	m.usePotion();
 	
-	assertEquals(m.health, 4);
+
+	w.setHealthPots(1);
+	w.usePotion();
+
+	r.setHealthPots(1);
+	r.usePotion();
+	
+	
+	assertEquals(m.getHealthPots(), 0);
+	assertEquals(m.getHealth(), 2);
+
+	
 }
 
+@Test
+public void setBaseStatsTest() {
+	Character m = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
+	
+	m.setBaseMageStats();
+	assertEquals(m.getBaseArmorClass(),7);
+	assertEquals(m.getBaseHealthPots(),3);
+	assertEquals(m.getBaseVitality(),7);
+	assertEquals(m.getBaseIntelligence(),7);
+	assertEquals(m.getBaseStrength(),7);
+	assertEquals(m.getBaseDexterity(),7);
+	assertEquals(m.getBaseHealth(),10);
+	
+	m.setBaseRangerStats();	
+	assertEquals(m.getBaseArmorClass(),6);
+	assertEquals(m.getBaseHealthPots(),3);
+	assertEquals(m.getBaseVitality(),6);
+	assertEquals(m.getBaseIntelligence(),6);
+	assertEquals(m.getBaseStrength(),6);
+	assertEquals(m.getBaseDexterity(),6);
+	assertEquals(m.getBaseHealth(),12);
+	
+	m.setBaseWarriorStats();
+	assertEquals(m.getBaseArmorClass(),5);
+	assertEquals(m.getBaseHealthPots(),3);
+	assertEquals(m.getBaseVitality(),5);
+	assertEquals(m.getBaseIntelligence(),5);
+	assertEquals(m.getBaseStrength(),5);
+	assertEquals(m.getBaseDexterity(),5);
+	assertEquals(m.getBaseHealth(),15);
+}
 
-
+@Test
+public void attackTest() {
+	
+}
 
 }

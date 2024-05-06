@@ -250,18 +250,21 @@ public class Character {
 		int newLevel = this.getLevel() + 1;
 		this.setLevel(newLevel);
 		if(this.getClassType() == Type.MAGE) {
-			setBaseIntelligence(getBaseIntelligence() + 2);
-			setBaseVitality(getBaseVitality() + 2);
+			this.setBaseIntelligence(getBaseIntelligence() + 2);
+			this.setBaseVitality(getBaseVitality() + 2);
 		}
 		if(this.getClassType() == Type.WARRIOR) {
-			setBaseStrength(getBaseStrength() + 2);
-			setBaseVitality(getBaseVitality() + 2);
+			this.setBaseStrength(getBaseStrength() + 2);
+			this.setBaseVitality(getBaseVitality() + 2);
 		}
 		if(this.getClassType() == Type.RANGER) {
-			setBaseDexterity(getBaseDexterity() + 2);
-			setBaseVitality(getBaseVitality() + 2);
+			this.setBaseDexterity(getBaseDexterity() + 2);
+			this.setBaseVitality(getBaseVitality() + 2);
 		}
-		updateStats(this);
+		
+		if(this.getEquippedEquipment() != null && this.getEquippedWeapon() != null) {
+			updateStats(this);
+		}
 		this.updateHealth();
 	}
 
@@ -287,34 +290,34 @@ public class Character {
 	        }
 	    }
 
-	    private void setBaseMageStats() {
-	        setBaseHealth(10);
-	        setBaseDexterity(7);
-	        setBaseStrength(7);
-	        setBaseIntelligence(7);
-	        setBaseVitality(7);
-	        setBaseHealthPots(3);
-	        setBaseArmorClass(7);
+	    public void setBaseMageStats() {
+	    	this.setBaseHealth(10);
+	        this.setBaseDexterity(7);
+	        this.setBaseStrength(7);
+	        this.setBaseIntelligence(7);
+	        this.setBaseVitality(7);
+	        this.setBaseHealthPots(3);
+	        this.setBaseArmorClass(7);
 	    }
 
-	    private void setBaseRangerStats() {
-	        setBaseHealth(12);
-	        setBaseDexterity(6);
-	        setBaseStrength(6);
-	        setBaseIntelligence(6);
-	        setBaseVitality(6);
-	        setBaseHealthPots(3);
-	        setBaseArmorClass(6);
+	    public void setBaseRangerStats() {
+	        this.setBaseHealth(12);
+	        this.setBaseDexterity(6);
+	        this.setBaseStrength(6);
+	        this.setBaseIntelligence(6);
+	        this.setBaseVitality(6);
+	        this.setBaseHealthPots(3);
+	        this.setBaseArmorClass(6);
 	    }
 
-	    private void setBaseWarriorStats() {
-	        setBaseHealth(15);
-	        setBaseDexterity(5);
-	        setBaseStrength(5);
-	        setBaseIntelligence(5);
-	        setBaseVitality(5);
-	        setBaseHealthPots(3);
-	        setBaseArmorClass(5);
+	    public void setBaseWarriorStats() {
+	    	this.setBaseHealth(15);
+	    	this.setBaseDexterity(5);
+	    	this.setBaseStrength(5);
+	    	this.setBaseIntelligence(5);
+	    	this.setBaseVitality(5);
+	    	this.setBaseHealthPots(3);
+	    	this.setBaseArmorClass(5);
 	    }
 	
 	
