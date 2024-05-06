@@ -2,6 +2,9 @@ package character;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import monster.Monster;
+import monster.Orc;
+
 import org.junit.jupiter.api.Test;
 
 import item.Item;
@@ -149,7 +152,7 @@ public void usePotionTest() {
 public void setBaseStatsTest() {
 	Character m = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
 	
-	m.setBaseMageStats();
+	m.setBaseStats(m);
 	assertEquals(m.getBaseArmorClass(),7);
 	assertEquals(m.getBaseHealthPots(),3);
 	assertEquals(m.getBaseVitality(),7);
@@ -158,7 +161,8 @@ public void setBaseStatsTest() {
 	assertEquals(m.getBaseDexterity(),7);
 	assertEquals(m.getBaseHealth(),10);
 	
-	m.setBaseRangerStats();	
+	m.setClassType(Type.RANGER);
+	m.setBaseStats(m);	
 	assertEquals(m.getBaseArmorClass(),6);
 	assertEquals(m.getBaseHealthPots(),3);
 	assertEquals(m.getBaseVitality(),6);
@@ -167,7 +171,8 @@ public void setBaseStatsTest() {
 	assertEquals(m.getBaseDexterity(),6);
 	assertEquals(m.getBaseHealth(),12);
 	
-	m.setBaseWarriorStats();
+	m.setClassType(Type.WARRIOR);
+	m.setBaseStats(m);
 	assertEquals(m.getBaseArmorClass(),5);
 	assertEquals(m.getBaseHealthPots(),3);
 	assertEquals(m.getBaseVitality(),5);
@@ -179,7 +184,47 @@ public void setBaseStatsTest() {
 
 @Test
 public void attackTest() {
+	Monster m = new Monster("Orc", 1, 20, 6, 8, 2, "wild");
+	Character c = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
+	
+	int health = m.getHealth();
+	
+	c.attack(c, m);
+	
+	assertTrue(health == m.getHealth() || health >= m.getHealth());
 	
 }
+
+@Test
+public void getDamageTest() {
+	Character c = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
+	
+	c.setIntelligence(1);
+	assertEquals(c.getPlayerDamage(c),1);
+	
+	c.setDexterity(1);
+	c.setClassType(Type.RANGER);
+	assertEquals(c.getPlayerDamage(c),1);
+	
+	c.setStrength(1);
+	c.setClassType(Type.WARRIOR);
+	assertEquals(c.getPlayerDamage(c),1);
+	
+}
+
+@Test
+public void takeDamageTest() {
+	Character c = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
+	
+	c.takeDamage(1);
+	assertEquals(c.getHealth(), 0);
+}
+
+
+
+
+
+
+
 
 }

@@ -290,7 +290,7 @@ public class Character {
 	        }
 	    }
 
-	    public void setBaseMageStats() {
+	    private void setBaseMageStats() {
 	    	this.setBaseHealth(10);
 	        this.setBaseDexterity(7);
 	        this.setBaseStrength(7);
@@ -300,7 +300,7 @@ public class Character {
 	        this.setBaseArmorClass(7);
 	    }
 
-	    public void setBaseRangerStats() {
+	   private void setBaseRangerStats() {
 	        this.setBaseHealth(12);
 	        this.setBaseDexterity(6);
 	        this.setBaseStrength(6);
@@ -310,7 +310,7 @@ public class Character {
 	        this.setBaseArmorClass(6);
 	    }
 
-	    public void setBaseWarriorStats() {
+	    private void setBaseWarriorStats() {
 	    	this.setBaseHealth(15);
 	    	this.setBaseDexterity(5);
 	    	this.setBaseStrength(5);
