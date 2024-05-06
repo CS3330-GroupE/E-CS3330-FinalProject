@@ -224,7 +224,7 @@ public class Mechanics {
 			equipItem(playerCharacter);
 			
 			//equip item
-			break;
+			break; 
 		
 		case 4:
 			//back
@@ -402,7 +402,9 @@ public class Mechanics {
 
         // Get the index input from the user
         input = commandHandler.getUserInput();
-        int index = Integer.parseInt(input);
+        try {
+            int index = Integer.parseInt(input);
+        
 
         // Retrieve the item from the inventory
         if (index >= 0 && index < playerInventory.getItems().size()) {
@@ -439,6 +441,11 @@ public class Mechanics {
  
         } else {
             System.out.println("Invalid index.");
+        }
+        }
+        catch(NumberFormatException e) {
+        	System.out.println("Invalid input");
+        	
         }
     }	
 }

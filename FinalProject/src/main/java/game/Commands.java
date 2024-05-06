@@ -26,11 +26,8 @@ public class Commands {
 		return input;
 	}
 	
-	//use/view inventory
-	//begin battle
-	//quit
-	//
-	//
+
+
 	//gets passed user input from getUserInput() method and determines the
 	//command being used through a switch statement and returns the command as an integer
 	//
@@ -39,7 +36,7 @@ public class Commands {
 	// - if user input = "attack" -> returns 1
 	// - if user input = "check inventory" -> returns 2
 	// - if user input = "quit" -> returns 3
-	protected int determineCommand(String input) {
+	public int determineCommand(String input) {
 		
 		input = input.toLowerCase().trim();
 		
@@ -73,7 +70,15 @@ public class Commands {
 	
 	
 	
-	protected int determineInventoryCommand(String input) {
+	//determines the inventory menu command the user is inputting
+	//
+	//RETURNS:
+	// - if user input = invalid -> returns -1
+	// - if user input = "check current equipment" -> returns 1
+	// - if user input = "check stats" -> returns 2
+	// - if user input = "equip item (index #)" -> returns 3
+	// - if user input = "back" -> returns 4
+	public int determineInventoryCommand(String input) {
 		input = input.toLowerCase().trim();
 		
 		switch(input) {
@@ -112,8 +117,14 @@ public class Commands {
 	
 	
 	
-	
-	protected int determineBattleCommand(String input) {
+	//determines the battle menu command the user is inputting
+	//
+	//RETURNS:
+	// - if user input = invalid -> returns -1
+	// - if user input = "attack" -> returns 1
+	// - if user input = "use health potion" -> returns 2
+	// - if user input = "run" -> returns 3
+	public int determineBattleCommand(String input) {
 		input = input.toLowerCase().trim();
 		
 		switch(input) {
@@ -152,7 +163,7 @@ public class Commands {
 	// - if user input = "mage" -> returns 1
 	// - if user input = "ranger" -> returns 2
 	// - if user input = "warrior" -> returns 3
-	protected int determineCharacter(String input) {
+	public int determineCharacter(String input) {
 		input = input.toLowerCase();
 		
 		switch(input) {
@@ -183,7 +194,17 @@ public class Commands {
 		return command;
 	}
 	
-	protected int determineShopCommand(String input) {
+	
+	
+	//determiens the inventory menu command the user is inputting
+	//
+	//RETURNS:
+	// - if user input = invalid -> returns -1
+	// - if user input = "buy random item" -> returns 1
+	// - if user input = "buy health potion" -> returns 2
+	// - if user input = "restore full health" -> returns 3
+	// - if user input = "back" -> returns 4
+	public int determineShopCommand(String input) {
 		input = input.toLowerCase().trim();
 		
 		switch(input) {
@@ -214,6 +235,8 @@ public class Commands {
 		
 		return command;
 	}
+	
+	
 	
 	
 	public static int randomizerMonstSpawn() {
