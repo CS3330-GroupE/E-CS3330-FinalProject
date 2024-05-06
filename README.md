@@ -8,8 +8,8 @@ Authors: Jonathan Hatfield, Ethan Alexander, Brian Bluhm, Blake Simpson
 Contributions:
 
 Ethan Alexander:
-	- Character class and all its subclasses
 	
+	- Character class and all its subclasses
 	Methods within Character class:
 		- public void levelUp();
 		- public void usePotion();
