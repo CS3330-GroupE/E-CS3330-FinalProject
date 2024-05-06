@@ -9,9 +9,8 @@ import item.Inventory;
 import item.RandomEquipmentGenerator;
 
 public class Monster {
-	private Random rng;
-	private String name;
-	//hit point value of monster
+    private String name;
+    //hit point value of monster
     private int health;
     //determines monster stat bonuses
     private int level;
@@ -97,13 +96,13 @@ public class Monster {
         
         if (attackValue >= character.getArmorClass()) {
         	switch (attackValue) { 
-        		case 10-14: 
-        			int damage = (monster.getDamage() * 2);
+        	   case 25: 
+        	    int damage = (monster.getDamage() * 2);
                     playerTakeDamage(character , damage);
                     System.out.println(monster.getName() + " critically strikes you for " + damage + " damage!");
                     break;
-        		default:
-        			damage = monster.getDamage();
+        	default:
+        	    damage = monster.getDamage();
                     playerTakeDamage(character, damage);
                     System.out.println(monster.getName() + " attacks you for " + damage + " damage!");
                     break;
@@ -125,7 +124,7 @@ public class Monster {
     	
     	health = health - damage;
     	if(health < 0) {
-    		player.setHealth(health);
+    		player.setHealth(0);
     	}
     	else {
     		player.setHealth(health);
@@ -186,7 +185,7 @@ public class Monster {
 	//Mechanics upon monster death
 	//Random item drops
 	public Item dropTreasure() {
-		Random rng = new Random();
+	    Random rng = new Random();
 	    int dropRNG = rng.nextInt(5); // Generate a drop chance
 
 	    // If the drop value is not 0 or 1, drop a random item
@@ -196,19 +195,20 @@ public class Monster {
 	        return null; // No item dropped
 	    }
 	}
-	
+
+	//Random gold
 	public int dropGold() {
 		Random rng = new Random();
 		int gold = rng.nextInt(30 + 1) + 11;
 		
 		return gold;
 	}
+	
 	//Random EXP
 	public double dropEXP() {
-		Random rng = new Random();
+	    Random rng = new Random();
 	    int baseExp = rng.nextInt(20) + 10; // Generate a random two-digit integer between 10 and 29
-	    //double bonusExp = getLevel() * 0.2; // Apply a bonus based on the level of the monster
-	    return baseExp /* bonusExp*/;
+	    return baseExp;
 	}
 	
 	//onDeath method to drop kill rewards, runs from isDead method
@@ -227,7 +227,6 @@ public class Monster {
 	    	character.levelUp();
 	    }
 	    
-	    
 	    if (treasure != null) {
 	        System.out.println("The " + getName() + " dropped " + treasure.getName());
 	        inventory.addItem(treasure);
@@ -235,111 +234,9 @@ public class Monster {
 	        System.out.println("The " + getName() + " did not drop any treasure.");
 	    }
 	}
-	
 
+	//Check monster stats
 	public void checkMonsterHealth() {
 		System.out.print("\nThe "+ getName() +"'s current health is " + this.getHealth()+"\n");
 	}
-
-	//********************
-	//Monster spawning and randomization mechanics below this point
-	public void randomBackend() {
-		rng = new Random();
-	}
-		
-	public int randomizer() {
-		int spawnID = rng.nextInt(4);
-			
-		return spawnID;
-	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Moved these items down here in case they we
-
-
-/* @Override
-public void attack() {
-    // Zombie's attack behavior
-} */
-
-
-//********************
-//Monster subclasses and mechanics below this point
-//public class Zombie extends Monster {
-//    public Zombie() {
-//        super("Zombie", 0, 15, 5, 5, 0);
-//    }
-//    
-//    //Zombie special mechanics
-//
-//}
-//
-//public class Goblin extends Monster {
-//    public Goblin() {
-//        super("Goblin", 0, 8, 5, 3, 3);
-//    }
-//    
-//    //Goblin special mechanics
-//
-//}
-//
-//public class Orc extends Monster {
-//    public Orc() {
-//        super("Orc", 1, 20, 6, 8, 2);
-//    }
-//
-//}
-
-
-    
-    //Dragon special mechanics
-
-
-
-//Non-combat event generation TDO
-
-//Spawning decision switch case
-//	public Monster spawnMonster() {
-//	    int spawnID = randomizer();
-//	    switch (spawnID) {
-//	        case 0:
-//	            return new Zombie();
-//	        case 1:
-//	            return new Zombie();
-//	        case 2:
-//	            return new Zombie();
-//	        case 3:
-//	            return new Zombie();
-//	        case 4:
-//	            return new Goblin();
-//	        case 5:
-//	            return new Goblin();
-//	        case 6:
-//	            return new Goblin();
-//	        case 7:
-//	            return new Orc();
-//	        case 8:
-//	            return new Orc();
-//	        case 9:
-//	            return new Dragon();
-//	        case 10:
-//	            return new Dragon();
-//	        
-//	        default:
-//	            return new Dragon(); // Default to Dragon if spawnID is out of range
-
