@@ -3,7 +3,12 @@ package game;
 import java.util.Scanner;
 import java.util.Random;
 
-
+/**
+ * @author blake simpson
+ * 
+ * this class handles all commands that the user will be inputting
+ * 
+ */
 public class Commands {
 	
 	//private Boolean characterChosen;
@@ -18,8 +23,14 @@ public class Commands {
 
 	}
 	
-	//gets input from user through a scanner and returns the input
-	//don't need to unit test -> essentially just be testing java functions
+	
+	/**
+	 * @author blake simpson
+	 * @return input as a string after being formated
+	 * 
+	 * gets input from user through a scanner and returns the input
+	 * don't need to unit test -> essentially just be testing java functions
+	 */
 	protected String getUserInput() {
 		String input = scanner.nextLine();
 		
@@ -27,15 +38,25 @@ public class Commands {
 	}
 	
 
+	
+	
+	
+	/**
+	 * @author blake simpson
+	 * @param input from user
+	 * @return command as integer
+	 * 
+	 * 
+	 * gets passed user input from getUserInput() method and determines the
+	 *  command being used through a switch statement and returns the command as an integer
+     *
+	 *  RETURNS:
+	 *  - if user input = invalid -> returns -1
+	 *	- if user input = "attack" -> returns 1
+	 *	- if user input = "check inventory" -> returns 2
+	 *	- if user input = "quit" -> returns 3
+	 */
 
-	//gets passed user input from getUserInput() method and determines the
-	//command being used through a switch statement and returns the command as an integer
-	//
-	//RETURNS:
-	// - if user input = invalid -> returns -1
-	// - if user input = "attack" -> returns 1
-	// - if user input = "check inventory" -> returns 2
-	// - if user input = "quit" -> returns 3
 	public int determineCommand(String input) {
 		
 		input = input.toLowerCase().trim();
@@ -70,14 +91,24 @@ public class Commands {
 	
 	
 	
-	//determines the inventory menu command the user is inputting
-	//
-	//RETURNS:
-	// - if user input = invalid -> returns -1
-	// - if user input = "check current equipment" -> returns 1
-	// - if user input = "check stats" -> returns 2
-	// - if user input = "equip item (index #)" -> returns 3
-	// - if user input = "back" -> returns 4
+
+	
+	/**
+	 * @author blake simpson
+	 * @param input from user
+	 * @return command as integer
+	 * 
+	 * 
+	 *  gets passed user input from getUserInput() method and determines the
+	 *  command being used through a switch statement and returns the command as an integer
+     *
+	 *  RETURNS:
+	 *  - if user input = invalid -> returns -1
+	 *	- if user input = "check current equipment" -> returns 1
+	 *	- if user input = "check stats" -> returns 2
+	 *	- if user input = "equip item" -> returns 3
+	 *  - if user input = "back" -> returns 4
+	 */
 	public int determineInventoryCommand(String input) {
 		input = input.toLowerCase().trim();
 		
@@ -117,13 +148,24 @@ public class Commands {
 	
 	
 	
-	//determines the battle menu command the user is inputting
-	//
-	//RETURNS:
-	// - if user input = invalid -> returns -1
-	// - if user input = "attack" -> returns 1
-	// - if user input = "use health potion" -> returns 2
-	// - if user input = "run" -> returns 3
+
+	
+	
+	/**
+	 * @author blake simpson
+	 * @param input from user
+	 * @return command as integer
+	 * 
+	 * 
+	 *  gets passed user input from getUserInput() method and determines the
+	 *  command being used through a switch statement and returns the command as an integer
+     *
+	 *  RETURNS:
+	 *  - if user input = invalid -> returns -1
+	 *	- if user input = "attack" -> returns 1
+	 *	- if user input = "use health" -> returns 2
+	 *	- if user input = "run" -> returns 3
+	 */
 	public int determineBattleCommand(String input) {
 		input = input.toLowerCase().trim();
 		
@@ -163,6 +205,22 @@ public class Commands {
 	// - if user input = "mage" -> returns 1
 	// - if user input = "ranger" -> returns 2
 	// - if user input = "warrior" -> returns 3
+	
+	/**
+	 * @author blake simpson
+	 * @param input from user
+	 * @return command as integer
+	 * 
+	 * 
+	 *  gets passed user input from getUserInput() method and determines the
+	 *  character being selected through a switch statement and returns the command as an integer
+     *
+	 *  RETURNS:
+	 *  - if user input = invalid -> returns -1
+	 *	- if user input = "mage" -> returns 1
+	 *	- if user input = "ranger" -> returns 2
+	 *	- if user input = "warrior" -> returns 3
+	 */
 	public int determineCharacter(String input) {
 		input = input.toLowerCase();
 		
@@ -196,14 +254,24 @@ public class Commands {
 	
 	
 	
-	//determiens the inventory menu command the user is inputting
-	//
-	//RETURNS:
-	// - if user input = invalid -> returns -1
-	// - if user input = "buy random item" -> returns 1
-	// - if user input = "buy health potion" -> returns 2
-	// - if user input = "restore full health" -> returns 3
-	// - if user input = "back" -> returns 4
+
+	
+	/**
+	 * @author blake simpson
+	 * @param input from user
+	 * @return command as integer
+	 * 
+	 * 
+	 *  gets passed user input from getUserInput() method and determines the
+	 *  command being used through a switch statement and returns the command as an integer
+     *
+	 *  RETURNS:
+	 *  - if user input = invalid -> returns -1
+	 *	- if user input = "buy random item" -> returns 1
+	 *	- if user input = "buy health potion" -> returns 2
+	 *	- if user input = "restore full health" -> returns 3
+	 *  - if user input = "back" -> returns 4
+	 */
 	public int determineShopCommand(String input) {
 		input = input.toLowerCase().trim();
 		
@@ -247,12 +315,7 @@ public class Commands {
 	}
 	
 
-	protected void checkStat(int inventoryNumber) {
-		
-		
-		
-		
-	}
+
 	
 	/*
 	 * public int getIndexInput() { int number;
