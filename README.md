@@ -4,6 +4,14 @@ CS 3330 Final Project: Adventures of JEBB
 
 Authors: Jonathan Hatfield, Ethan Alexander, Brian Bluhm, Blake Simpson
 
+** TO COMPILE AND RUN **
+- navigate to the proejct folder
+- cd E-CS3330-FinalProject/FinalProject/src/main/java
+- javac javac character/Character.java item/Item.java monster/Monster.java game/Mechanics.java main/Main.java
+- java main/Main.java
+
+
+
 
 Contributions:
 
