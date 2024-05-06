@@ -2,7 +2,7 @@ package game;
 
 public class PresetText {
 	
-	protected void characterPrompt() {
+	public void characterPrompt() {
 	    System.out.println("===========================================");
 	    System.out.println("|             Choose a Character          |");
 	    System.out.println("===========================================");
@@ -12,7 +12,7 @@ public class PresetText {
 	    System.out.println("===========================================");
 	}
 
-	protected void commandPrompt() {
+	public void commandPrompt() {
 		System.out.println("\n\n\n");
 	    System.out.println("===========================================");
 	    System.out.println("|               Enter a Command           |");
@@ -24,7 +24,7 @@ public class PresetText {
 	    System.out.println("===========================================");
 	}
 	
-	protected void inventoryCommandPrompt() {
+	public void inventoryCommandPrompt() {
 		System.out.println("\n\n\n");
 	    System.out.println("===========================================");
 	    System.out.println("|          Enter Inventory Command        |");
@@ -36,7 +36,7 @@ public class PresetText {
 	    System.out.println("===========================================");
 	}
 	
-	protected void battleCommandPrompt() {
+	public void battleCommandPrompt() {
 		System.out.println("\n\n\n");
 	    System.out.println("===========================================");
 	    System.out.println("|           Enter Battle Command          |");
@@ -48,10 +48,10 @@ public class PresetText {
 	}
 
 	
-	protected void startGameLogo() {
+	public void startGameLogo() {
 	    System.out.println("===========================================");
 	    System.out.println("|                                         |");
-	    System.out.println("|               GAME TITLE                |");
+	    System.out.println("|           Adventures of JEBB            |");
 	    System.out.println("|                                         |");
 	    System.out.println("|                   BY:                   |");
 	    System.out.println("|                                         |");
@@ -64,7 +64,7 @@ public class PresetText {
 	    System.out.println("\n\n");
 	}
 	
-	protected void shopCommandPrompt() {
+	public void shopCommandPrompt() {
 		System.out.println("\n\n\n");
 	    System.out.println("===========================================");
 	    System.out.println("|           Welcome to the Bazarr!        |");
@@ -76,7 +76,7 @@ public class PresetText {
 	    System.out.println("===========================================");
 	}
 	
-	protected void printGoblin() {
+	public void printGoblin() {
 		
 		System.out.println("          **            ");
 		System.out.println("       *%###            ");
@@ -98,7 +98,7 @@ public class PresetText {
 		System.out.println("         +#*+=+*        ");	
 	}
 	
-	protected void printDragon() {
+	public void printDragon() {
 		
 		System.out.println("                                 *******######**+ ");
 		System.out.println("                            ++******+****###%*    ");
@@ -129,7 +129,7 @@ public class PresetText {
 		
 	}
 	
-	protected void printOrc() {
+	public void printOrc() {
 		
 		System.out.println("             +#                          ");
 		System.out.println("           %@@@#*#                       ");
@@ -163,7 +163,7 @@ public class PresetText {
 		
 	}
 	
-	protected void printZombie() {
+	public void printZombie() {
 		
 		System.out.println("         :-=-:                  ");
 		System.out.println("       :=+==--:                 ");

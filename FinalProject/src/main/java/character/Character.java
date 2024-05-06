@@ -161,7 +161,7 @@ public class Character {
 	
 	//prints the users current health
 	public void checkHealth () {
-		System.out.print("Current health is : " + this.getHealth());
+		System.out.print("Current health is: " + this.getHealth());
 	}
 	
 	//print operations to gives info on stats
@@ -184,7 +184,7 @@ public class Character {
 		Item weapon = this.getEquippedWeapon();
 		Item equipment = this.getEquippedEquipment();
 		
-		System.out.print("Weapon: "+weapon.getName() + ":\n");
+		System.out.print("Weapon: "+weapon.getName() + "\n");
 		System.out.print("Equipment: "+equipment.getName() + "\n");
 		System.out.print("Armor Class: " + this.getArmorClass() + "\n");
 		System.out.print("Current Number of Health Pots: " + this.getHealthPots() + "\n");
@@ -225,7 +225,7 @@ public class Character {
 	 * armorClass -= itemArmorClass; }
 	 */
 	
-    private void resetStats(Character character) {
+    public void resetStats(Character character) {
         character.setDexterity(character.getBaseDexterity());
         character.setStrength(character.getBaseStrength());
         character.setIntelligence(character.getBaseIntelligence());
@@ -234,7 +234,7 @@ public class Character {
     }
     
     
-    private void updateStatsWithItem(Item item, Character character) {
+    public void updateStatsWithItem(Item item, Character character) {
         // Update stats with item
         character.setDexterity(character.getDexterity() + item.getDexterity());
         character.setStrength(character.getStrength() + item.getStrength());

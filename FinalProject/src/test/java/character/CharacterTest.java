@@ -2,12 +2,15 @@ package character;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import monster.Monster;
-import monster.Orc;
 
 import org.junit.jupiter.api.Test;
 
 import item.Item;
+import item.ItemFactory;
 
 public class CharacterTest {
 
@@ -222,8 +225,77 @@ public void takeDamageTest() {
 
 
 
+@Test
+public void printStatsTest() throws Exception {
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(outContent));
+	Character c = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
+	
+	c.checkStats();
+	
+   String expectedOutput  = "Current Player Info:\n\nLevel: 0\nClass: MAGE\nHealth: 0\nXP: 0.0/100\nVitality: 0\nDexterity: 0\nStrength: 0\nIntelligence: 0\n";
+   // Do the actual assertion.
+   assertEquals(expectedOutput, outContent.toString());
+}
 
+@Test
+public void printHealthTest() throws Exception {
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(outContent));
+	Character c = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null, null, Type.MAGE, 0);
+	
+	c.checkHealth();
+	
+   String expectedOutput  = "Current health is: 0";
+   // Do the actual assertion.
+   assertEquals(expectedOutput, outContent.toString());
+}
 
+@Test
+public void printCheckEquipmentTest() throws Exception {
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(outContent));
+	Character c = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.", 2, 2, 7, 4, 2), ItemFactory.createItem("Equipment", "Magic Robes", "Basic magical robes that give emit magical energy and can be equipped.",
+			1, 3, 7, 5, 2), Type.MAGE, 0);
+	
+	c.checkEquipment();
+	
+   String expectedOutput  = "Weapon: Enchanted Sceptre\nEquipment: Magic Robes\nArmor Class: 0\nCurrent Number of Health Pots: 0\nCurrent Gold: 0\n";
+   // Do the actual assertion.
+   assertEquals(expectedOutput, outContent.toString());
+}
+
+@Test
+public void resetStatsTest() {
+	Character c = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.", 2, 2, 7, 4, 2), 
+			ItemFactory.createItem("Equipment", "Magic Robes", "Basic magical robes that give emit magical energy and can be equipped.", 1, 3, 7, 5, 2), Type.MAGE, 0);
+	
+	c.setBaseDexterity(1);
+	c.setBaseIntelligence(1);
+	c.setBaseVitality(1);
+	c.setBaseStrength(1);
+	c.setBaseArmorClass(1);
+	
+	c.resetStats(c);
+
+	assertEquals(c.getVitality(),1);
+	assertEquals(c.getIntelligence(),1);
+	assertEquals(c.getStrength(),1);
+	assertEquals(c.getDexterity(),1);
+	assertEquals(c.getArmorClass(),1);
+}
+
+@Test
+public void updateStatsWithItemTest() {
+	Character c = new Character(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ItemFactory.createItem("Weapon", "Enchanted Sceptre", "A heavy sceptre that can be equipped as a weapon.", 2, 2, 7, 4, 2), 
+			ItemFactory.createItem("Equipment", "Magic Robes", "Basic magical robes that give emit magical energy and can be equipped.", 1, 3, 7, 5, 2), Type.MAGE, 0);
+			//name, description, strength, vitality, dexterity, intelligence, armorClass
+	
+	c.updateStatsWithItem(c.getEquippedEquipment(),c);
+	c.updateStatsWithItem(c.getEquippedWeapon(), c);
+	
+	assertEquals(c.getIntelligence(), 9);
+}
 
 
 

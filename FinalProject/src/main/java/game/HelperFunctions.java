@@ -45,6 +45,7 @@ public class HelperFunctions {
 	public void buyFullHealth(Character playerCharacter){
 		if(playerCharacter.getGold() >= 20) {
 			System.out.print("\nYour health has been fully restored.\n");
+			playerCharacter.setGold(playerCharacter.getGold() - 20);
 			playerCharacter.updateHealth();
 		}
 		else {
