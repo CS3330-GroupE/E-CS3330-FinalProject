@@ -247,7 +247,9 @@ public class Character {
 		
 		System.out.print("\n\nLEVELUP!!\n\n");
 		
+		
 		int newLevel = this.getLevel() + 1;
+		this.setExperience(0);
 		this.setLevel(newLevel);
 		if(this.getClassType() == Type.MAGE) {
 			this.setBaseIntelligence(getBaseIntelligence() + 2);
