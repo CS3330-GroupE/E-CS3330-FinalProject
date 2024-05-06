@@ -12,11 +12,6 @@ import character.Character;
 import character.Type;
 
 class MechanicsTest {
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	void createCharacterTest() {

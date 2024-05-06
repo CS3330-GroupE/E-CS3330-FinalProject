@@ -18,11 +18,11 @@ import item.Weapon;
 import item.Equipment;
 
 /**
+ * @author blake simpson
+ * 
  * This Mechanics class handles all things relating to the flow control and logic of the
  * game itself. It starts the game, quits the game, and has the main loop logic that the user
  * will interact with while playing.
- * 
- * @author blake simpson
  * 
  * 
  */
@@ -65,6 +65,11 @@ public class Mechanics {
 	
 	
 	//starts game logic loop
+	/**
+	 * @author blake simpson
+	 * 
+	 * This method is the main loop logic that runs the game.
+	 */
 	public void startGame() {
 		
 		presetText.startGameLogo();
@@ -109,11 +114,7 @@ public class Mechanics {
 					shopMenuHandler();
 				}
 			}
-			
-			//monsters turn IN BATTLE ONLY
-			else {
-				//monster attack player
-			}
+
 		}
 		
 		System.out.println("\nGAMEOVER");
@@ -124,10 +125,12 @@ public class Mechanics {
 	
 	/**
 	 * @author Brian Bluhm
-	 *  random monster spawner
-	 * @return new monster
+	 * @author Blake Simpson
+	 * 
+	 * 
+	 * handles main menu while game is running
+	 * switch case to handle which menu to go into next
 	 */
-	//handles main menu commands from user
 	public void mainMenuHandler() {
 		
 		presetText.commandPrompt();
@@ -144,25 +147,25 @@ public class Mechanics {
 		    switch (spawnID) {
 		        case 0:													  //for reference
 		        	monsterHolder = new Zombie("Zombie", 0, 15, 5, 5, 0, "wild"); //String name, int level, int health, int attack, int damage, int defense, String title
-				monsterHolder.levelBoost(monsterHolder, playerCharacter);
+		        	monsterHolder.levelBoost(monsterHolder, playerCharacter);
 		        	System.out.print("\nA level " + monsterHolder.getLevel() + " " + monsterHolder.getTitle() + " Zombie Appears!\n\n\n");
 		        	presetText.printZombie();
 		        	break;
 		        case 1:
 		        	monsterHolder = new Goblin("Goblin", 0, 8, 5, 3, 3, "wild");
-				monsterHolder.levelBoost(monsterHolder, playerCharacter);
+		        	monsterHolder.levelBoost(monsterHolder, playerCharacter);
 		        	System.out.print("\nA level " + monsterHolder.getLevel() + " " + monsterHolder.getTitle() + " Goblin Appears!\n\n\n");
 		        	presetText.printGoblin();
 		        	break;
 		        case 2:
 		        	monsterHolder = new Orc("Orc", 1, 20, 6, 8, 2, "wild");
-				monsterHolder.levelBoost(monsterHolder, playerCharacter);
+		        	monsterHolder.levelBoost(monsterHolder, playerCharacter);
 		        	System.out.print("\nA level " + monsterHolder.getLevel() + " " + monsterHolder.getTitle() + " Orc Appears!\n\n\n");
 		        	presetText.printOrc();
 		        	break;
 		        case 3:
 		        	monsterHolder = new Dragon("Dragon", 2, 35, 7, 12, 3, "wild");
-				monsterHolder.levelBoost(monsterHolder, playerCharacter);
+		        	monsterHolder.levelBoost(monsterHolder, playerCharacter);
 		        	System.out.print("\nA level " + monsterHolder.getLevel() + " " + monsterHolder.getTitle() + " Dragon Appears!\n\n\n");
 		        	presetText.printDragon();
 		        	break;
@@ -201,6 +204,12 @@ public class Mechanics {
 
 
 	//handles inventory menu commands from user
+	/**
+	 * @author Blake Simpson
+	 * 
+	 * Handles inventory menu commands from user.
+	 * Switch statement determines which inventory option is selected by user.
+	 */
 	public void inventoryMenuHandler() {
 		
 		presetText.inventoryCommandPrompt();
@@ -240,6 +249,13 @@ public class Mechanics {
 	}
 	
 	
+	
+	/**
+	 * @author Blake Simpson
+	 * 
+	 * Handles shop menu commands from user.
+	 * Switch statement determines which shop option is chosen by player.
+	 */
 	public void shopMenuHandler() {
 		
 		presetText.shopCommandPrompt();
@@ -274,7 +290,13 @@ public class Mechanics {
 	}
 	
 	
-	//handles battle menu commands from user
+
+	/**
+	 * @author Blake Simpson
+	 * 
+	 * Handles battle menu commands from user
+	 * Switch statement determines which battle option is chosen by player.
+	 */
 	public void battleMenuHandler() {
 		
 		presetText.battleCommandPrompt();
@@ -327,9 +349,14 @@ public class Mechanics {
 		
 	
 	/**
-	 * @author ethan alexander and Jonathan Hatfield
-	 * @param input
-	 * @return new character
+	 * @author Ethan Alexander
+	 * @author Jonathan Hatfield
+	 * @author Blake Simpson
+	 * @param character selection input as integer
+	 * @return new created character
+	 * 
+	 * Gets the input as an integer from determineCharacter and creates the character
+	 * with default items and stats.
 	 */
 	public Character createCharacter(int input) {
 		//stats are this order: Strength, Vitality, Dexterity, Intelligence, Armor class
@@ -382,17 +409,23 @@ public class Mechanics {
 	
 	
 	
-	//stops game from running once getUserInput() detects "quit" command
-	//
-	//might not end up needing pretty basic
-	//if we want to implement like a saveState feature this method could call a save method before quitting
+	
+	/**
+	 * @author Blake Simpson
+	 * 
+	 * sets gameOver flag to true once getUserInput() detects "quit" command from user
+	 */
 	private void quitGame() {
 		gameOver = true;
 		
 	}
 
+	
+	
 	/**
 	 * @author Jonathan Hatfield
+	 * @param player character
+	 * 
 	 *  Removes selected item from inventory and equips to player character
 	 *  Adds former equipment to inventory
 	 */
@@ -448,6 +481,11 @@ public class Mechanics {
         	
         }
     }
+    
+    
+    
+    
+    
     
     
     //for testing
