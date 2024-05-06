@@ -21,7 +21,13 @@ import monster.Monster;
 
 public class HelperFunctions {
 
-	//will check if player has 50 gold, subtract 50 from gold if player does, and add a random item to the inventory
+	
+	/**
+	 * @author Ethan Alexander
+	 * will check if player has 50 gold, subtract 50 from gold if player does, and add a random item to the inventory
+	 * 
+	 */
+	
 	public void buyRandomItem(Character playerCharacter, Inventory inventory){
 		if(playerCharacter.getGold() >= 50) {
 			Item item = ItemFactory.createRandomItem();
@@ -46,7 +52,11 @@ public class HelperFunctions {
 		}
 	}
 	
-	//checks if player has 20 gold. if so, sets the players health to full
+	/**
+	 * @author Ethan Alexander
+	 * checks if player has 20 gold. if so, sets the players health to full
+	 * 
+	 */
 	public void buyFullHealth(Character playerCharacter){
 		if(playerCharacter.getGold() >= 20) {
 			System.out.print("\nYour health has been fully restored.\n");
@@ -58,9 +68,14 @@ public class HelperFunctions {
 		}
 	}
 
-	//uses the attack method for a chance to deal damage to monster. checks if the monster is dead.
-	//if not, the monster gets a chance to attack the player. It then prints the health of both player and
-	//monster health
+	/**
+	 * @author Ethan Alexander
+	 * uses the attack method for a chance to deal damage to monster. checks if the monster is dead.
+	 * if not, the monster gets a chance to attack the player. It then prints the health of both player and
+	 * monster health
+	 * 
+	 */
+	
 	public void Combat(Monster monsterHolder, Character playerCharacter) {
 		System.out.println("You attack the " + monsterHolder.getName() + "!\n");
 		playerCharacter.attack(playerCharacter, monsterHolder);
@@ -74,7 +89,11 @@ public class HelperFunctions {
 
 	}
 	
-	//gives a player a chance to leave combat sequence. if the attempt fails, the monster attacks the player.
+	/**
+	 * @author Ethan Alexander
+	 * gives a player a chance to leave combat sequence. if the attempt fails, the monster attacks the player.
+	 * 
+	 */
 	public boolean run(Monster monsterHolder, Character playerCharacter) {
 		int run = randomizerRun();
 		switch(run){
@@ -93,8 +112,12 @@ public class HelperFunctions {
 		}
 	}
 	
-	//this generates a random number between 1-2
-	//for the run method
+	/**
+	 * @author Ethan Alexander
+	 * this generates a random number between 1-2
+	 * for the run method
+	 * 
+	 */
 	public static int randomizerRun() {
 		Random rng = new Random();
 		int spawnID = rng.nextInt((2 - 1) + 1);

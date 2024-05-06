@@ -1,5 +1,12 @@
 package character;
 
+/**
+ * @author Ethan Alexander
+ * 
+ *Subclass for character
+ * 
+ */
+
 public class Ranger extends Character {
 	
 	public Ranger() {

@@ -1,5 +1,12 @@
 package character;
 
+/**
+ * @author Ethan Alexander
+ * 
+ *Subclass for character
+ * 
+ */
+
 public class Warrior extends Character {
 		
 		public Warrior() {

@@ -36,6 +36,23 @@ public class Character {
 	protected int baseHealthPots;
 	protected int baseArmorClass;
 	
+	/**
+ 	* Character class constructor for .
+ 	* @param baseHealth - all items labeled base dictate the characters core values
+ 	* @param health - current health based on equipment and base stats
+ 	* @param level - current level based on equipment and base stats
+ 	* @param experience - changes after every combat and when 100 will level player up
+ 	* @param dexterity - current dexterity based on equipment and base stats
+ 	* @param strength - current strength based on equipment and base stats
+ 	* @param intelligence - current intelligence based on equipment and base stats
+ 	* @param vitality - current vitality based on equipment and base stats
+ 	* @param healthPots - holds number of health pots player possesses
+ 	* @param equippedWeapon - current weapon equipped
+ 	* @param equippedEquipment - current equipment 
+ 	* @param classType - holds whether mage, ranger, or warrior
+ 	* @param gold - current amount of gold player possesses
+ 	*/
+	
 	public Character(int baseHealth, int health, int level, double experience, int dexterity, int strength, int intelligence, 
 			         int vitality, int healthPots, int armorClass, Item equippedWeapon, Item equippedEquipment, Type classType, int gold) {
 		super();
@@ -111,7 +128,11 @@ public class Character {
         	}
     }
 	
-	//increases players health by 4 if players health isn't full already and if the player has health potions
+	/**
+	 * @author Ethan Alexander
+	 * increases players health by 4 if players health isn't full already and if the player has health potions
+	 * 
+	 */
 	public void usePotion() {
 		//players current health
 		int newHealth = this.getHealth();
@@ -171,13 +192,21 @@ public class Character {
 	
 	
 	
-	
-	//prints the users current health
+	/**
+	 * @author Ethan Alexander
+	 * prints the users current health
+	 * 
+	 */
 	public void checkHealth () {
 		System.out.print("Current health is: " + this.getHealth());
 	}
 	
-	//print operations to gives info on stats
+	
+	/**
+	 * @author Ethan Alexander
+	 * print operations to gives info on stats
+	 * 
+	 */
 	public void checkStats () {
 
 		
@@ -193,7 +222,12 @@ public class Character {
 		
 	}
 	
-	//prints players current equipment
+	
+	/**
+	 * @author Ethan Alexander
+	 * prints players current equipment
+	 * 
+	 */
 	public void checkEquipment() {
 		Item weapon = this.getEquippedWeapon();
 		Item equipment = this.getEquippedEquipment();
@@ -222,7 +256,12 @@ public class Character {
 	}
     
 	
-	//resets all stats to the base stats
+	
+	/**
+	 * @author Jonathan Hatfield
+	 * resets all stats to the base stats
+	 * 
+	 */
     public void resetStats(Character character) {
         character.setDexterity(character.getBaseDexterity());
         character.setStrength(character.getBaseStrength());
@@ -231,7 +270,11 @@ public class Character {
         character.setArmorClass(character.getBaseArmorClass());
     }
     
-    //will add the item's stats to the base stats and set the flexible stats to their summation
+	/**
+	 * @author Jonathan Hatfield
+	 * will add the item's stats to the base stats and set the flexible stats to their summation
+	 * 
+	 */
     public void updateStatsWithItem(Item item, Character character) {
         // Update stats with item
         character.setDexterity(character.getDexterity() + item.getDexterity());
@@ -241,7 +284,13 @@ public class Character {
         character.setArmorClass(character.getArmorClass() + item.getArmorClass());
     }
 	
-    //adds 1 to level and updates stats
+    
+	/**
+	 * @author Ethan Alexander
+	 * adds 1 to level and updates stats
+	 * 
+	 */
+
 	public void levelUp () {
 		
 		System.out.print("\n\nLEVELUP!!\n\n");
@@ -273,7 +322,11 @@ public class Character {
 		this.updateHealth();
 	}
 
-	//creates the base stats for players
+	/**
+	 * @author Jonathan Hatfield
+	 * creates the base stats for players
+	 * 
+	 */
 	 public void setBaseStats(Character character) {
 		 	Type type = character.getClassType();
 	        switch (type) {
@@ -327,6 +380,11 @@ public class Character {
 	    }
 	
 	
+		/**
+		 * @author Ethan Alexander
+		 * @param Character character which is currently in combat sequence
+		 * @return boolean of true or false
+		 */
 	//checks if the player is dead, returns true if so
 	public boolean isDeadPlayer(Character character) {
 		if(character.getHealth() > 0) {
@@ -349,7 +407,12 @@ public class Character {
 		return 0;
 	}
 	
-	//updates health based on base health and vitality
+	
+	/**
+	 * @author Ethan Alexander
+	 * updates health based on base health and vitality
+	 * 
+	 */
 	public void updateHealth() {
 		this.setHealth(baseHealth + vitality);
 	}

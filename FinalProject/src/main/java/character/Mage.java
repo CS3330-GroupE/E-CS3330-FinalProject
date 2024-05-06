@@ -1,5 +1,11 @@
 package character;
 
+/**
+ * @author Ethan Alexander
+ * 
+ *Subclass for character
+ * 
+ */
 public class Mage extends Character {
 	
 	public Mage() {
