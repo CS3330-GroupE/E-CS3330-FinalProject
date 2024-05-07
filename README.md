@@ -54,3 +54,22 @@ Blake Simpson:
      	- battleMenuHandler()
 		- quitGame()
     - All JUnit Commands Tests
+
+Jonathan Hatfield:
+
+	 - Item class and all subclasses
+	 Methods within item package:
+		- createRandomItem
+  		- createItem
+ 		- getPrefix
+		- generateRandomEquipment   
+   		- addItem
+    		- removeItemd
+   		- getItems
+    		- displayInventory
+   
+   	Methods within Mechanics:
+   		- equipItem
+     		- createCharacter
+	
+ 	All Junit Item tests
