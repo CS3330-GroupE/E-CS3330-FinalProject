@@ -10,7 +10,11 @@ _TO COMPILE AND RUN_
 - java main/Main.java
 
 
-
+_JUNIT TESTS INFO:_
+- Because the entirity of our project relies on user input, to get all JUnit tests to run successfully,
+  when you run all tests, you will need to enter "begin battle" so that the mainMenuHandler() can be tested.
+  Only then will you see ~85% code coverage. Our coverage will fluctuate a couple of percent because certain methods
+  deal with random generation
 
 *CONTRIBUTIONS:*
 
