@@ -77,7 +77,7 @@ Jonathan Hatfield:
 Brian Bluhm:
 	
 	- Monster class and the Zombie(), Goblin(), Orc(), and Dragon() subclasses
-	Methods within Character class:
+	Methods within Monster class:
 		- public void attack(Monster monster, Character character);
 		- public void playerTakeDamage(Character character, int damage);
 		- public void takeDamage(int damage);
