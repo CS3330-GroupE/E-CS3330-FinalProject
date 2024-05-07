@@ -12,7 +12,7 @@ _TO COMPILE AND RUN_
 
 
 
-Contributions:
+*CONTRIBUTIONS:*
 
 Ethan Alexander:
 	
@@ -29,3 +29,24 @@ Ethan Alexander:
 	
 	Methods in Mechanics:
 		- public Character createCharacter(int input);
+
+
+Blake Simpson:
+
+	- Commands class
+ 		Methods within Commands class:
+   		- getUserInput()
+      	- determineCommand()
+	 	- determineInventoryCommand()
+    	- determineBattleCommand()
+       	- determineCharacter()
+	  	- determineShopCommand()
+    - Mechanics class
+       	Methods within Mechanics class:
+	 	- startGame()
+    	- mainMenuHandler()
+       	- inventoryMenuHandler()
+	  	- shopMenuHandler()
+     	- battleMenuHandler()
+		- quitGame()
+    - All JUnit Commands Tests
