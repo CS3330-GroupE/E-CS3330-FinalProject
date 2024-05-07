@@ -73,3 +73,23 @@ Jonathan Hatfield:
      		- createCharacter
 	
  	All Junit Item tests
+
+Brian Bluhm:
+	
+	- Monster class and the Zombie(), Goblin(), Orc(), and Dragon() subclasses
+	Methods within Character class:
+		- public void attack(Monster monster, Character character);
+		- public void playerTakeDamage(Character character, int damage);
+		- public void takeDamage(int damage);
+		- public boolean isDead(Monster monster);
+		- public void levelBoost(Monster monster, Character character);
+		- public Item dropTreasure();
+  		- public int dropGold();
+		- public double dropEXP();
+		- public void onDeath(Character character, Inventory inventory);
+  		- public void checkMonsterHealth();
+	
+	Methods in Mechanics:
+		- Monster spawner spawnID switch case in mainMenuHandler
+  
+  	JUnit tests for Monster class
